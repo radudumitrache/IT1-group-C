@@ -349,7 +349,7 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
-### macOS ###
+### macOS (damnit vlad) ###
 # General
 .DS_Store
 .AppleDouble
