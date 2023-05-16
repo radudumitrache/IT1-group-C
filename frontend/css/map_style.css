@@ -1,0 +1,58 @@
+@font-face {
+    font-family: Nexa;
+}
+
+body {
+    padding: 3vw;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: soft-light;
+    background-color: rgba(255, 255, 255, 0.36);
+    min-height: 100vh;
+}
+
+#maincontainer {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto 1fr; /* Added grid-template-rows to define the top and middle sections */
+}
+
+#top {
+    display: flex;
+    justify-content: space-between;
+    grid-column: 1/7; /* Updated the grid-column span to 1/7 to cover the entire top section */
+}
+
+#logo {
+    display: flex;
+    justify-content: flex-end; /* Align the logo to the right */
+    width: 157px;
+    height: 136px;
+}
+
+#button {
+    display: flex;
+    justify-content: flex-start; /* Align the button to the left */
+}
+
+#button > form > button {
+    width: 328px;
+    height: 70px;
+    font-size: 48px;
+    font-family: Nexa;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: rgba(217, 217, 217, 1);
+}
+
+#middle {
+    margin-top: 40px;
+    grid-column: 1/7; /* Updated the grid-column span to 1/7 to cover the entire middle section */
+}
+#middle > img{
+    width: 1328px;
+}
