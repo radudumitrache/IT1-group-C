@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;            
+}
+
+@font-face{
+    font-family: 'Nexa Bold';
+    src: url('../fonts/Nexa_Bold.otf');
+}
+
+#container{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+body{
+    background-image: url("../images/background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: soft-light;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+header{
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.headText{
+    font-size: 96px;
+    font-weight: 700;
+    font-family: 'Nexa Bold';
+    line-height: 96px;
+    color: #256478;
+}
+
+#logo > img{
+    width: 120px;
+    height: 100px;
+}
+
+.button{
+    width: 205px;
+    height: 50px;
+    border-radius: 20px;
+    background: #FFFFFF;
+    font-family: 'Nexa Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 48px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: 0;
+}
+
+main{
+    grid-column: 4/6;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    color: white;
+}
+
+#form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+#roomName{
+    font-family: 'Nexa Bold';
+    font-style: normal;
+    font-size: 35px;
+    width: 400px;
+    line-height: 48px;
+    border-radius: 10px;
+    border-color: transparent;
+
+}
+
+/* #myFile{
+    font-family: 'Nexa Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 48px;
+    border-radius: 20px;
+    width: 400px;
+    border-color: transparent;
+} */
+
+input[type="file"] {
+    display: none;
+}
+
+.upload{
+    font-family: 'Nexa Bold';
+    border: 0;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 400px;
+    font-weight: 700;
+    font-size: 38px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    color: #1C5C71;
+}
+
+#submit{
+    font-family: 'Nexa Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 48px;
+    border-radius: 10px;
+    width: 270px;
+    color: white;
+    background-color: #256478;
+    border-color: transparent;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+    color: #1C5C71;
+    /* opacity: 0.5; */
+}
+
+
+
+
