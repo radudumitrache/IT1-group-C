@@ -221,6 +221,11 @@ input[type="file"] {
     border-radius: 1rem 1rem 0rem 0rem;
 }
 
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    border-radius: 0rem 0rem 1rem 1rem;
+}
+
 #scheduleDisplay{
 
     grid-column: 4/7;
