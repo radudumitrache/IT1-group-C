@@ -102,6 +102,10 @@ header > img{
 
 }
 
+.button:hover{
+    background-color: #F1F1F1;
+}
+
 .buttonNegative{
 
     background-color: #256478;
@@ -119,6 +123,10 @@ header > img{
     justify-content: center;
     align-items: center;
 
+}
+
+.buttonNegative:hover{
+    background-color: #155468;
 }
 
 form{
@@ -147,6 +155,10 @@ label{
     align-items: center;
 }
 
+label:hover{
+    background-color: #F1F1F1;
+}
+
 input[type=submit]{
 
     background-color: #256478;
@@ -164,6 +176,10 @@ input[type=submit]{
     align-items: center;
     align-self: center;
 
+}
+
+input[type=submit]:hover{
+    background-color: #155468;
 }
 
 input[type="file"] { 
@@ -219,6 +235,7 @@ input[type="file"] {
 
 .dropdown:hover .dropbtn {
     border-radius: 1rem 1rem 0rem 0rem;
+    background-color: #f1f1f1;
 }
 
 .dropdown-content a:hover {
@@ -265,5 +282,9 @@ input[type="file"] {
     justify-content: center;
     align-items: center;
 
+}
+
+#mapButton:hover{
+    background-color: #F1F1F1;
 }
 
