@@ -247,9 +247,25 @@ input[type="file"] {
 
     grid-column: 4/7;
     grid-row: 2/6;
+    height: 100%;
+    width: 100%;
 
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+}
+
+table, th, td{
+    border: 2px solid;
+    border-collapse: collapse;
+    padding: 0.5rem;
+}
+
+table{
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #footerButtons{
