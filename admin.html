@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="admin-style.css">
+    <title>Admin</title>
+</head>
+
+<body>
+
+    <div id="container">
+
+        <header>
+            <h1>Classrooms overview</h1>
+            <img src="img/nhl_stenden_logo.png" alt="NHL Stenden Logo" title="NHL Stenden Logo">
+        </header>
+
+        <div id="controlButtons">
+
+            <a href="studentView.html">
+                <div class="button">
+                    <h2>Student view</h2>
+                </div>
+            </a>
+
+            <a href="deleteSchedule.html">
+                <div class="button">
+                    <h2>Delete schedule</h2>
+                </div>
+            </a>
+
+            <form name="scheduleUpload" action="admin.html" method="POST" enctype="multipart/form-data">
+                <label for="file">Change schedule file</label>
+                <input type="submit" name="submit" id="submit" value="Ok">
+                <input type="file" name="file" id="file">
+            </form>
+
+            <div class="dropdown">
+                <button class="dropbtn">Choose room</button>
+                <div class="dropdown-content">
+                    <a href="#">1.007</a>
+                    <a href="#">1.012</a>
+                    <a href="#">1.016</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="scheduleDisplay">
+            <p>*Current date</p>
+            <table>
+                <tr>
+                    <td>9:15 - 12:15</td>
+                    <td>Atelier - Doornbos, Jan</td>
+                    <td>1.012, 1.015, 1.016</td>
+                </tr>
+
+                <tr>
+                    <td>9:15 - 12:15</td>
+                    <td>Atelier - Doornbos, Jan, van Oenen, Gerjan, Pomp, Martijn, Oerlemans, Bart</td>
+                    <td>1.012, 1.015, 1.016</td>
+                </tr>
+
+                <tr>
+                    <td>9:15 - 12:15</td>
+                    <td>Atelier - Doornbos, Jan</td>
+                    <td>1.012, 1.015, 1.016</td>
+                </tr>
+
+                <tr>
+                    <td>9:15 - 12:15</td>
+                    <td>Atelier - Doornbos, Jan</td>
+                    <td>1.012, 1.015, 1.016</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="footerButtons">
+
+            <div class="buttonNegative">
+                <h2>Log out</h2>
+            </div>
+
+            <a href="map.html">
+                <div id="mapButton">
+                    <h2>Map</h2>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
