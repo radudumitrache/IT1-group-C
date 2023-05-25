@@ -38,23 +38,12 @@
        <div id="scheduleOverview">
             <p>{{ current_date }}</p>
             <table>
+                {% for lecture in lectures %}
                 <tr>
-                    <td>08:30 - 09:15</td>
-                    <td>Atelier: John Doe, Patrick Bateman</td>
+                    <td>{{ lecture.time }}</td>
+                    <td>{{ lecture.lecture_type.lecture_type }} {{ lecture.name }}</td>
                 </tr>
-
-                <tr>
-                    <td>09:15 - 09:45</td>
-                    <td>Lecture Math: John Math, Patrick Math/td>
-                </tr>
-
-                <tr>
-                    <td>10:15 - 11:00</td>
-                    <td>Workshop: John Doe, Patrick Bateman</td>
-
-                </tr>
-
-
+                {% endfor %}
             </table>
         </div>
 {% endblock %}
