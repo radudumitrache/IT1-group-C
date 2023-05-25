@@ -22,6 +22,4 @@ urlpatterns = [
     path("index/",views.index,name = 'index'),
 
 ]
-urlpatterns += [
-    path('', RedirectView.as_view(url='index/', permanent=True)),
-]
+

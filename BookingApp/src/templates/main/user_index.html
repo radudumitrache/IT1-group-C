@@ -1,0 +1,60 @@
+{% extends 'generic.html' %}
+
+{% block head_info %}
+
+    <title>Student/Teacher</title>
+{% endblock %}
+{% block header %}
+    <h1>Classrooms overview</h1>
+{% endblock %}
+{% block main_content %}
+      <div id="allbtn">
+
+        <div class="linkbtn">
+          <a href="#">
+            <h2>Book room</h2>
+          </a>
+        </div>
+
+        <div class="linkbtn">
+           <a href="#">
+            <h2>Your bookings</h2>
+          </a>
+        </div>
+
+
+        <div class="dropdown">
+         <button class="dropbtn">Choose room</button>
+          <div class="dropdown-content">
+            <a href="#">EMM 1.36</a>
+            <a href="#">EMM 1.012</a>
+            <a href="#">EMM 1.016</a>
+            <a href="#">EMM 1.040</a>
+          </div>
+        </div>
+
+      </div>
+
+       <div id="scheduleOverview">
+            <p>{{ current_date }}</p>
+            <table>
+                <tr>
+                    <td>08:30 - 09:15</td>
+                    <td>Atelier: John Doe, Patrick Bateman</td>
+                </tr>
+
+                <tr>
+                    <td>09:15 - 09:45</td>
+                    <td>Lecture Math: John Math, Patrick Math/td>
+                </tr>
+
+                <tr>
+                    <td>10:15 - 11:00</td>
+                    <td>Workshop: John Doe, Patrick Bateman</td>
+
+                </tr>
+
+
+            </table>
+        </div>
+{% endblock %}
