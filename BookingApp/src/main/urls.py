@@ -1,5 +1,5 @@
 """
-URL configuration for WebApplication project.
+URL configuration for BookingSystem project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.views.generic import RedirectView
+from . import views
 urlpatterns = [
-    path('ListOfBookings/',include('ListOfBookings.urls')),
-    path('login/',include('login.urls')),
-    path('admin/', admin.site.urls),
+    path("index/",views.index,name = 'index'),
+
+]
+urlpatterns += [
+    path('', RedirectView.as_view(url='index/', permanent=True)),
 ]
