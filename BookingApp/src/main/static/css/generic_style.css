@@ -287,3 +287,11 @@ table{
 #mapButton:hover{
     background-color: #F1F1F1;
 }
+#middle {
+    margin-top: 40px;
+    grid-column: 1/7; /* Updated the grid-column span to 1/7 to cover the entire middle section */
+}
+#middle > img{
+    width: 1328px;
+}
+
