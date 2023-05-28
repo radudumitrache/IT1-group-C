@@ -23,5 +23,6 @@ urlpatterns = [
 
 ]
 urlpatterns += [
-    path('', RedirectView.as_view(url='index/', permanent=True)),
+    path("index/", views.index, name='index'),
+    path('addRoom/', views.addRoom, name='addRoom')
 ]
