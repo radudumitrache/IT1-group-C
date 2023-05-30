@@ -1,0 +1,26 @@
+{% extends 'generic.html' %}
+{% load static %}
+
+{% block head_info %}
+    <title>List of Bookings</title>
+{% endblock %}
+
+{% block header %}
+    <div class="buttonNegative" onclick="history.back()">
+        <h2>< Go Back</h2>
+    </div>
+    <h1>List of Bookings</h1>
+{% endblock %}
+
+{% block main_content %}
+    <div class="main">
+        <table class="tableBookings">
+            <tr>
+                <td>01.01.2023</td>
+                <td>14:00-14:45</td>
+                <td>1.012</td>
+                <td>Cancel</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

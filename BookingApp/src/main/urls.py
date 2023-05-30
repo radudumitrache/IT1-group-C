@@ -22,6 +22,7 @@ urlpatterns = [
     path("index/",views.index,name = 'index'),
     path('map/',views.map,name = 'map'),
     path('login/',views.login,name = 'login'),
-    path('addRoom/', views.addRoom, name='addRoom')
+    path('addRoom/', views.addRoom, name='addRoom'),
+    path('listOfBookings/', views.listOfBookings, name = 'listOfBookings'),
 ]
 

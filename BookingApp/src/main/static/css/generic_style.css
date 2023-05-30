@@ -21,19 +21,14 @@ h1{
 
 h2{
     font-size: 48px;
-    
-
 }
 
 h3{
     font-size: 32px;
-    
-
 }
 
 a, a:link, a:visited, a:hover, a:active{
     text-decoration: none;
-
 }
 
 #container{
@@ -226,11 +221,11 @@ table{
     width: 80%;
     background-color: rgba(254, 247, 247, 0.8);
     background: rgba(254, 247, 247, 0.8);
-    border-radius: 1rem;
+    /*border-radius: 1rem;*/
 
 }
 
-.buttonNegative{
+.buttonNegative {
 
     background-color: #256478;
     color: #FEF7F7;
@@ -246,6 +241,8 @@ table{
     display: flex;
     justify-content: center;
     align-items: center;
+
+    cursor: pointer;
 
 }
 
@@ -300,5 +297,20 @@ table{
 {
     margin-bottom: -500px;
     object-fit: contain;
+}
+
+.main{
+    grid-column: 2/6;
+    width: 100%;
+}
+
+.tableBookings{
+    width: 80%;
+    background-color: rgba(254, 247, 247, 0.8);
+    background: rgba(254, 247, 247, 0.8);
+    border-radius: 1rem;
+    border-collapse: collapse;
+    padding: 0.5rem;
+    border: 0;
 }
 
