@@ -4,7 +4,7 @@ from datetime import date
 from django.views import generic
 from .models import *
 # Create your views here.
-<<<<<<< HEAD
+
 def index (request):
     lectures = Lecture.objects.all()
     context = {
