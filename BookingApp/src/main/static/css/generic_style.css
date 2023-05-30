@@ -7,6 +7,7 @@ body{
     background-image: url("../img/nhl_background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-blend-mode: soft-light;
     background-color: rgba(255, 255, 255, 0.7);
     font-family: "Nexa Bold", Helvetica, sans-serif;
@@ -287,11 +288,17 @@ table{
 #mapButton:hover{
     background-color: #F1F1F1;
 }
-#middle {
-    margin-top: 40px;
-    grid-column: 1/7; /* Updated the grid-column span to 1/7 to cover the entire middle section */
+#map_container
+{
+    grid-column: 2/6;
+    /*display: flex;*/
+    /*width: 100%;*/
+    /*justify-content: center;*/
+    /*height: 400px;*/
 }
-#middle > img{
-    width: 1328px;
+#map_image
+{
+    margin-bottom: -500px;
+    object-fit: contain;
 }
 

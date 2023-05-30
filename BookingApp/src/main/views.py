@@ -14,3 +14,6 @@ def index (request):
 
 def map(request):
     return render(request = request, template_name = 'main/map.html')
+def login(request):
+    return render(request = request, template_name = 'main/login.html')
+
