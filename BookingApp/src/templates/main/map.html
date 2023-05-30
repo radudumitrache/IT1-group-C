@@ -1,0 +1,14 @@
+{% extends 'generic.html' %}
+{% block head_info %}
+    <title>Map of NHL Stenden</title>
+{% endblock %}
+
+{% block header %}
+ <title>Map overview</title>
+{% endblock %}
+{% load static %}
+{% block main_content %}
+        <div id = 'map_container'>
+            <img src="{% static 'img/map.png'%}" id = 'map_image'>
+        </div>
+{% endblock %}

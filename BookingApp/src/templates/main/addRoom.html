@@ -1,0 +1,25 @@
+{% extends 'generic.html' %}
+{% block head_info %}
+    <title>Upload Room Schedule</title>
+{% endblock %}
+
+{% block header %}
+    <a href="{% url 'index' %}">
+        <div id="buttonNegative">
+            <h2>< Go Back</h2>
+        </div>
+    </a>
+    <title>Add Room</title>
+{% endblock %}
+{% load static %}
+{% block main_content %}
+    <form action = "addRoom.html" method="POST" enctype="multipart/form-data">
+        <div id="form">
+            <p><label for="roomName"></label></p>
+            <p><input type="text" id="roomName" name="roomName" placeholder="Room Name"></p>
+            <p><label for="myFile" class="upload">Schedule file</label></p>
+            <p><input type="file" id="myFile" name="myFile" style="color:transparent;"></p>
+            <p><input type="submit" id="submit"value="Add"></p>
+        </div>
+    </form>
+{% endblock %}

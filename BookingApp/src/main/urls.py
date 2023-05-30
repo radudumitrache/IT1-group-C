@@ -20,6 +20,8 @@ from django.views.generic import RedirectView
 from . import views
 urlpatterns = [
     path("index/",views.index,name = 'index'),
-
+    path('map/',views.map,name = 'map'),
+    path('login/',views.login,name = 'login'),
+    path('addRoom/', views.addRoom, name='addRoom')
 ]
 
