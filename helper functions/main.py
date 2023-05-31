@@ -13,14 +13,14 @@ def description_separation (summary : str):
     summary = summary.replace(lecture_type, '')
     for element in summary.split(','):
         if ('-' in element and element.replace('-', '').upper()):
-            groups_present.append(element)
+            groups_present.append(element.strip())
             summary = summary.replace(element, '')
 
     list_of_teachers_unparsed = summary.split(',')
     list_of_teachers_unparsed = [x for x in list_of_teachers_unparsed if x != '']
     for i in range(0, len(list_of_teachers_unparsed)):
         if (i % 2 == 0):
-            list_of_teachers.append(f"{list_of_teachers_unparsed[i]} {list_of_teachers_unparsed[i+1]}")
+            list_of_teachers.append(f"{list_of_teachers_unparsed[i]} {list_of_teachers_unparsed[i+1]}".strip())
             continue
 
     return {"lecture type" : lecture_type, "groups_present" : groups_present, "list of teachers" : list_of_teachers}
@@ -38,4 +38,4 @@ for component in cal.walk() :
         id += 1
 json_data = json.dumps(dictionary)
 print(json_data)
-description_separation('Doornbos, Jan (IC), IC-INF-IT1A, IC-INF-IT1B, IC-INF-IT1C, IC-INF-IT1D, IC-INF-IT1E, IC-INF-IT1F, IC-INF-IT1G, Oenen van, Gerjan (IC), Siersema, Elise (IC)')
+#description_separation('Doornbos, Jan (IC), IC-INF-IT1A, IC-INF-IT1B, IC-INF-IT1C, IC-INF-IT1D, IC-INF-IT1E, IC-INF-IT1F, IC-INF-IT1G, Oenen van, Gerjan (IC), Siersema, Elise (IC)')
