@@ -1,3 +1,5 @@
+from itertools import chain
+
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import date
@@ -23,6 +25,10 @@ def addRoom(request):
 
 def listOfBookings(request):
     user_id = request.user.id
-    bookings = TeacherBookingRoom.objects.all()
+    teacherBookings = TeacherBookingRoom.objects.all()
+    studentBookings = StudentBookingRoom.objects.all()
+
+    bookings = teacherBookings.union(studentBookings)
+
     return render(request, 'main/listOfBookings.html', {'bookings' : bookings})
 
