@@ -14,12 +14,16 @@
 
 {% block main_content %}
     <div class="main">
-        <table class="tableBookings">
-            <tr>
+        <table>
+            <tr class="listTable">
                 <td>01.01.2023</td>
                 <td>14:00-14:45</td>
                 <td>1.012</td>
-                <td>Cancel</td>
+                <td>
+                    <form method="POST" action="listOfBookings.html">
+                        <input class="buttonForm" type="button" value="Cancel">
+                    </form>
+                </td>
             </tr>
         </table>
     </div>

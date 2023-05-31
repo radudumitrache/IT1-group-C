@@ -22,4 +22,5 @@ def addRoom(request):
     return render(request = request, template_name = 'main/addRoom.html')
 
 def listOfBookings(request):
-    return render(request = request, template_name = 'main/listOfBookings.html')
+    return render(request, 'main/listOfBookings.html')
+
