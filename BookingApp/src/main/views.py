@@ -22,5 +22,7 @@ def addRoom(request):
     return render(request = request, template_name = 'main/addRoom.html')
 
 def listOfBookings(request):
-    return render(request, 'main/listOfBookings.html')
+    user_id = request.user.id
+    bookings = TeacherBookingRoom.objects.all()
+    return render(request, 'main/listOfBookings.html', {'bookings' : bookings})
 

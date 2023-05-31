@@ -14,17 +14,19 @@
 
 {% block main_content %}
     <div class="main">
-        <table>
-            <tr class="listTable">
-                <td>01.01.2023</td>
-                <td>14:00-14:45</td>
-                <td>1.012</td>
-                <td>
-                    <form method="POST" action="listOfBookings.html">
+        {% for book in bookings %}
+            <table>
+                <tr class="listTable">
+                    <td>{{ book.date }}</td>
+                    <td>{{ book.time }}</td>
+                    <td>{{ book.room_id }}</td>
+                    <td>
+                    <form method="POST">
                         <input class="buttonForm" type="button" value="Cancel">
                     </form>
                 </td>
-            </tr>
-        </table>
+                </tr>
+            </table>
+        {% endfor %}
     </div>
 {% endblock %}
