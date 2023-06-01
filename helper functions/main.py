@@ -12,7 +12,7 @@ def description_separation (summary : str):
     lecture_type = summary.split(',')[0]
     summary = summary.replace(lecture_type, '')
     for element in summary.split(','):
-        if ('-' in element and element.replace('-', '').upper()):
+        if ('-' in element and element.replace('-', '').isupper()):
             groups_present.append(element.strip())
             summary = summary.replace(element, '')
 
