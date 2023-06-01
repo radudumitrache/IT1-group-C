@@ -220,8 +220,7 @@ table{
     width: 100%;
     background-color: rgba(254, 247, 247, 0.8);
     background: rgba(254, 247, 247, 0.8);
-    /*border-radius: 1rem;*/
-
+    margin-top: 20px;
 }
 
 .buttonNegative {
@@ -313,6 +312,7 @@ table{
     border: 0;
     cursor: pointer;
     font-size: 36px;
+    font-family: "Nexa Bold", Helvetica, sans-serif;
     /*margin-right: -50px;*/
 }
 

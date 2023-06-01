@@ -21,8 +21,9 @@
                     <td>{{ book.time }}</td>
                     <td>{{ book.room_id }}</td>
                     <td>
-                    <form method="POST">
-                        <input class="buttonForm" type="button" value="Cancel">
+                    <form method="POST" action="{% url 'cancelBooking' book.booking_id %}">
+                        {% csrf_token %}
+                        <input class="buttonForm" type="submit" value="Cancel">
                     </form>
                 </td>
                 </tr>

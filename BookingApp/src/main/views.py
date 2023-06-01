@@ -1,6 +1,6 @@
 from itertools import chain
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from datetime import date
 from django.views import generic
@@ -31,4 +31,33 @@ def listOfBookings(request):
     bookings = teacherBookings.union(studentBookings)
 
     return render(request, 'main/listOfBookings.html', {'bookings' : bookings})
+
+def deleteBooking(request, booking_id):
+    bookingT = TeacherBookingRoom.objects.filter(booking_id=booking_id)
+    bookingS = StudentBookingRoom.objects.filter(booking_id=booking_id)
+    # user_id = request.user.id
+    if bookingT and not bookingS:
+        # bookingT = TeacherBookingRoom.objects.get(booking_id=booking_id)
+        # teacherBookings = bookingT.objects.filter(teacher_id=user_id)
+        bookingT.delete()
+        return  redirect('listOfBookings')
+    elif bookingS and not bookingT:
+        # bookingS = StudentBookingRoom.objects.get(booking_id=booking_id)
+        # studentBookings = bookingS.objects.filter(student_number=user_id)
+        bookingS.delete()
+        return redirect('listOfBookings')
+    else:
+        return redirect('listOfBookings')
+
+
+    # if bookingT:
+    #     bookingT.delete()
+    #     return redirect('listOfBookings')
+    # elif not bookingT:
+    #     bookingS = StudentBookingRoom.objects.get(booking_id=booking_id)
+    #     if bookingS:
+    #         bookingS.delete()
+    #         return redirect('listOfBookings')
+    #     else:
+    #         return redirect('listOfBookings')
 
