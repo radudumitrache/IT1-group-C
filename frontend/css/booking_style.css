@@ -14,6 +14,10 @@ body {
     background-color: rgba(255, 255, 255, 0.6);
     min-height: 90vh;
 }
+#button > form > button:hover{
+    background: #FFFFFF;
+    cursor: pointer;
+}
 
 #maincontainer {
     display: grid;
@@ -74,6 +78,17 @@ body {
     border-width: 0px;
     outline: none;
 }
+#left-side > select > option {
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent background color */
+    border-top-left-radius: 20px; /* Rounded border for the first option */
+    border-top-right-radius: 20px; /* Rounded border for the last option */
+    font-weight: bold;
+    font-size: 36px;
+    color: black;
+    text-align: left;
+    border-color: none;
+    margin-left: 5px;
+}
 #left-side > select > option{
     background-blend-mode: soft-light;
     background-color: rgba(255, 255, 255, 0.36);
@@ -110,6 +125,34 @@ body {
     font-weight: bold;
     margin-right: 13px;
 }
+.day_button:hover{
+    background: #FFFFFF;
+    cursor: pointer;
+}
+#id_work_days option{
+  width: 60px;
+  font-size: 1.2em;
+  padding: 10px 0;
+  text-align: center;
+  margin-right: 20px;
+  display: inline-block;
+  cursor: pointer;
+  border:rgb(204, 204, 0) solid 1px;
+  border-radius: 5px;
+  color: rgb(204, 204, 0);
+}
+#booking_days{
+  height: 44px;
+  border: none;
+  overflow: hidden;
+}
+#booking_days::-moz-focus-inner {
+  border: 0;
+}
+#booking_days:focus {
+  outline: none;
+}
+
 .cool_from_until{
     background-color: #FFFFFF;
     color: rgba(37, 100, 120, 1);
@@ -175,6 +218,10 @@ body {
   border: none;
   border-radius: 20px;
 }
+.confirm_button:hover{
+    cursor: pointer;
+    background: #155468;
+}
 #right-side{
     display: flex;
 }
@@ -185,7 +232,7 @@ body {
   margin-left: 0;
   display: flex;
   justify-content: center;
-  align-items: center;s
+  align-items: center;
 }
 
 .table {
@@ -222,7 +269,6 @@ body {
 .header__item {
   flex: 1 1 20%;
   text-align: center;
-  border-bottom: 1px solid #EEEEEE;
   padding: 6px 0; /* Added padding to adjust cell content */
   overflow: hidden; /* Added overflow property to hide overflowing content */
   white-space: nowrap; /* Prevent text wrapping within cells */
@@ -246,30 +292,46 @@ body {
   text-transform: uppercase;
   color: #FFFFFF; /* Added text color for header items */
 }
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #FFFFFF;
+  color: #256478;
+  font-family: Nexa;
+    font-weight: bold;
+  font-size: 48px;
+  height: fit-content;
+  width: 100%;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
 
-.filter__link {
-  color: white;
-  text-decoration: none;
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
   position: relative;
   display: inline-block;
-  padding-left: 24px;
-  padding-right: 24px;
 }
 
-.filter__link::after {
-  content: '';
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
   position: absolute;
-  right: -12px;
-  color: white;
-  font-size: 12px;
-  top: 50%;
-  transform: translateY(-50%);
+  background-color: #FFFFFF;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 0rem 0rem 1rem 1rem;
 }
 
-.filter__link.desc::after {
-  content: '(desc)';
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
-.filter__link.asc::after {
-  content: '(asc)';
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  border-radius: 1rem 1rem 1rem 1rem;
+  background-color: #f1f1f1;
 }
+

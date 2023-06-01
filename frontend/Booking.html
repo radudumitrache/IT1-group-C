@@ -19,12 +19,22 @@
     </div>
     <div id="middle">
         <div id="left-side">
-            <select id="room-select">
+            <div class="dropdown">
+                <select class="dropbtn">
+                    <option disabled selected hidden>Choose room</option>
+                    <option value="EMM 1.036">EMM 1.036</option>
+                    <option value="EMM 1.012">EMM 1.012</option>
+                    <option value="EMM 1.016">EMM 1.016</option>
+                    <option value="EMM 1.040">EMM 1.040</option>
+                </select>
+            </div>
+
+            <!--<select id="room-select">
                 <option value="" disabled selected hidden>Choose room</option>
                 <option value="room1">Room 1</option>
                 <option value="room2">Room 2</option>
                 <option value="room3">Room 3</option>
-            </select>
+            </select>-->
             <div class="choose_time_button">Choose time</div>
             <form id="day-form" action="" method="POST">
                 <div id="day-buttons">
@@ -59,6 +69,18 @@
                         <div class="table-row">
                             <div class="table-data-time">9:15 - 9:45</div>
                             <div class="table-data">Lecture Math: John Math, Patrick Math</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-data-time">10:15 - 11:00</div>
+                            <div class="table-data">Workshop: John Doe, Patrick Bateman</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-data-time">10:15 - 11:00</div>
+                            <div class="table-data">Workshop: John Doe, Patrick Bateman</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-data-time">10:15 - 11:00</div>
+                            <div class="table-data">Workshop: John Doe, Patrick Bateman</div>
                         </div>
                         <div class="table-row">
                             <div class="table-data-time">10:15 - 11:00</div>
@@ -111,6 +133,17 @@
       }
     });
   });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var dropdownBtn = document.querySelector('.dropbtn');
+  var dropdownContent = document.querySelector('.dropdown-content');
+
+  dropdownBtn.addEventListener('click', function() {
+    dropdownContent.classList.toggle('open');
+  });
+});
+
 </script>
 
 
