@@ -25,8 +25,8 @@ def addRoom(request):
 
 def listOfBookings(request):
     user_id = request.user.id
-    teacherBookings = TeacherBookingRoom.objects.all()
-    studentBookings = StudentBookingRoom.objects.all()
+    teacherBookings = TeacherBookingRoom.objects.filter(teacher_id=user_id)
+    studentBookings = StudentBookingRoom.objects.filter(student_number=user_id)
 
     bookings = teacherBookings.union(studentBookings)
 
@@ -35,31 +35,17 @@ def listOfBookings(request):
 def deleteBooking(request, booking_id):
     bookingT = TeacherBookingRoom.objects.filter(booking_id=booking_id)
     bookingS = StudentBookingRoom.objects.filter(booking_id=booking_id)
-    # user_id = request.user.id
+    user_id = request.user.id
     if bookingT and not bookingS:
-        # bookingT = TeacherBookingRoom.objects.get(booking_id=booking_id)
-        # teacherBookings = bookingT.objects.filter(teacher_id=user_id)
-        bookingT.delete()
+        teacherBookings = bookingT.filter(teacher_id=user_id)
+        teacherBookings.delete()
         return  redirect('listOfBookings')
     elif bookingS and not bookingT:
-        # bookingS = StudentBookingRoom.objects.get(booking_id=booking_id)
-        # studentBookings = bookingS.objects.filter(student_number=user_id)
-        bookingS.delete()
+        studentBookings = bookingS.filter(student_number=user_id)
+        studentBookings.delete()
         return redirect('listOfBookings')
     else:
         return redirect('listOfBookings')
-
-
-    # if bookingT:
-    #     bookingT.delete()
-    #     return redirect('listOfBookings')
-    # elif not bookingT:
-    #     bookingS = StudentBookingRoom.objects.get(booking_id=booking_id)
-    #     if bookingS:
-    #         bookingS.delete()
-    #         return redirect('listOfBookings')
-    #     else:
-    #         return redirect('listOfBookings')
 
 class LoginView(BaseLoginView):
     form_class = LoginForm

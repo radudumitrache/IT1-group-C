@@ -24,7 +24,7 @@ urlpatterns = [
     # path('login/',views.login,name = 'login'),
     # path('addRoom/', views.addRoom, name='addRoom'),
     path('listOfBookings/', views.listOfBookings, name = 'listOfBookings'),
-    path('listOfBookings/<int:booking_id>/cancel', views.deleteBooking, name = 'cancelBooking')
+    path('listOfBookings/<int:booking_id>/cancel', views.deleteBooking, name = 'cancelBooking'),
     path('login/',views.LoginView.as_view(),name = 'login'),
     path('addRoom/', views.addRoom, name='addRoom')
 ]
