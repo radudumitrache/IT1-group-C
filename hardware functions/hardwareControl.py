@@ -16,8 +16,8 @@ Todo:
 def get_lecture_type(lecture_name: str):
     lecture_name = lecture_name.lower()
     for lecture_type in lecture_types:
-        if lecture_type in lecture_name:
-            return lecture_type
+        if lecture_name == lecture_type:
+            return lecture_name
 
     return "none"
 
@@ -55,13 +55,13 @@ def overlap_check(schedule: str):
     previous_event = None
     current_event = None
 
-    for thing in schedule:
+    for event in schedule:
 
         if previous_event is None:
-            previous_event = thing
+            previous_event = event
             continue
 
-        current_event = thing
+        current_event = event
 
         if dictionary[current_event]["date"] == dictionary[previous_event]["date"]:
             if dictionary[current_event]["start"] > dictionary[previous_event]["end"]:
