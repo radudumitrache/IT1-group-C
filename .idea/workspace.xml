@@ -4,66 +4,71 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e22081-58dc-4498-9f34-c7d195a9363a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="4e848c61-c752-4688-8855-90dbc00d4e31" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/Booking.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/css/booking_style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/img/background.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookingApp/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BookingApp/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookingApp/src/BookingSystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookingApp/src/BookingSystem/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookingApp/src/main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookingApp/src/main/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookingApp/src/main/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookingApp/src/main/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookingApp/src/main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/BookingApp/src/main/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookingApp/src/main/static/css/add_room_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/BookingApp/src/main/static/css/add_room_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookingApp/src/main/static/css/generic_style_css.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookingApp/src/main/static/css/login_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/BookingApp/src/main/static/css/login_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BookingApp/src/templates/main/addRoom.html" beforeDir="false" afterPath="$PROJECT_DIR$/BookingApp/src/templates/main/addRoom.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/static/css/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/static/fonts/Nexa_Bold.otf" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/addRoom/fonts/Nexa_Bold.otf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/ListOfBookings/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/WebApplication/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/WebApplication/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/WebApplication/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/WebApplication/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/WebApplication/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/static/css/login_style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/static/fonts/Nexa Bold.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/static/img/NHL_logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/img/NHLlogo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/static/img/Stenden_Emmen.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/static/img/nhl_stenden_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/login/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addRoom/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/addRoom/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addRoom/fonts/Nexa_Bold.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addRoom/images/NHLlogo.png" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/addRoom/images/NHLlogo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addRoom/images/background.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/addRoom/images/background.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addRoom/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/addRoom/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/studentOverview/student_view.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/studentOverview/student_view.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/studentOverview/student_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/studentOverview/student_view.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="CSS File" />
-      </list>
-    </option>
-
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2Pp10N4hbtN74vN4sfgu3diaDNb" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/NHL_Stenden_PHP_Docker_Env-master/app/public/IT1-group-C",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+    "git-widget-placeholder": "Merging div__bookingCancel"
   }
-}</component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+}]]></component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="17e22081-58dc-4498-9f34-c7d195a9363a" name="Changes" comment="" />
-      <created>1684138988487</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1684138988487</updated>
-      <workItem from="1684139274483" duration="1992000" />
-    </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
 </project>

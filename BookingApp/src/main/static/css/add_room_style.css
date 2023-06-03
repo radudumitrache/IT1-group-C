@@ -1,0 +1,366 @@
+@font-face{
+    font-family: "Nexa Bold";
+    src: url("../fonts/Nexa Bold.otf");
+}
+
+body{
+    background-image: url("../img/nhl_background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: soft-light;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-family: "Nexa Bold", Helvetica, sans-serif;
+    margin:0;
+    padding:0;
+}
+h1{
+    font-size: 96px;
+
+}
+
+h2{
+    font-size: 48px;
+
+
+}
+
+h3{
+    font-size: 32px;
+
+
+}
+
+a, a:link, a:visited, a:hover, a:active{
+    text-decoration: none;
+
+}
+
+#container{
+
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+header{
+
+    grid-column: 1/7;
+    grid-row: 1/2;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: #256478;
+
+}
+
+header > img{
+    width: 10%;
+}
+
+#allbtn{
+    grid-column: 1/4;
+    grid-row: 1/6;
+    color: #1C5C71;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: 50%;
+    padding: 180px;
+    padding-top: 5px;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+#footerbtn{
+    display: flex;
+    grid-column: 1/4;
+    grid-row: 5/7;
+
+    flex-direction: row;
+    height: 50%;
+    width: 50%;
+    padding: 180px;
+    justify-content: space-between;
+    align-items: flex-end;
+
+
+}
+
+
+.linkbtn{
+    background-color: #FFFFFF;
+    color: #1C5C71;
+    width: 100%;
+    height: fit-content;
+    border-radius: 1rem;
+    padding: 0rem 1.5rem 0rem 1.5rem;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+
+.linkbtn a {
+    color: #1C5C71;
+
+}
+
+.logoutbtn{
+
+    background-color: #256478;
+    color: #1C5C71;
+    margin: 1rem;
+    margin-left: 2rem;
+    width: fit-content;
+    height: fit-content;
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.mapbtn{
+    background-color: #D9D9D9;
+    color: #000000;
+    font-size: 48px;
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    height: fit-content;
+    border-radius: 1rem;
+    padding: 0rem 1.5rem 0rem 1.5rem;
+
+}
+
+
+
+/* Style The Dropdown Button */
+.dropbtn {
+
+    background-color: #FFFFFF;
+    color: #256478;
+    font-family: "Nexa Bold", Helvetica, sans-serif;
+    font-size: 48px;
+    height: fit-content;
+    width: 100%;
+
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+    border-radius: 0rem 0rem 1rem 1rem;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    border-radius: 1rem 1rem 0rem 0rem;
+    background-color: #f1f1f1;
+}
+
+#scheduleOverview{
+    grid-column: 4/7;
+    grid-row: 1/4;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+table, th, td{
+    border: 2px solid ;
+    border-collapse: collapse;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+td{
+    color: #256478;
+}
+
+table{
+    width: 80%;
+    background-color: rgba(254, 247, 247, 0.8);
+    background: rgba(254, 247, 247, 0.8);
+    border-radius: 1rem;
+
+}
+
+.buttonNegative{
+
+    background-color: #256478;
+    color: #FEF7F7;
+
+    margin: 1rem;
+    margin-left: 2rem;
+
+    width: fit-content;
+    height: fit-content;
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    border-radius: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.buttonNegative:hover{
+    background-color: #155468;
+}
+
+#footerButtons{
+
+    grid-column: 1/4;
+    grid-row: 5/7;
+
+    display: flex;
+    height: 50%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#mapButton{
+
+    background-color: #D9D9D9;
+    color: #000000;
+
+    margin: 1rem;
+    margin-left: 2rem;
+
+    width: fit-content;
+    height: fit-content;
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    border-radius: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#mapButton:hover{
+    background-color: #F1F1F1;
+}
+#middle {
+    margin-top: 40px;
+    grid-column: 1/7; /* Updated the grid-column span to 1/7 to cover the entire middle section */
+}
+#middle > img{
+    width: 1328px;
+}
+
+<<<<<<< HEAD:BookingApp/src/main/static/css/generic_style_css.css
+=======
+#form_container
+{
+    grid-column: 1/7;
+    margin: auto;
+    display: flex;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+}
+>>>>>>> dev_modify_db:BookingApp/src/main/static/css/add_room_style.css
+#form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+#roomName{
+    font-family: 'Nexa Bold';
+    font-style: normal;
+    font-size: 35px;
+    width: 400px;
+    line-height: 48px;
+    border-radius: 10px;
+    border-color: transparent;
+
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload{
+    font-family: 'Nexa Bold';
+    border: 0;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 400px;
+    font-weight: 700;
+    font-size: 38px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    color: #1C5C71;
+}
+
+#submit{
+    font-family: 'Nexa Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 48px;
+    border-radius: 10px;
+    width: 270px;
+    color: white;
+    background-color: #256478;
+    border-color: transparent;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+    color: #1C5C71;
+    /* opacity: 0.5; */
+}
