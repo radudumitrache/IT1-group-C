@@ -15,8 +15,8 @@
 {% block main_content %}
     <form action = "addRoom.html" method="POST" enctype="multipart/form-data">
         <div id="form">
-            <p><label for="roomName"></label></p>
-            <p><input type="text" id="roomName" name="roomName" placeholder="Room Name"></p>
+           {% csrf_token %}
+            {{ form }}
             <p><label for="myFile" class="upload">Schedule file</label></p>
             <p><input type="file" id="myFile" name="myFile" style="color:transparent;"></p>
             <p><input type="submit" id="submit"value="Add"></p>
