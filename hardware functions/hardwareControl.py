@@ -9,6 +9,7 @@ Todo:
 - Separate things into functions
 - Determine format for the BIG JSON file
 - Change logic so it works with the BIG JSON file
+- Get multiple rooms instead of just one
 """
 
 
@@ -22,9 +23,14 @@ def get_lecture_type(lecture_name: str):
 
 
 def get_room(location: str):
-    room = location.split()[0]
-    room = room.split("-")[1]
-    return room
+    if len(location) > 1:
+        rooms = list()
+        for element in location.split():
+            if '-' in element:
+                rooms.append(element.split("-")[1])
+        return rooms
+    else:
+        return
 
 
 def change_led(lecture_type: str, room: str):
@@ -84,7 +90,7 @@ lecture_types = {"werkcollege", "workshop", "atelier", "hoorcollege", "tutorial"
 
 dictionary = calendar_parse(calendar)
 
-for i in range(3):
+for i in range(1):
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     current_date = now.strftime("%Y-%m-%d")
@@ -92,12 +98,20 @@ for i in range(3):
     print("Time: " + current_time)
 
     for event in dictionary:
+        print("Rooms: " + str(get_room(dictionary[event]["location"])))
         if current_date == dictionary[event]["date"]:
             description = dictionary[event]['description']
             if (dictionary[event]['start'] < current_time) & (current_time < dictionary[event]['end']):
-                print("Current lesson: " + description["lecture type"])
+
+                lecture_type = description["lecture type"]
+                list_of_teachers = description["list of teachers"]
+                rooms = get_room(description["location"])
+
+                print("Current lesson: " + lecture_type)
                 print("Teachers: ")
-                print (description["list of teachers"])
-                change_led(get_lecture_type(description["lecture type"]), "1.016")
-                print(get_room(dictionary[event]["location"]))
-    sleep(60)
+                print(list_of_teachers)
+                for room in rooms:
+                    if room is not None:
+                        change_led(get_lecture_type(lecture_type), room)
+
+    # sleep(60)
