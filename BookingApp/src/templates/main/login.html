@@ -14,8 +14,8 @@
         <div id = "middle">
             <form method="post" action="">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit"><a href="{% url 'index' %}">Login</a></button>
+            {{ form.as_div }}
+            <input type="submit"> Login </input>
 
             </form>
         </div>
