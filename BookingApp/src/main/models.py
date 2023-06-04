@@ -37,6 +37,7 @@ class User(AbstractBaseUser):
 
 
 class Teacher(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,unique=True)
     teacher_number = models.CharField(max_length=30, primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -58,6 +59,7 @@ class TeacherBookingRoom(models.Model):
 
 
 class Student(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,unique=True)
     student_number = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
