@@ -42,7 +42,7 @@ def BookingListView(request,room,day):
     bookings_teachers = TeacherBookingRoom.objects.filter(room_id__exact=room).filter(date__exact = date_to_filter)
     bookings_students = StudentBookingRoom.objects.filter(room_number__exact=room).filter(date__exact = date_to_filter)
     all_bookings = lectures.union(bookings_students,bookings_teachers)
-    all_bookings = all_bookings.order_by('time')
+
 
     context = {
         'all_bookings' : all_bookings

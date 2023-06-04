@@ -84,7 +84,7 @@ class Room(models.Model):
 
 
 class StudentLectureTeacher(models.Model):
-    lecture_id = models.ForeignKey("Lecture", null=False, on_delete=models.CASCADE)
+    lecture_id = models.ForeignKey("Lecture", null=False, on_delete=models.CASCADE , related_name= 'lecture')
     teacher_number = models.ForeignKey("Teacher", null=False, on_delete=models.CASCADE)
     student_number = models.ForeignKey("Student", null=False, on_delete=models.CASCADE)
     room_number = models.ForeignKey("Room", null=False, on_delete=models.CASCADE)

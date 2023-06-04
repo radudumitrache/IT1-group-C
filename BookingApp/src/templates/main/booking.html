@@ -57,22 +57,19 @@
                             <div class="table-data-time">8:30 - 9:15</div>
                             <div class="table-data">Atelier: John Doe, Patrick Bateman</div>
                         </div>
-                        <div class="table-row">
-                            <div class="table-data-time">9:15 - 9:45</div>
-                            <div class="table-data">Lecture Math: John Math, Patrick Math</div>
+                        {% for booking in all_bookings %}
+                        <div class = 'table-row'>
+                            <div class = 'table-data-time'>{{ booking.time }}</div>
+                            <div class = 'table-data'>
+                                {%if booking.lecture_type.exists %}
+                                {{ booking.lecture.lecture_name }}
+                                {% else %}
+                                booking
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="table-row">
-                            <div class="table-data-time">10:15 - 11:00</div>
-                            <div class="table-data">Workshop: John Doe, Patrick Bateman</div>
-                        </div>
-                        <div class="table-row">
-                            <div class="table-data-time">10:15 - 11:00</div>
-                            <div class="table-data">Workshop: John Doe, Patrick Bateman</div>
-                        </div>
-                        <div class="table-row">
-                            <div class="table-data-time">10:15 - 11:00</div>
-                            <div class="table-data">Workshop: John Doe, Patrick Bateman</div>
-                        </div>
+
+                        {% endfor %}
                     </div>
                 </div>
             </div>
