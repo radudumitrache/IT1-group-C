@@ -7,10 +7,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/booking_style.css' %}">
 </head>
 <body>
+{{ request.path }}
 <div id="maincontainer">
     <div id="top">
         <div id="button">
             <form>
+                {% csrf_token %}
                 <button type="submit">&lt; Go back</button>
             </form>
         </div>
@@ -28,12 +30,24 @@
             </select>
             <div class="choose_time_button">Choose time</div>
             <form id="day-form" action="" method="POST">
+                {% csrf_token %}
                 <div id="day-buttons">
-                    <button class="day_button" data-day="Monday">Mo</button>
-                    <button class="day_button" data-day="Tuesday">Tu</button>
-                    <button class="day_button" data-day="Wednesday">We</button>
-                    <button class="day_button" data-day="Thursday">Th</button>
-                    <button class="day_button" data-day="Friday">Fr</button>
+                    <button class="day_button" data-day="Monday">
+                        <a href="{% url 'booking' room 0%}">Mo</a>
+                    </button>
+                    <button class="day_button" data-day="Tuesday">
+                        <a href="{% url 'booking' room 1 %}">Tu</a>
+                    </button>
+                    <button class="day_button" data-day="Wednesday">
+                        <a href="{% url 'booking' room 2 %}">We</a>
+                    </button>
+                    <button class="day_button" data-day="Thursday">
+                        <a href="{% url  'booking' room 3%}">Th</a>
+                    </button>
+                    <button class="day_button" data-day="Friday">
+                        <a href="{% url 'booking'  room 4%}">Fr</a>
+                    </button>
+
                 </div>
                 <div id="choose-time">
                     <div id="from">

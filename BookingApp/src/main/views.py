@@ -45,6 +45,8 @@ def BookingListView(request,room,day):
 
 
     context = {
-        'all_bookings' : all_bookings
+        'all_bookings' : all_bookings,
+        'current_week_day':current_week_day,
+        'room':room
     }
     return render(request=request , template_name= 'main/booking.html',context = context)

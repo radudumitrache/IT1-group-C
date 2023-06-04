@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager,AbstractBaseUser
-
+from django.urls import reverse
 class UserManager(BaseUserManager):
     def create_user(self,email,password = None):
         if not email :
@@ -56,6 +56,7 @@ class TeacherBookingRoom(models.Model):
         return self.time.strftime("%H:%M")
 
 
+
 class Student(models.Model):
     student_number = models.IntegerField(primary_key=True)
     first_name = models.CharField(max_length=30)
@@ -77,10 +78,11 @@ class StudentBookingRoom(models.Model):
     def time_now(self):
         return self.time.strftime("%H:%M")
 
-
 class Room(models.Model):
     room_number = models.IntegerField(primary_key=True)
     availability = models.BooleanField()
+    def __str__(self):
+        return self.room_number
 
 
 class StudentLectureTeacher(models.Model):
@@ -88,6 +90,9 @@ class StudentLectureTeacher(models.Model):
     teacher_number = models.ForeignKey("Teacher", null=False, on_delete=models.CASCADE)
     student_number = models.ForeignKey("Student", null=False, on_delete=models.CASCADE)
     room_number = models.ForeignKey("Room", null=False, on_delete=models.CASCADE)
+
+
+
 
 
 class Lecture(models.Model):
