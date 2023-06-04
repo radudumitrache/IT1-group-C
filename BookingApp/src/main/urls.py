@@ -23,5 +23,6 @@ urlpatterns = [
     path('map/',views.map,name = 'map'),
     path('login/',views.LoginView.as_view(),name = 'login'),
     path('addRoom/', views.addRoom, name='addRoom')
+    path ('booking/<str:room>/<int:day>/',views.BookingListView,name = 'booking')
 ]
 

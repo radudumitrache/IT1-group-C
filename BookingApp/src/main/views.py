@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render,reverse
 from django.http import HttpResponse
 from datetime import date
@@ -31,3 +33,18 @@ class LoginView(BaseLoginView):
             return reverse('index')
         else:
             return reverse('login')
+def BookingListView(request,room,day):
+    current_week_day = date.today().weekday()
+    date_to_filter = date.today()
+    if (current_week_day<day):
+        date_to_filter = date.today() + datetime.timedelta(days=day-current_week_day)
+    lectures = StudentLectureTeacher.objects.filter(room_number__exact=room).filter(lecture_id__date__exact=date_to_filter)
+    bookings_teachers = TeacherBookingRoom.objects.filter(room_id__exact=room).filter(date__exact = date_to_filter)
+    bookings_students = StudentBookingRoom.objects.filter(room_number__exact=room).filter(date__exact = date_to_filter)
+    all_bookings = lectures.union(bookings_students,bookings_teachers)
+    all_bookings = all_bookings.order_by('time')
+
+    context = {
+        'all_bookings' : all_bookings
+    }
+    return render(request=request , template_name= 'main/booking.html',context = context)
