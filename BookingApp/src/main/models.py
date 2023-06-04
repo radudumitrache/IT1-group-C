@@ -82,7 +82,7 @@ class Room(models.Model):
     room_number = models.IntegerField(primary_key=True)
     availability = models.BooleanField()
     def __str__(self):
-        return self.room_number
+        return str(self.room_number)
 
 
 class StudentLectureTeacher(models.Model):

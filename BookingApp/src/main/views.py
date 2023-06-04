@@ -42,11 +42,12 @@ def BookingListView(request,room,day):
     bookings_teachers = TeacherBookingRoom.objects.filter(room_id__exact=room).filter(date__exact = date_to_filter)
     bookings_students = StudentBookingRoom.objects.filter(room_number__exact=room).filter(date__exact = date_to_filter)
     all_bookings = lectures.union(bookings_students,bookings_teachers)
-
+    all_rooms = Room.objects.all()
 
     context = {
         'all_bookings' : all_bookings,
         'current_week_day':current_week_day,
-        'room':room
+        'room':room,
+        'all_rooms' : all_rooms
     }
     return render(request=request , template_name= 'main/booking.html',context = context)

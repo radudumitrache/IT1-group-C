@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/booking_style.css' %}">
 </head>
 <body>
-{{ request.path }}
 <div id="maincontainer">
     <div id="top">
         <div id="button">
@@ -24,9 +23,9 @@
         <div id="left-side">
             <select id="room-select">
                 <option value="" disabled selected hidden>Choose room</option>
-                <option value="room1">Room 1</option>
-                <option value="room2">Room 2</option>
-                <option value="room3">Room 3</option>
+                {% for this_room in all_rooms %}
+                    <option value="{{ this_room}}"><a href="{% url 'booking' this_room current_week_day  %}">Room {{ this_room}}</a></option>
+                {% endfor %}
             </select>
             <div class="choose_time_button">Choose time</div>
             <form id="day-form" action="" method="POST">
