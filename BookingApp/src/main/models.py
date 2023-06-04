@@ -130,3 +130,6 @@ class ClassType(models.Model):
     lecture_type = models.CharField(primary_key=True, max_length=40, choices=DIFFERENT_LECTURE_TYPES, default=AVLBL)
     description = models.TextField()
     colour = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.lecture_type

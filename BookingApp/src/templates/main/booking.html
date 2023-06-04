@@ -51,11 +51,11 @@
                 <div id="choose-time">
                     <div id="from">
                         <div class="cool_from_until">From</div>
-                        <input type="time">
+                        <input type="time" name="startTime">
                     </div>
                     <div id="until">
                         <div class="cool_from_until">Until</div>
-                        <input type="time">
+                        <input type="time" name = "endTime">
                     </div>
                 </div>
                 <input type="submit" class="confirm_button" value="Confirm Booking">
@@ -73,8 +73,8 @@
                         <div class = 'table-row'>
                             <div class = 'table-data-time'>{{ booking.time }}</div>
                             <div class = 'table-data'>
-                                {%if booking.lecture_type.exists %}
-                                {{ booking.lecture.lecture_name }}
+                                {%if booking.lecture_id%}
+                                {{ booking.lecture_id.lecture_type}}
                                 {% else %}
                                 booking
                                 {% endif %}
