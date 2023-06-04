@@ -6,3 +6,4 @@ User = get_user_model()
 class LoginForm (AuthenticationForm):
     email=forms.EmailInput()
     password = forms.PasswordInput()
+
