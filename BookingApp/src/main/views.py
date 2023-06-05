@@ -1,4 +1,6 @@
-from django.shortcuts import render,reverse
+
+from itertools import chain
+from django.shortcuts import render, redirect,reverse
 from django.http import HttpResponse
 from datetime import date
 from django.views import generic
@@ -19,7 +21,6 @@ def map(request):
 
 def addRoom(request):
     return render(request = request, template_name = 'main/addRoom.html')
-
 class LoginView(BaseLoginView):
     form_class = LoginForm
     template_name = 'main/login.html'
@@ -31,3 +32,30 @@ class LoginView(BaseLoginView):
             return reverse('index')
         else:
             return reverse('login')
+def listOfBookings(request):
+    user_id = request.user.id
+    teacherBookings = TeacherBookingRoom.objects.all()
+    studentBookings = StudentBookingRoom.objects.all()
+
+    bookings = teacherBookings.union(studentBookings)
+
+    return render(request, 'main/listOfBookings.html', {'bookings' : bookings})
+
+def deleteBooking(request, booking_id):
+    bookingT = TeacherBookingRoom.objects.filter(booking_id=booking_id)
+    bookingS = StudentBookingRoom.objects.filter(booking_id=booking_id)
+    # user_id = request.user.id
+    if bookingT and not bookingS:
+        # bookingT = TeacherBookingRoom.objects.get(booking_id=booking_id)
+        # teacherBookings = bookingT.objects.filter(teacher_id=user_id)
+        bookingT.delete()
+        return  redirect('listOfBookings')
+    elif bookingS and not bookingT:
+        # bookingS = StudentBookingRoom.objects.get(booking_id=booking_id)
+        # studentBookings = bookingS.objects.filter(student_number=user_id)
+        bookingS.delete()
+        return redirect('listOfBookings')
+    else:
+        return redirect('listOfBookings')
+
+

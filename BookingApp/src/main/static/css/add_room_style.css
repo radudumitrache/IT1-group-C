@@ -295,6 +295,7 @@ table{
     width: 1328px;
 }
 
+<<<<<<< HEAD:BookingApp/src/main/static/css/add_room_style.css
 #form_container
 {
     grid-column: 1/7;
@@ -304,6 +305,8 @@ table{
     justify-content: center;
     align-items: center;
 }
+=======
+>>>>>>> 71540b79c3cc2d7f1f46e193ad70b648570f35f6:BookingApp/src/main/static/css/generic_style_css.css
 #form{
     display: flex;
     flex-direction: column;
