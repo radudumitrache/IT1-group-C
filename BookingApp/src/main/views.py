@@ -8,14 +8,18 @@ from django.views import generic
 from .models import *
 # Create your views here.
 from django.contrib.auth.views import LoginView as BaseLoginView
+from django.contrib.auth import get_user_model
 from .forms import LoginForm
 def index (request,room):
-    lectures = Lecture.objects.all()
+
     all_rooms = Room.objects.all()
-    lectures = StudentLectureTeacher.objects.filter(room_number__exact=room).filter(
-        lecture_id__date__exact=datetime.date.today())
-    bookings_teachers = TeacherBookingRoom.objects.filter(room_id__exact=room).filter(date__exact=datetime.date.today())
-    bookings_students = StudentBookingRoom.objects.filter(room_number__exact=room).filter(date__exact=datetime.date.today())
+    # lectures = StudentLectureTeacher.objects.filter(room_number__exact=room).filter(
+    #     lecture_id__date__exact=datetime.date.today())
+    # bookings_teachers = TeacherBookingRoom.objects.filter(room_id__exact=room).filter(date__exact=datetime.date.today())
+    # bookings_students = StudentBookingRoom.objects.filter(room_number__exact=room).filter(date__exact=datetime.date.today())
+    lectures = StudentLectureTeacher.objects.all()
+    bookings_teachers = TeacherBookingRoom.objects.all()
+    bookings_students = StudentBookingRoom.objects.all()
     all_bookings = lectures.union(bookings_students, bookings_teachers)
 
 
@@ -62,12 +66,12 @@ def BookingListView(request,room,day):
     }
     return render(request=request , template_name= 'main/booking.html',context = context)
 def listOfBookings(request):
-    user_id = request.user.id
-    teacherBookings = TeacherBookingRoom.objects.all()
-    studentBookings = StudentBookingRoom.objects.all()
-
-    bookings = teacherBookings.union(studentBookings)
-
+    user = request.user.id
+    bookings = None
+    if (Student.objects.filter(user__exact=user).exists()):
+        bookings = Student.objects.filter(user__exact=user)
+    elif (Teacher.objects.filter(user__exact=user).exists()):
+        bookings = Teacher.objects.filter(user__exact=user)
     return render(request, 'main/listOfBookings.html', {'bookings' : bookings})
 
 def deleteBooking(request, booking_id):

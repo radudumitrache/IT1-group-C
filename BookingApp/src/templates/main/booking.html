@@ -76,7 +76,10 @@
                                 {%if booking.lecture_id%}
                                 {{ booking.lecture_id.lecture_type}}
                                 {% else %}
-                                booking
+                                 booking :
+                                {% for field in booking.meta.get_all_field_names %}
+                                    <p>{{ field }}</p>
+                                {% endfor %}
                                 {% endif %}
                             </div>
                         </div>
