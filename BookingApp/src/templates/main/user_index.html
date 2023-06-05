@@ -17,7 +17,7 @@
         </div>
 
         <div class="linkbtn">
-           <a href="#">
+           <a href="{% url 'listOfBookings' %}">
             <h2>Your bookings</h2>
           </a>
         </div>
@@ -26,10 +26,9 @@
         <div class="dropdown">
          <button class="dropbtn">Choose room</button>
           <div class="dropdown-content">
-            <a href="#">EMM 1.36</a>
-            <a href="#">EMM 1.012</a>
-            <a href="#">EMM 1.016</a>
-            <a href="#">EMM 1.040</a>
+            {% for room in all_rooms %}
+              <a href="{% url 'index' room  %}">Room {{ room }} </a>
+            {% endfor %}
           </div>
         </div>
 
@@ -38,10 +37,11 @@
        <div id="scheduleOverview">
             <p>{{ current_date }}</p>
             <table>
-                {% for lecture in lectures %}
+                {% for booking in all_bookings %}
                 <tr>
-                    <td>{{ lecture.time }}</td>
-                    <td>{{ lecture.lecture_type.lecture_type }} {{ lecture.name }}</td>
+
+                    <td>{{ booking.time }}</td>
+                    <td>{{ booking.lecture_type.lecture_type }} {{ booking.name }}</td>
                 </tr>
                 {% endfor %}
             </table>

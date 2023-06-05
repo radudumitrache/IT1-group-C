@@ -21,19 +21,14 @@ h1{
 
 h2{
     font-size: 48px;
-    
-
 }
 
 h3{
     font-size: 32px;
-    
-
 }
 
 a, a:link, a:visited, a:hover, a:active{
     text-decoration: none;
-
 }
 
 #container{
@@ -83,16 +78,15 @@ header > img{
 #footerbtn{
     display: flex;
     grid-column: 1/4;
-    grid-row: 5/7;
+    /*grid-row: 5/7;*/
 
     flex-direction: row;
-    height: 50%;
+    /*height: 50%;*/
     width: 50%;
     padding: 180px;
     justify-content: space-between;
     align-items: flex-end;
-
-
+    margin-bottom: -300px;
 }
 
 
@@ -213,7 +207,7 @@ header > img{
 }
 
 table, th, td{
-    border: 2px solid ;
+    /*border: 2px solid ;*/
     border-collapse: collapse;
     padding: 0.5rem;
     border-radius: 1rem;
@@ -223,14 +217,13 @@ td{
 }
 
 table{
-    width: 80%;
+    width: 100%;
     background-color: rgba(254, 247, 247, 0.8);
     background: rgba(254, 247, 247, 0.8);
-    border-radius: 1rem;
-
+    margin-top: 20px;
 }
 
-.buttonNegative{
+.buttonNegative {
 
     background-color: #256478;
     color: #FEF7F7;
@@ -247,6 +240,8 @@ table{
     justify-content: center;
     align-items: center;
 
+    cursor: pointer;
+
 }
 
 .buttonNegative:hover{
@@ -257,9 +252,8 @@ table{
 
     grid-column: 1/4;
     grid-row: 6/7;
-
     display: flex;
-    height: 50%;
+    /*height: 50%;*/
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -301,4 +295,32 @@ table{
     margin-bottom: -500px;
     object-fit: contain;
 }
+
+.main{
+    grid-column: 2/6;
+    width: 100%;
+    margin-left: 50px;
+}
+
+.listTable{
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.buttonForm{
+    color: red;
+    border: 0;
+    cursor: pointer;
+    font-size: 36px;
+    font-family: "Nexa Bold", Helvetica, sans-serif;
+    /*margin-right: -50px;*/
+}
+
+.bottomDiv{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+}
+
 

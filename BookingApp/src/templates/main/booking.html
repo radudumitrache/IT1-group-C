@@ -9,11 +9,8 @@
 <body>
 <div id="maincontainer">
     <div id="top">
-        <div id="button">
-            <form>
-                {% csrf_token %}
-                <button type="submit">&lt; Go back</button>
-            </form>
+        <div id="button" onclick="history.back()">
+            <h2>< Go back </h2>
         </div>
         <div id="logo">
             <img src="{% static 'img/nhl_stenden_logo.png' %}" alt="Logo">
@@ -21,12 +18,15 @@
     </div>
     <div id="middle">
         <div id="left-side">
-            <select id="room-select">
-                <option value="" disabled selected hidden>Choose room</option>
-                {% for this_room in all_rooms %}
-                    <option value="{{ this_room}}"><a href="{% url 'booking' this_room current_week_day  %}">Room {{ this_room}}</a></option>
-                {% endfor %}
-            </select>
+
+            <div class="dropdown">
+                <button class="dropbtn">Choose room</button>
+                <div class="dropdown-content">
+                    {% for room in all_rooms %}
+                        <a href="{% url 'booking' room current_week_day %}">Room {{ room }} </a>
+                    {% endfor %}
+                </div>
+            </div>
             <div class="choose_time_button">Choose time</div>
             <form id="day-form" action="" method="POST">
                 {% csrf_token %}

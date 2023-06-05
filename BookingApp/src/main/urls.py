@@ -19,10 +19,12 @@ from django.urls import path,include
 from django.views.generic import RedirectView
 from . import views
 urlpatterns = [
-    path("index/",views.index,name = 'index'),
+    path("index/<str:room>",views.index,name = 'index'),
     path('map/',views.map,name = 'map'),
     path('login/',views.LoginView.as_view(),name = 'login'),
     path('addRoom/', views.addRoom, name='addRoom'),
-    path ('booking/<str:room>/<int:day>/',views.BookingListView,name = 'booking')
+    path ('booking/<str:room>/<int:day>/',views.BookingListView,name = 'booking'),
+    path('listOfBookings/', views.listOfBookings, name = 'listOfBookings'),
+    path('listOfBookings/<int:booking_id>/cancel', views.deleteBooking, name = 'cancelBooking')
 ]
 
