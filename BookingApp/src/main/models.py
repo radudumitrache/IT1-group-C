@@ -48,6 +48,7 @@ class TeacherBookingRoom(models.Model):
     teacher_id = models.ForeignKey("Teacher", null=False, on_delete=models.CASCADE)
     room_id = models.ForeignKey("Room", null=False, on_delete=models.CASCADE)
     time = models.TimeField()
+
     date = models.DateField()
 
     def date_now(self):
@@ -72,8 +73,8 @@ class StudentBookingRoom(models.Model):
     student_number = models.ForeignKey("Student", null=False, on_delete=models.CASCADE)
     room_number = models.ForeignKey("Room", null=False, on_delete=models.CASCADE)
     time = models.TimeField()
-    date = models.DateField()
 
+    date = models.DateField()
     def date_now(self):
         return self.date.strftime("%Y-%m-%d")
 
