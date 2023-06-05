@@ -81,10 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': local_settings.DB_NAME,
-        'USER' : local_settings.DB_USER,
-        'PASSWORD' : local_settings.DB_PASS,
-        'HOST' : local_settings.DB_HOST,
-        'PORT' : local_settings.DB_PORT,
+        'USER' : local_settings.USER,
+        'PASSWORD' : local_settings.PASSWORD,
+        'HOST' : local_settings.HOST,
+        'PORT' : local_settings.PORT,
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
