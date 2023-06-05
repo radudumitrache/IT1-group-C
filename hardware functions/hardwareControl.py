@@ -1,7 +1,6 @@
 from icalendar import *
-from pprint import pprint
 from datetime import datetime
-from time import sleep
+import json
 from calendarParser import calendar_parse
 
 """
@@ -9,15 +8,14 @@ Todo:
 - Separate things into functions
 - Determine format for the BIG JSON file
 - Change logic so it works with the BIG JSON file
-- Get multiple rooms instead of just one
 """
 
 
 def get_lecture_type(lecture_name: str):
     lecture_name = lecture_name.lower()
     for lecture_type in lecture_types:
-        if lecture_name == lecture_type:
-            return lecture_name
+        if lecture_type in lecture_name:
+            return lecture_type
 
     return "none"
 
@@ -80,15 +78,12 @@ def overlap_check(schedule: str):
 # when API updates, get the latest data
 # first key of the JSON might be room number
 
-
-calendar_file = open('week-22-2023.ics', 'rb')
-calendar = Calendar.from_ical(calendar_file.read())
-
 lecture_types = {"werkcollege", "workshop", "atelier", "hoorcollege", "tutorial", "lecture", "plenary", "plenair",
                  "process" "groepswerk", "professional skills", "assessments", "theorie", "proces", "studiemiddag",
                  "ontwikkeloverleg", "dutch", "reservation"}
 
-dictionary = calendar_parse(calendar)
+f = open("jsonText.txt", "r")
+dictionary = json.loads(f.read())
 
 for i in range(1):
     now = datetime.now()
@@ -98,20 +93,19 @@ for i in range(1):
     print("Time: " + current_time)
 
     for event in dictionary:
-        print("Rooms: " + str(get_room(dictionary[event]["location"])))
         if current_date == dictionary[event]["date"]:
             description = dictionary[event]['description']
             if (dictionary[event]['start'] < current_time) & (current_time < dictionary[event]['end']):
 
                 lecture_type = description["lecture type"]
                 list_of_teachers = description["list of teachers"]
-                rooms = get_room(description["location"])
+                rooms = get_room(dictionary[event]["location"])
 
                 print("Current lesson: " + lecture_type)
                 print("Teachers: ")
                 print(list_of_teachers)
+                print("Rooms: ")
+                print(rooms)
                 for room in rooms:
                     if room is not None:
                         change_led(get_lecture_type(lecture_type), room)
-
-    # sleep(60)
