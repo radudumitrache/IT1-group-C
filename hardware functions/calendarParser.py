@@ -1,8 +1,7 @@
 from icalendar import *
 import json
-from pprint import pprint
 
-calendar_file = open('bad teacher name.ics', 'rb')
+calendar_file = open('week-23-2023.ics', 'rb')
 calendar = Calendar.from_ical(calendar_file.read())
 dictionary = {}
 
@@ -48,8 +47,7 @@ def calendar_parse(calendar):
 
 
 calendar_parse(calendar)
-# json_data = json.dumps(dictionary)
-# pprint(dictionary)
-
-# description_separation(',Doornbos, Jan (IC), IC-INF-IT1A, IC-INF-IT1B, IC-INF-IT1C, IC-INF-IT1D, IC-INF-IT1E, IC-INF-IT1F, IC-INF-IT1G, Oenen van, Gerjan (IC), Siersema, Elise (IC)')
-
+json_data = json.dumps(dictionary)
+f = open("jsonText.txt", "a")
+f.write(json_data)
+f.close()
