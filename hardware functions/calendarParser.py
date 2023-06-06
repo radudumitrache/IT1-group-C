@@ -8,7 +8,6 @@ dictionary = {}
 
 def description_separation(summary: str):
     list_of_teachers = list()
-    lecture_type = ""
     groups_present = list()
     lecture_type = summary.split(',')[0]
 
@@ -48,6 +47,6 @@ def calendar_parse(calendar):
 
 calendar_parse(calendar)
 json_data = json.dumps(dictionary)
-f = open("jsonText.txt", "a")
+f = open("jsonText.txt", "w")
 f.write(json_data)
 f.close()

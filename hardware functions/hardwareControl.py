@@ -33,19 +33,23 @@ def get_room(location: str):
 
 def change_led(lecture_type: str, room: str):
     if lecture_type == "atelier":
-        print("Red")
+        print(room + ": Red")
     elif (lecture_type == "workshop") | (lecture_type == "werkcollege"):
-        print("Purple")
+        print(room + ": Purple")
     elif (lecture_type == "tutorial") | (lecture_type == "hoorcollege"):
-        print("Yellow")
+        print(room + ": Yellow")
     elif (lecture_type == "plenary") | (lecture_type == "plenair"):
-        print("Blue")
+        print(room + ": Blue")
     elif (lecture_type == "process") | (lecture_type == "proces"):
-        print("Orange")
+        print(room + ": Orange")
     elif lecture_type == "reservation":
-        print("Pink")
+        print(room + ": Pink")
     else:
-        print("Green")
+        print(room + ": Green")
+
+def display_teachers(teachers: list, room: str):
+    for teacher in teachers:
+        print(room + ": " + teacher)
 
 
 def overlap_check(schedule: str):
@@ -78,6 +82,7 @@ def overlap_check(schedule: str):
 # when API updates, get the latest data
 # first key of the JSON might be room number
 
+
 lecture_types = {"werkcollege", "workshop", "atelier", "hoorcollege", "tutorial", "lecture", "plenary", "plenair",
                  "process" "groepswerk", "professional skills", "assessments", "theorie", "proces", "studiemiddag",
                  "ontwikkeloverleg", "dutch", "reservation"}
@@ -95,7 +100,7 @@ for i in range(1):
     for event in dictionary:
         if current_date == dictionary[event]["date"]:
             description = dictionary[event]['description']
-            if (dictionary[event]['start'] < current_time) & (current_time < dictionary[event]['end']):
+            if (dictionary[event]['start'] <= current_time) & (current_time < dictionary[event]['end']):
 
                 lecture_type = description["lecture type"]
                 list_of_teachers = description["list of teachers"]
@@ -109,3 +114,6 @@ for i in range(1):
                 for room in rooms:
                     if room is not None:
                         change_led(get_lecture_type(lecture_type), room)
+
+                if len(rooms) == 1:
+                    display_teachers(list_of_teachers, rooms[0])
