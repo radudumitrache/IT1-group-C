@@ -47,6 +47,7 @@ def change_led(lecture_type: str, room: str):
     else:
         print(room + ": Green")
 
+
 def display_teachers(teachers: list, room: str):
     for teacher in teachers:
         print(room + ": " + teacher)
