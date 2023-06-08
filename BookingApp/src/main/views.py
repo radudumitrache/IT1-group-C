@@ -51,12 +51,15 @@ def BookingListView(request,room,day):
     date_to_filter = date.today()
     if (current_week_day<day):
         date_to_filter = date.today() + datetime.timedelta(days=day-current_week_day)
-    lectures = StudentLectureTeacher.objects.filter(room_number__exact=room).filter(lecture_id__date__exact=date_to_filter)
+    lectures = StudentLectureTeacher.objects.filter(room_number__exact=room).filter(date__exact=date_to_filter)
+    lectures = lectures.select_related('lecture_id').values('lecture_id__time')
     bookings_teachers = TeacherBookingRoom.objects.filter(room_id__exact=room).filter(date__exact = date_to_filter)
     bookings_students = StudentBookingRoom.objects.filter(room_number__exact=room).filter(date__exact = date_to_filter)
-    all_bookings = lectures.union(bookings_students,bookings_teachers)
+    bookings_students = list ( bookings_students.values())
+    bookings_teachers = list ( bookings_teachers.values())
+    lectures = list ( lectures.values())
+    all_bookings = bookings_teachers + bookings_students + lectures
     all_rooms = Room.objects.all()
-
     context = {
         'all_bookings' : all_bookings,
         'current_week_day':current_week_day,

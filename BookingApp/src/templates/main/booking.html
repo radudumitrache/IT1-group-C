@@ -8,6 +8,17 @@
 </head>
 <body>
 <div id="maincontainer">
+    {% for book in all_bookings %}
+        <p> book</p>
+        <ul>
+        {% for key,value in book.items %}
+
+            <li>{{ key }} {{ value }}</li>
+
+        {% endfor %}
+        </ul>
+
+    {% endfor %}
     <div id="top">
         <div id="button" onclick="history.back()">
             <h2>< Go back </h2>
@@ -71,17 +82,23 @@
                         </div>
                         {% for booking in all_bookings %}
                         <div class = 'table-row'>
-                            <div class = 'table-data-time'>{{ booking.time }}</div>
-                            <div class = 'table-data'>
-                                {%if booking.lecture_id%}
-                                {{ booking.lecture_id.lecture_type}}
-                                {% else %}
-                                 booking :
-                                {% for field in booking.meta.get_all_field_names %}
-                                    <p>{{ field }}</p>
-                                {% endfor %}
+                            {% if 'teacher_number_id' in booking and 'student_number_id' in booking %}
+                                <div class  = 'table-data-time'>{{ booking.time}}</div>
+                                <div class ='table-data'>
+                                ceva
+                                </div>
+
+                            {% else %}
+                                <div class ='table-data-time'>{{ booking.time }}</div>
+                                <div class ='table-data'> Booking:
+                                {% if 'student_number_id' in booking %}
+                                    booking student
+                                {% elif 'teacher_id_id' in booking %}
+                                    Booking teacher
+
                                 {% endif %}
-                            </div>
+                                </div>
+                            {% endif %}
                         </div>
 
                         {% endfor %}

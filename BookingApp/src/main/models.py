@@ -21,7 +21,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='email address',max_length=255,unique=True)
     is_active = models.BooleanField(default = True)
-    is_admin = models.BooleanField(default = True)
+    is_admin = models.BooleanField(default = False)
     objects = UserManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -48,9 +48,10 @@ class TeacherBookingRoom(models.Model):
     teacher_id = models.ForeignKey("Teacher", null=False, on_delete=models.CASCADE)
     room_id = models.ForeignKey("Room", null=False, on_delete=models.CASCADE)
     time = models.TimeField()
-
+    end_time = models.TimeField()
     date = models.DateField()
-
+    def __str__(self):
+        return "Teacher booking:" + str(self.booking_id)
     def date_now(self):
         return self.date.strftime("%Y-%m-%d")
 
@@ -73,8 +74,12 @@ class StudentBookingRoom(models.Model):
     student_number = models.ForeignKey("Student", null=False, on_delete=models.CASCADE)
     room_number = models.ForeignKey("Room", null=False, on_delete=models.CASCADE)
     time = models.TimeField()
-
     date = models.DateField()
+    end_time = models.TimeField()
+    def return_data(self):
+        return f"Student : {self.student_number}  room:  {self.room_number} time : {self.time}  Id: {self.booking_id}"
+    def __str__(self):
+        return "Student :" + str(self.booking_id)
     def date_now(self):
         return self.date.strftime("%Y-%m-%d")
 
@@ -89,21 +94,19 @@ class Room(models.Model):
 
 
 class StudentLectureTeacher(models.Model):
-    lecture_id = models.ForeignKey("Lecture", null=False, on_delete=models.CASCADE , related_name= 'lecture')
+    lecture_id = models.ForeignKey("Lecture", null=False, on_delete=models.CASCADE )
     teacher_number = models.ForeignKey("Teacher", null=False, on_delete=models.CASCADE)
     student_number = models.ForeignKey("Student", null=False, on_delete=models.CASCADE)
     room_number = models.ForeignKey("Room", null=False, on_delete=models.CASCADE)
-
-
-
+    date = models.DateField
+    time =models.TimeField()
+    end_time = models.TimeField()
 
 
 class Lecture(models.Model):
     lecture_id = models.IntegerField(primary_key=True)
     lecture_type = models.ForeignKey("ClassType", null=False, on_delete=models.CASCADE)
     lecture_name = models.CharField(max_length=50)
-    date = models.DateField()
-    time = models.TimeField()
 
     def date_now(self):
         return self.date.strftime("%Y-%m-%d")
