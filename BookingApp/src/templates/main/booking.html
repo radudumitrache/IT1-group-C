@@ -76,25 +76,21 @@
             <div class="container">
                 <div class="table">
                     <div class="table-content">
-                        <div class="table-row">
-                            <div class="table-data-time">8:30 - 9:15</div>
-                            <div class="table-data">Atelier: John Doe, Patrick Bateman</div>
-                        </div>
                         {% for booking in all_bookings %}
                         <div class = 'table-row'>
                             {% if 'teacher_number_id' in booking and 'student_number_id' in booking %}
-                                <div class  = 'table-data-time'>{{ booking.time}}</div>
+                                <div class  = 'table-data-time'>{{ booking.time}} - {{ booking.end_time }}</div>
                                 <div class ='table-data'>
-                                ceva
+                                {{ booking.lecture_id__lecture_type }}
                                 </div>
 
                             {% else %}
-                                <div class ='table-data-time'>{{ booking.time }}</div>
-                                <div class ='table-data'> Booking:
+                                <div class ='table-data-time'>{{ booking.time }} - {{ booking.end_time }}</div>
+                                <div class ='table-data'> Booked by:
                                 {% if 'student_number_id' in booking %}
-                                    booking student
+                                    a student
                                 {% elif 'teacher_id_id' in booking %}
-                                    Booking teacher
+                                    a teacher
 
                                 {% endif %}
                                 </div>

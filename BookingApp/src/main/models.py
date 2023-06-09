@@ -98,7 +98,7 @@ class StudentLectureTeacher(models.Model):
     teacher_number = models.ForeignKey("Teacher", null=False, on_delete=models.CASCADE)
     student_number = models.ForeignKey("Student", null=False, on_delete=models.CASCADE)
     room_number = models.ForeignKey("Room", null=False, on_delete=models.CASCADE)
-    date = models.DateField
+    date = models.DateField()
     time =models.TimeField()
     end_time = models.TimeField()
 
