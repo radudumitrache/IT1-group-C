@@ -1,5 +1,6 @@
 import machine
 import utime
+import json
 
 from machine import Pin, I2C
 from lcd_api import LcdApi
@@ -97,22 +98,6 @@ blue_pin_8 = machine.Pin(BLUE_PIN_8, machine.Pin.OUT)
 
 
 #function to set the RGB values
-def set_rgb_room_1_036(red, green, blue):
-    red_pin_1.value(red)
-    green_pin_1.value(green)
-    blue_pin_1.value(blue)
-    
-
-def set_rgb_room_1_035(red, green, blue):
-    red_pin_2.value(red)
-    green_pin_2.value(green)
-    blue_pin_2.value(blue)
-    
-def set_rgb_room_1_012(red, green, blue):
-    red_pin_3.value(red)
-    green_pin_3.value(green)
-    blue_pin_3.value(blue)
-
 def set_rgb_room_1_007(red, green, blue):
     red_pin_4.value(red)
     green_pin_4.value(green)
@@ -122,6 +107,11 @@ def set_rgb_room_1_008(red, green, blue):
     red_pin_5.value(red)
     green_pin_5.value(green)
     blue_pin_5.value(blue)
+
+def set_rgb_room_1_012(red, green, blue):
+    red_pin_3.value(red)
+    green_pin_3.value(green)
+    blue_pin_3.value(blue)
 
 def set_rgb_room_1_015(red, green, blue):
     red_pin_6.value(red)
@@ -133,8 +123,17 @@ def set_rgb_room_1_016(red, green, blue):
     green_pin_7.value(green)
     blue_pin_7.value(blue)
 
+def set_rgb_room_1_035(red, green, blue):
+    red_pin_2.value(red)
+    green_pin_2.value(green)
+    blue_pin_2.value(blue)
 
-def set_rgb_room_K_5_01(red, green, blue):
+def set_rgb_room_1_040(red, green, blue):
+    red_pin_1.value(red)
+    green_pin_1.value(green)
+    blue_pin_1.value(blue)
+
+def set_rgb_room_1_028(red, green, blue):
     red_pin_8.value(red)
     green_pin_8.value(green)
     blue_pin_8.value(blue)
@@ -151,9 +150,6 @@ PURPLE= (150,255, 150)
 ORANGE = (0, 165, 255)
 
 
-
-set_rgb_room_1_036(*BLUE)
-
 set_rgb_room_1_035(*RED)
 
 set_rgb_room_1_012(*GREEN)
@@ -165,8 +161,6 @@ set_rgb_room_1_008(*PINK)
 set_rgb_room_1_015(*BLUE)
 
 set_rgb_room_1_016(*PINK)
-
-set_rgb_room_K_5_01(*ORANGE)
 
 
 #LCD FUNCTIONS LCD FUNCTIONS
@@ -199,16 +193,134 @@ def displayText(text: str, screenLength: int):
         lcd.clear()
         lcd.putstr(text)
 
-# Call the function to display the text
-displayText(name, availableSpace)
-utime.sleep(1)  # Delay, modify as necessary
+
+def get_lecture_type(lecture_name: str):
+    lecture_name = lecture_name.lower()
+    for lecture_type in lecture_types:
+        if lecture_type in lecture_name:
+            return lecture_type
+
+    return "none"
 
 
-# Display names on respective rows
-displayText(row2_name, 20)
-utime.sleep(1)  # Delay, modify as necessary
+def get_room_number(location: str):
+    if len(location) > 1:
+        rooms = list()
+        for element in location.split():
+            if '-' in element:
+                rooms.append(element.split("-")[1])
+        return rooms
+    else:
+        return
 
-displayText(row3_name, 20)
-utime.sleep(1)  # Delay, modify as necessary
 
-displayText(row4_name, 11)
+def change_led(lecture_type: str, room: str):
+
+    if room == "1.007":
+        room_led = set_rgb_room_1_007
+    elif room == "1.008":
+        room_led = set_rgb_room_1_008
+    elif room == "1.012":
+        room_led = set_rgb_room_1_012
+    elif room == "1.015":
+        room_led = set_rgb_room_1_015
+    elif room == "1.016":
+        room_led = set_rgb_room_1_016
+    elif room == "1.035":
+        room_led = set_rgb_room_1_035
+    elif room == "1.040":
+        room_led = set_rgb_room_1_040
+    elif room == "1.028":
+        room_led = set_rgb_room_1_028
+    else:
+        return
+
+    if lecture_type == "atelier":
+        room_led(*RED)
+    elif (lecture_type == "workshop") | (lecture_type == "werkcollege"):
+        room_led(*PURPLE)
+    elif (lecture_type == "tutorial") | (lecture_type == "hoorcollege"):
+        room_led(*YELLOW)
+    elif (lecture_type == "plenary") | (lecture_type == "plenair"):
+        room_led(*BLUE)
+    elif (lecture_type == "process") | (lecture_type == "proces"):
+        room_led(*ORANGE)
+    elif lecture_type == "reservation":
+        room_led(*PINK)
+    else:
+        room_led(*GREEN)
+
+
+def display_teachers(teachers: list, room: str):
+    for teacher in teachers:
+        displayText(teacher, 20)
+
+
+def overlap_check(schedule: str):
+
+    previous_event = None
+    current_event = None
+
+    for event in schedule:
+
+        if previous_event is None:
+            previous_event = event
+            continue
+
+        current_event = event
+
+        if dictionary[current_event]["date"] == dictionary[previous_event]["date"]:
+            if dictionary[current_event]["start"] > dictionary[previous_event]["end"]:
+                if get_lecture_type(dictionary[current_event]["description"]["lecture_type"]) == "reservation":
+                    dictionary.pop([current_event])
+                elif get_lecture_type(dictionary[previous_event]["description"]["lecture_type"]) == "reservation":
+                    dictionary.pop([previous_event])
+                else:
+                    dictionary.pop([current_event])
+
+        previous_event = current_event
+
+    return
+
+# wait for API to update
+# when API updates, get the latest data
+# first key of the JSON might be room number
+
+
+lecture_types = {"werkcollege", "workshop", "atelier", "hoorcollege", "tutorial", "lecture", "plenary", "plenair",
+                 "process" "groepswerk", "professional skills", "assessments", "theorie", "proces", "studiemiddag",
+                 "ontwikkeloverleg", "dutch", "reservation"}
+
+f = open("jsonText.txt", "r")
+dictionary = json.loads(f.read())
+
+for i in range(1):
+    now = utime.localtime()
+
+    year, month, day, hour, minute, sec, weekday, yearday = (now)
+    current_time = "{:02d}:{:02d}:{:02d}".format(hour, minute, sec)
+    current_date = "{:02d}/{:02d}/{}".format(day, month, year)
+    
+    print("Date: " + current_date)
+    print("Time: " + current_time)
+
+    for event in dictionary:
+        if current_date == dictionary[event]["date"]:
+            description = dictionary[event]['description']
+            if (dictionary[event]['start'] <= current_time) & (current_time < dictionary[event]['end']):
+
+                lecture_type = description["lecture type"]
+                list_of_teachers = description["list of teachers"]
+                rooms = get_room_number(dictionary[event]["location"])
+
+                print("Current lesson: " + lecture_type)
+                print("Teachers: ")
+                print(list_of_teachers)
+                print("Rooms: ")
+                print(rooms)
+                for room in rooms:
+                    if room is not None:
+                        change_led(get_lecture_type(lecture_type), room)
+
+                if len(rooms) == 1:
+                    display_teachers(list_of_teachers, rooms[0])
