@@ -1,7 +1,8 @@
 from icalendar import *
 import json
+from pprint import pprint
 
-calendar_file = open('week-23-2023.ics', 'rb')
+calendar_file = open('week-24-2023.ics', 'rb')
 calendar = Calendar.from_ical(calendar_file.read())
 dictionary = {}
 
@@ -14,6 +15,9 @@ def description_separation(summary: str):
     summary = summary.replace(lecture_type, '')
     for element in summary.split(','):
         if '-' in element and element.replace('-', '').isupper():
+            groups_present.append(element.strip())
+            summary = summary.replace(element, '')
+        elif "INF" in element:
             groups_present.append(element.strip())
             summary = summary.replace(element, '')
 
