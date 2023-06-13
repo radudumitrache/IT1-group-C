@@ -1,78 +1,67 @@
 import time
 
-names = ["Dumitrache Marian", "Schuepbach Alex", "Nefeli Chrysostomou"]
-#availableSpace could just be a constant and not be passed into the function
+names = ["Dumitrache, Marian", "Schuepbach, Alex", "Chrysostomou, Nefeli"]
+# availableSpace could just be a constant and not be passed into the function
 availableSpace = 15
 
 
-def displayText(texts: list, screenLength: int):
+def display_text(text: str, screen_length: int, screen_row: int, index: int):
 
-    counter = 0
-    index = 0
-    index1 = 0
-    index2 = 0
-    index3 = 0
+    if len(text) > screen_length:
 
-    while True:
+        if index + screen_length <= len(text):
 
-        for text in texts:
+            # determines where to start displaying the string from
+            char_index = 0 + index
+            string_build = ""
 
-            match counter:
-                case 0:
-                    index = index1
-                case 1:
-                    index = index2
-                case 2:
-                    index = index3
+            while (char_index < screen_length + index) & (char_index < len(text)):
+                # add current string character to the stringBuild, this could be done with substrings
+                string_build = string_build + text[char_index]
 
-            if len(text) > screenLength:
-                print(index + screenLength)
-                print(len(text))
-                if index + screenLength <= len(text):
+                # next character
+                char_index += 1
 
-                    # determines where to start displaying the string from
-                    charIndex = 0 + index
-                    stringBuild = ""
+            # replace with screen output command
+            print(string_build)
+            index = index + 1
 
-                    while (charIndex < screenLength + index) & (charIndex < len(text)):
-                        #add current string character to the stringBuild, this could be done with substrings
-                        stringBuild = stringBuild + text[charIndex]
+        else:
 
-                        #next character
-                        charIndex += 1
+            string_build = ""
+            char_index = index - 1
 
-                    # replace with screen output command
-                    print(stringBuild)
-                    index = index + 1
-                    match counter:
-                        case 0:
-                            index1 = index
-                        case 1:
-                            index2 = index
-                        case 2:
-                            index3 = index
-                    time.sleep(0.5)
+            while (char_index < screen_length + index) & (char_index < len(text)):
+                string_build = string_build + text[char_index]
+                char_index += 1
 
-                else:
-                    match counter:
-                        case 0:
-                            index1 = 0
-                        case 1:
-                            index2 = 0
-                        case 2:
-                            index3 = 0
+            print(string_build)
+            index = 0
 
-                # delay, modify as necessary
-                time.sleep(1)
+        # delay, modify as necessary
+        time.sleep(1)
 
-            else:
-                print(text)
-                time.sleep(0.5)
+    else:
+        print(text)
+        time.sleep(1)
 
-            if counter >= 2:
-                counter = 0
-            else:
-                counter = counter + 1
-        print()
+    return index
 
-displayText(names, availableSpace)
+
+index1 = 0
+index2 = 0
+index3 = 0
+
+while True:
+
+    for i in range(3):
+
+        match i:
+            case 0:
+                index1 = display_text(names[i], availableSpace, counter, index1)
+            case 1:
+                index2 = display_text(names[i], availableSpace, counter, index2)
+            case 2:
+                index3 = display_text(names[i], availableSpace, counter, index3)
+
+    print()
