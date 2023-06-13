@@ -56,101 +56,155 @@ RED_PIN_8 = 19  # 25
 GREEN_PIN_8 = 18  # 24
 BLUE_PIN_8 = 17  # 22
 
-# Pin assignments for the ninth RGB LED
-#RED_PIN_9 =   # 
-#GREEN_PIN_9 =   # 
-#BLUE_PIN_9 =   # 
-
-# Set up pin modes as outputs
-red_pin_1 = machine.Pin(RED_PIN_1, machine.Pin.OUT)
-green_pin_1 = machine.Pin(GREEN_PIN_1, machine.Pin.OUT)
-blue_pin_1 = machine.Pin(BLUE_PIN_1, machine.Pin.OUT)
-
-red_pin_2 = machine.Pin(RED_PIN_2, machine.Pin.OUT)
-green_pin_2 = machine.Pin(GREEN_PIN_2, machine.Pin.OUT)
-blue_pin_2 = machine.Pin(BLUE_PIN_2, machine.Pin.OUT)
-
-red_pin_3 = machine.Pin(RED_PIN_3, machine.Pin.OUT)
-green_pin_3 = machine.Pin(GREEN_PIN_3, machine.Pin.OUT)
-blue_pin_3 = machine.Pin(BLUE_PIN_3, machine.Pin.OUT)
-
-red_pin_4 = machine.Pin(RED_PIN_4, machine.Pin.OUT)
-green_pin_4 = machine.Pin(GREEN_PIN_4, machine.Pin.OUT)
-blue_pin_4 = machine.Pin(BLUE_PIN_4, machine.Pin.OUT)
-
-red_pin_5 = machine.Pin(RED_PIN_5, machine.Pin.OUT)
-green_pin_5 = machine.Pin(GREEN_PIN_5, machine.Pin.OUT)
-blue_pin_5 = machine.Pin(BLUE_PIN_5, machine.Pin.OUT)
-
-red_pin_6 = machine.Pin(RED_PIN_6, machine.Pin.OUT)
-green_pin_6 = machine.Pin(GREEN_PIN_6, machine.Pin.OUT)
-blue_pin_6 = machine.Pin(BLUE_PIN_6, machine.Pin.OUT)
-
-red_pin_7 = machine.Pin(RED_PIN_7, machine.Pin.OUT)
-green_pin_7 = machine.Pin(GREEN_PIN_7, machine.Pin.OUT)
-blue_pin_7 = machine.Pin(BLUE_PIN_7, machine.Pin.OUT)
-
-red_pin_8 = machine.Pin(RED_PIN_8, machine.Pin.OUT)
-green_pin_8 = machine.Pin(GREEN_PIN_8, machine.Pin.OUT)
-blue_pin_8 = machine.Pin(BLUE_PIN_8, machine.Pin.OUT)
 
 
 
 
-#function to set the RGB values
-def set_rgb_room_1_007(red, green, blue):
-    red_pin_4.value(red)
-    green_pin_4.value(green)
-    blue_pin_4.value(blue)
-
-def set_rgb_room_1_008(red, green, blue):
-    red_pin_5.value(red)
-    green_pin_5.value(green)
-    blue_pin_5.value(blue)
-
-def set_rgb_room_1_012(red, green, blue):
-    red_pin_3.value(red)
-    green_pin_3.value(green)
-    blue_pin_3.value(blue)
-
-def set_rgb_room_1_015(red, green, blue):
-    red_pin_6.value(red)
-    green_pin_6.value(green)
-    blue_pin_6.value(blue)
-
-def set_rgb_room_1_016(red, green, blue):
-    red_pin_7.value(red)
-    green_pin_7.value(green)
-    blue_pin_7.value(blue)
-
-def set_rgb_room_1_035(red, green, blue):
-    red_pin_2.value(red)
-    green_pin_2.value(green)
-    blue_pin_2.value(blue)
-
-def set_rgb_room_1_040(red, green, blue):
-    red_pin_1.value(red)
-    green_pin_1.value(green)
-    blue_pin_1.value(blue)
-
-def set_rgb_room_1_028(red, green, blue):
-    red_pin_8.value(red)
-    green_pin_8.value(green)
-    blue_pin_8.value(blue)
+RED_PIN_1=PWM(Pin(RED_PIN_1))
+GREEN_PIN_1=PWM(Pin(GREEN_PIN_1))
+BLUE_PIN_1=PWM(Pin(BLUE_PIN_1))
+RED_PIN_1.freq(1000)
+GREEN_PIN_1.freq(1000)
+BLUE_PIN_1.freq(1000)
+RED_PIN_1.duty_u16(0)
+GREEN_PIN_1.duty_u16(0)
+BLUE_PIN_1.duty_u16(0)
 
 
-#Color Declaration
+RED_PIN_2=PWM(Pin(RED_PIN_2))
+GREEN_PIN_2=PWM(Pin(GREEN_PIN_2))
+BLUE_PIN_2=PWM(Pin(BLUE_PIN_2))
+RED_PIN_2.freq(1000)
+GREEN_PIN_2.freq(1000)
+BLUE_PIN_1.freq(1000)
+RED_PIN_2.duty_u16(0)
+GREEN_PIN_2.duty_u16(0)
+BLUE_PIN_1.duty_u16(0)
+
+
+RED_PIN_3=PWM(Pin(RED_PIN_3))
+GREEN_PIN_3=PWM(Pin(GREEN_PIN_3))
+BLUE_PIN_3=PWM(Pin(BLUE_PIN_3))
+RED_PIN_3.freq(1000)
+GREEN_PIN_3.freq(1000)
+BLUE_PIN_3.freq(1000)
+RED_PIN_3.duty_u16(0)
+GREEN_PIN_3.duty_u16(0)
+BLUE_PIN_3.duty_u16(0)
+
+
+RED_PIN_4=PWM(Pin(RED_PIN_4))
+GREEN_PIN_4=PWM(Pin(GREEN_PIN_4))
+BLUE_PIN_4=PWM(Pin(BLUE_PIN_4))
+RED_PIN_4.freq(1000)
+GREEN_PIN_4.freq(1000)
+BLUE_PIN_4.freq(1000)
+RED_PIN_4.duty_u16(0)
+GREEN_PIN_4.duty_u16(0)
+BLUE_PIN_4.duty_u16(0)
+
+
+RED_PIN_5=PWM(Pin(RED_PIN_5))
+GREEN_PIN_5=PWM(Pin(GREEN_PIN_5))
+BLUE_PIN_5=PWM(Pin(BLUE_PIN_5))
+RED_PIN_5.freq(1000)
+GREEN_PIN_5.freq(1000)
+BLUE_PIN_5.freq(1000)
+RED_PIN_5.duty_u16(0)
+GREEN_PIN_5.duty_u16(0)
+BLUE_PIN_5.duty_u16(0)
+
+
+RED_PIN_6=PWM(Pin(RED_PIN_6))
+GREEN_PIN_6=PWM(Pin(GREEN_PIN_6))
+BLUE_PIN_6=PWM(Pin(BLUE_PIN_6))
+RED_PIN_6.freq(1000)
+GREEN_PIN_6.freq(1000)
+BLUE_PIN_6.freq(1000)
+RED_PIN_6.duty_u16(0)
+GREEN_PIN_6.duty_u16(0)
+BLUE_PIN_6.duty_u16(0)
+
+
+RED_PIN_7=PWM(Pin(RED_PIN_7))
+GREEN_PIN_7=PWM(Pin(GREEN_PIN_7))
+BLUE_PIN_7=PWM(Pin(BLUE_PIN_7))
+RED_PIN_7.freq(1000)
+GREEN_PIN_7.freq(1000)
+BLUE_PIN_7.freq(1000)
+RED_PIN_7.duty_u16(0)
+GREEN_PIN_7.duty_u16(0)
+BLUE_PIN_7.duty_u16(0)
+
+RED_PIN_8=PWM(Pin(RED_PIN_8))
+GREEN_PIN_8=PWM(Pin(GREEN_PIN_8))
+BLUE_PIN_8=PWM(Pin(BLUE_PIN_8))
+RED_PIN_8.freq(1000)
+GREEN_PIN_8.freq(1000)
+BLUE_PIN_8.freq(1000)
+RED_PIN_8.duty_u16(0)
+GREEN_PIN_8.duty_u16(0)
+BLUE_PIN_8.duty_u16(0)
+
+
+def set_rgb_room_1_036(color):
+    RED_PIN_1.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_1.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_1.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+
+
+def set_rgb_room_1_035(color):
+    RED_PIN_2.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_2.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_2.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+
+
+def set_rgb_room_1_012(color):
+    RED_PIN_3.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_3.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_3.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+
+def set_rgb_room_1_007(color):
+    RED_PIN_4.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_4.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_4.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+
+
+def set_rgb_room_1_008(color):
+    RED_PIN_5.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_5.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_5.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+
+def set_rgb_room_1_015(color):
+    RED_PIN_6.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_6.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_6.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+
+
+def set_rgb_room_1_016(color):
+    RED_PIN_7.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_7.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_7.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+
+
+def set_rgb_room_K_5_01(color):
+    RED_PIN_8.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_8.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_8.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+
+# Color Declaration
 RED = (0, 255, 255)
 GREEN = (255, 0, 255)
 BLUE = (255, 255, 0)
 YELLOW = (0, 0, 255)
 PINK = (0, 190, 100)
 OFF = (255, 255, 255)
-PURPLE= (150,255, 150)
-ORANGE = (0, 165, 255)
+PURPLE = (20, 223, 15)
+ORANGE = (0, 100, 255)
 
 
-set_rgb_room_1_035(*RED)
+
+set_rgb_room_1_035(*PURPLE)
 
 set_rgb_room_1_012(*GREEN)
 
@@ -215,7 +269,11 @@ def get_room_number(location: str):
 
 
 def change_led(lecture_type: str, room: str):
-
+    
+    print(room)
+    print(lecture_type)
+    print("")
+    
     if room == "1.007":
         room_led = set_rgb_room_1_007
     elif room == "1.008":
@@ -252,8 +310,21 @@ def change_led(lecture_type: str, room: str):
 
 
 def display_teachers(teachers: list, room: str):
-    for teacher in teachers:
-        displayText(teacher, 20)
+    
+    lcd.move_to(3,0)
+    lcd.putstr("ROOM " + room)
+    
+    if(len(teachers) < 3):
+        for i in range(len(teachers)):
+            lcd.move_to(0, i+1)
+            lcd.putstr(teachers[i])
+    else:
+        lcd.move_to(0, 1)
+        lcd.putstr(teachers[0])
+        lcd.move_to(0, 2)
+        lcd.putstr(teachers[1])
+        lcd.move_to(0, 3)
+        lcd.putstr(teachers[2])
 
 
 def overlap_check(schedule: str):
@@ -299,7 +370,7 @@ for i in range(1):
 
     year, month, day, hour, minute, sec, weekday, yearday = (now)
     current_time = "{:02d}:{:02d}:{:02d}".format(hour, minute, sec)
-    current_date = "{:02d}/{:02d}/{}".format(day, month, year)
+    current_date = "{}-{:02d}-{:02d}".format(year, month, day)
     
     print("Date: " + current_date)
     print("Time: " + current_time)
@@ -325,5 +396,3 @@ for i in range(1):
                 if len(rooms) == 1:
                     display_teachers(list_of_teachers, rooms[0])
                     
-
-
