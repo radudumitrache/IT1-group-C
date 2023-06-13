@@ -1,38 +1,67 @@
 import time
 
-name = "Dumitrache, Marian"
-#availableSpace could just be a constant and not be passed into the function
+names = ["Dumitrache, Marian", "Schuepbach, Alex", "Chrysostomou, Nefeli"]
+# availableSpace could just be a constant and not be passed into the function
 availableSpace = 15
 
-#this function is not usable for multiple pieces of text, concurrent processing is currently not possible
-def displayText(text: str, screenLength: int):
 
-    if len(text) > screenLength:
+def display_text(text: str, screen_length: int, screen_row: int, index: int):
 
-        index = 0
-        while index + screenLength <= len(text):
+    if len(text) > screen_length:
+
+        if index + screen_length <= len(text):
 
             # determines where to start displaying the string from
-            charIndex = 0 + index
-            stringBuild = ""
+            char_index = 0 + index
+            string_build = ""
 
-            while (charIndex < screenLength + index) & (charIndex < len(text)):
-                #add current string character to the stringBuild, this could be done with substrings
-                stringBuild = stringBuild + text[charIndex]
+            while (char_index < screen_length + index) & (char_index < len(text)):
+                # add current string character to the stringBuild, this could be done with substrings
+                string_build = string_build + text[char_index]
 
-                #next character
-                charIndex += 1
+                # next character
+                char_index += 1
 
             # replace with screen output command
-            print(stringBuild)
-            index += 1
-            time.sleep(0.5)
+            print(string_build)
+            index = index + 1
+
+        else:
+
+            string_build = ""
+            char_index = index - 1
+
+            while (char_index < screen_length + index) & (char_index < len(text)):
+                string_build = string_build + text[char_index]
+                char_index += 1
+
+            print(string_build)
+            index = 0
 
         # delay, modify as necessary
         time.sleep(1)
 
     else:
         print(text)
+        time.sleep(1)
 
-displayText(name, availableSpace)
-displayText(name, availableSpace)
+    return index
+
+
+index1 = 0
+index2 = 0
+index3 = 0
+
+while True:
+
+    for i in range(3):
+
+        match i:
+            case 0:
+                index1 = display_text(names[i], availableSpace, counter, index1)
+            case 1:
+                index2 = display_text(names[i], availableSpace, counter, index2)
+            case 2:
+                index3 = display_text(names[i], availableSpace, counter, index3)
+
+    print()
