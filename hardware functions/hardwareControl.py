@@ -1,8 +1,11 @@
 import machine
 from machine import Pin, PWM
-from time import sleep
 import utime
 import json
+
+import network
+import urequests
+from time import sleep
 
 from machine import Pin, I2C
 from lcd_api import LcdApi
@@ -363,6 +366,23 @@ def overlap_check(schedule: str):
         previous_event = current_event
 
     return
+
+
+ssid = "samba1"
+
+# Set up the Wi-Fi connection
+wifi = network.WLAN(network.STA_IF)
+wifi.active(True)
+wifi.connect(ssid)
+
+while wifi.isconnected() == False:
+    print('Waiting for connection...')
+    sleep(1)
+
+ip = wifi.ifconfig()
+print(f'Connected on {ip}')
+
+print('Connected. IP address:', wifi.ifconfig()[0])
 
 # wait for API to update
 # when API updates, get the latest data
