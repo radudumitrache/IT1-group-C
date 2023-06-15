@@ -1,4 +1,6 @@
 import machine
+from machine import Pin,PWM
+from time import sleep
 import utime
 import json
 
@@ -204,17 +206,17 @@ ORANGE = (0, 100, 255)
 
 
 
-set_rgb_room_1_035(*PURPLE)
+set_rgb_room_1_035(PURPLE)
 
-set_rgb_room_1_012(*GREEN)
+set_rgb_room_1_012(GREEN)
 
-set_rgb_room_1_007(*YELLOW)
+set_rgb_room_1_007(YELLOW)
 
-set_rgb_room_1_008(*PINK)
+set_rgb_room_1_008(PINK)
 
-set_rgb_room_1_015(*BLUE)
+set_rgb_room_1_015(BLUE)
 
-set_rgb_room_1_016(*PINK)
+set_rgb_room_1_016(PINK)
 
 
 #LCD FUNCTIONS LCD FUNCTIONS
