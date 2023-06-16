@@ -8,17 +8,17 @@
 </head>
 <body>
 <div id="maincontainer">
-    {% for book in all_bookings %}
-        <p>book</p>
-        <ul>
-        {% for key,value in book.items %}
-
-            <li>{{ key }} {{ value }}</li>
-
-        {% endfor %}
-        </ul>
-
-    {% endfor %}
+{#    {% for book in all_bookings %}#}
+{#        <p>book</p>#}
+{#        <ul>#}
+{#        {% for key,value in book.items %}#}
+{##}
+{#            <li>{{ key }} {{ value }}</li>#}
+{##}
+{#        {% endfor %}#}
+{#        </ul>#}
+{##}
+{#    {% endfor %}#}
     <div id="top">
         <div id="button" onclick="history.back()">
             <h2>< Go back </h2>
@@ -39,11 +39,11 @@
                 </div>
             </div>
             <div class="choose_time_button">Choose time</div>
-            <form id="day-form" action="" method="POST">
+            <form id="day-form" action="{% url 'bookRoom' room current_week_day %}" method="POST">
                 {% csrf_token %}
                 <div id="day-buttons">
                     <button class="day_button" data-day="Monday">
-                        <a href="{% url 'booking' room 0%}">Mo</a>
+                        <a href="{% url 'booking' room 0 %}">Mo</a>
                     </button>
                     <button class="day_button" data-day="Tuesday">
                         <a href="{% url 'booking' room 1 %}">Tu</a>
@@ -62,11 +62,11 @@
                 <div id="choose-time">
                     <div id="from">
                         <div class="cool_from_until">From</div>
-                        <input type="time" name="startTime">
+                        <input type="time" name="startTime" id="startTime">
                     </div>
                     <div id="until">
                         <div class="cool_from_until">Until</div>
-                        <input type="time" name = "endTime">
+                        <input type="time" name = "endTime" id="endTime">
                     </div>
                 </div>
                 <input type="submit" class="confirm_button" value="Confirm Booking">
@@ -105,6 +105,10 @@
 
                         {% endfor %}
                         {% endif %}
+
+                    {% if error_message %}
+                        <p>{{ error_message }}</p>
+                    {% endif %}
 
                     </div>
                 </div>
