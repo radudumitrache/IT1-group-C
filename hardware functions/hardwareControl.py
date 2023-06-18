@@ -20,45 +20,48 @@ i2c = I2C(0, sda=machine.Pin(0), scl=machine.Pin(1), freq=400000)
 # Initialize LCD
 lcd = I2cLcd(i2c, I2C_ADDR, I2C_NUM_ROWS, I2C_NUM_COLS)
 
-# Pin assignments for the first RGB LED ROOM 1.036
-RED_PIN_1 = 2  # 4
-GREEN_PIN_1 = 3  # 5
-BLUE_PIN_1 = 4  # 6
 
-# Pin assignments for the second RGB LED ROOM 1.035
-RED_PIN_2 = 5  # 7
-GREEN_PIN_2 = 6  # 9
-BLUE_PIN_2 = 7  # 10
 
-# Pin assignments for the third RGB LED ROOM 1.012
-RED_PIN_3 = 8  # 11
-GREEN_PIN_3 = 9  # 12
-BLUE_PIN_3 = 10  # 14
+#Slice 0 - RGB LED ROOM 1.036:
+RED_PIN_1 = 16
+GREEN_PIN_1 = 2
+BLUE_PIN_1 = 4
 
-# Pin assignments for the fourth RGB LED ROOM 1.007
-RED_PIN_4 = 11  # 15
-GREEN_PIN_4 = 12  # 16
-BLUE_PIN_4 = 13  # 17
+#Slice 1 - RGB LED ROOM 1.035:
+RED_PIN_2 = 6
+GREEN_PIN_2 = 8
+BLUE_PIN_2 = 10
 
-# Pin assignments for the fifth RGB LED ROOM 1.008
-RED_PIN_5 = 14  # 19
-GREEN_PIN_5 = 15  # 20
-BLUE_PIN_5 = 16  # 21
+#Slice 2 - RGB LED ROOM 1.012:
+RED_PIN_3 = 12
+GREEN_PIN_3 = 14
+BLUE_PIN_3 = 17
 
-# Pin assignments for the sixth RGB LED ROOM 1.015
-RED_PIN_6 = 28  # 34
-GREEN_PIN_6 = 27  # 32
-BLUE_PIN_6 = 26  # 31
+#Slice 3 - RGB LED ROOM 1.007:
+RED_PIN_4 = 3
+GREEN_PIN_4 = 5
+BLUE_PIN_4 = 7
 
-# Pin assignments for the seventh RGB LED ROOM 1.016
-RED_PIN_7 = 22  # 29
-GREEN_PIN_7 = 21  # 27
-BLUE_PIN_7 = 20  # 26
+#Slice 4 - RGB LED ROOM 1.008:
+RED_PIN_5 = 9
+GREEN_PIN_5 = 11
+BLUE_PIN_5 = 13
 
-# Pin assignments for the eight RGB LED  K 5.01
-RED_PIN_8 = 19  # 25
-GREEN_PIN_8 = 18  # 24
-BLUE_PIN_8 = 17  # 22
+#Slice 5 - RGB LED ROOM 1.015:
+RED_PIN_6 = 21
+GREEN_PIN_6 = 22
+BLUE_PIN_6 = 26
+
+#Slice 6 - RGB LED ROOM 1.016:
+RED_PIN_7 = 18
+GREEN_PIN_7 = 19
+BLUE_PIN_7 = 20
+
+#Slice 7 - RGB LED K 5.01:
+RED_PIN_8 = 15
+GREEN_PIN_8 = 27
+BLUE_PIN_8 = 28
+
 
 RED_PIN_1 = PWM(Pin(RED_PIN_1))
 GREEN_PIN_1 = PWM(Pin(GREEN_PIN_1))
@@ -110,35 +113,23 @@ RED_PIN_5.duty_u16(0)
 GREEN_PIN_5.duty_u16(0)
 BLUE_PIN_5.duty_u16(0)
 
-RED_PIN_6 = PWM(Pin(RED_PIN_6))
-GREEN_PIN_6 = PWM(Pin(GREEN_PIN_6))
-BLUE_PIN_6 = PWM(Pin(BLUE_PIN_6))
-RED_PIN_6.freq(1000)
-GREEN_PIN_6.freq(1000)
-BLUE_PIN_6.freq(1000)
-RED_PIN_6.duty_u16(0)
-GREEN_PIN_6.duty_u16(0)
-BLUE_PIN_6.duty_u16(0)
 
-RED_PIN_7 = PWM(Pin(RED_PIN_7))
-GREEN_PIN_7 = PWM(Pin(GREEN_PIN_7))
-BLUE_PIN_7 = PWM(Pin(BLUE_PIN_7))
-RED_PIN_7.freq(1000)
-GREEN_PIN_7.freq(1000)
-BLUE_PIN_7.freq(1000)
-RED_PIN_7.duty_u16(0)
-GREEN_PIN_7.duty_u16(0)
-BLUE_PIN_7.duty_u16(0)
+# Define pin numbers for RGB LED 1.015
+RED_PIN_6 = machine.Pin(21, machine.Pin.OUT)
+GREEN_PIN_6 = machine.Pin(22, machine.Pin.OUT)
+BLUE_PIN_6 = machine.Pin(26, machine.Pin.OUT)
 
-RED_PIN_8 = PWM(Pin(RED_PIN_8))
-GREEN_PIN_8 = PWM(Pin(GREEN_PIN_8))
-BLUE_PIN_8 = PWM(Pin(BLUE_PIN_8))
-RED_PIN_8.freq(1000)
-GREEN_PIN_8.freq(1000)
-BLUE_PIN_8.freq(1000)
-RED_PIN_8.duty_u16(0)
-GREEN_PIN_8.duty_u16(0)
-BLUE_PIN_8.duty_u16(0)
+# Define pin numbers for RGB LED 1.016
+RED_PIN_7 = machine.Pin(18, machine.Pin.OUT)
+GREEN_PIN_7 = machine.Pin(19, machine.Pin.OUT)
+BLUE_PIN_7 = machine.Pin(20, machine.Pin.OUT)
+
+# Define pin numbers for RGB LED K.1.05
+RED_PIN_8 = machine.Pin(15, machine.Pin.OUT)
+GREEN_PIN_8 = machine.Pin(27, machine.Pin.OUT)
+BLUE_PIN_8 = machine.Pin(28, machine.Pin.OUT)
+
+
 
 def set_rgb_room_1_036(color):
     RED_PIN_1.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
@@ -166,19 +157,34 @@ def set_rgb_room_1_008(color):
     BLUE_PIN_5.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
 
 def set_rgb_room_1_015(color):
-    RED_PIN_6.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
-    GREEN_PIN_6.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
-    BLUE_PIN_6.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+    RED_PIN_6.value(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_6.value(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_6.value(color[2] * 257)  # Scale from 0-255 to 0-65535
 
 def set_rgb_room_1_016(color):
-    RED_PIN_7.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
-    GREEN_PIN_7.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
-    BLUE_PIN_7.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+    RED_PIN_7.value(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_7.value(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_7.value(color[2] * 257)  # Scale from 0-255 to 0-65535
 
 def set_rgb_room_K_5_01(color):
-    RED_PIN_8.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
-    GREEN_PIN_8.duty_u16(color[1] * 257)  # Scale from 0-255 to 0-65535
-    BLUE_PIN_8.duty_u16(color[2] * 257)  # Scale from 0-255 to 0-65535
+    RED_PIN_8.value(color[0] * 257)  # Scale from 0-255 to 0-65535
+    GREEN_PIN_8.value(color[1] * 257)  # Scale from 0-255 to 0-65535
+    BLUE_PIN_8.value(color[2] * 257)  # Scale from 0-255 to 0-65535
+    
+#def set_rgb_room_1_015(red, green, blue):
+#    RED_PIN_6.value(red)
+#    GREEN_PIN_6.value(green)
+#    BLUE_PIN_6.value(blue)
+
+#def set_rgb_room_1_016(red, green, blue):
+#    RED_PIN_7.value(red)
+#    GREEN_PIN_7.value(green)
+ #   BLUE_PIN_7.value(blue)
+
+#def set_rgb_room_K_5_01(red, green, blue):
+#    RED_PIN_8.value(red)
+#    GREEN_PIN_8.value(green)
+#    BLUE_PIN_8.value(blue)
 
 # Color Declaration
 RED = (0, 255, 255)
@@ -208,14 +214,140 @@ set_rgb_room_1_016(OFF)
 set_rgb_room_K_5_01(OFF)
 
 while True:
+
+    set_rgb_room_1_008(RED)
+    utime.sleep(1)
+    set_rgb_room_1_008(BLUE)
+    utime.sleep(1)
+    set_rgb_room_1_008(GREEN)
+    utime.sleep(1)
+    set_rgb_room_1_008(PINK)
+    utime.sleep(1)    
+    set_rgb_room_1_008(PURPLE)
+    utime.sleep(1)
+    set_rgb_room_1_008(ORANGE)
+    utime.sleep(1)
+    set_rgb_room_1_008(YELLOW)
+    utime.sleep(1)
+    set_rgb_room_1_008(WHITE)
+    utime.sleep(1)
+
+    set_rgb_room_K_5_01(RED)
+    utime.sleep(1)
+    set_rgb_room_K_5_01(BLUE)
+    utime.sleep(1)
+    set_rgb_room_K_5_01(GREEN)
+    utime.sleep(1)
+    set_rgb_room_K_5_01(PINK)
+    utime.sleep(1)    
+    set_rgb_room_K_5_01(PURPLE)
+    utime.sleep(1)
+    set_rgb_room_K_5_01(ORANGE)
+    utime.sleep(1)
+    set_rgb_room_K_5_01(YELLOW)
+    utime.sleep(1)
+    set_rgb_room_K_5_01(WHITE)
+    utime.sleep(1)
+
+
+
+    set_rgb_room_1_007(RED)
+    utime.sleep(1)
+    set_rgb_room_1_007(BLUE)
+    utime.sleep(1)
+    set_rgb_room_1_007(GREEN)
+    utime.sleep(1)
+    set_rgb_room_1_007(PINK)
+    utime.sleep(1)    
+    set_rgb_room_1_007(PURPLE)
+    utime.sleep(1)
+    set_rgb_room_1_007(ORANGE)
+    utime.sleep(1)
+    set_rgb_room_1_007(YELLOW)
+    utime.sleep(1)
+
+
+    set_rgb_room_1_012(RED)
+    utime.sleep(1)
+    set_rgb_room_1_012(BLUE)
+    utime.sleep(1)
+    set_rgb_room_1_012(GREEN)
+    utime.sleep(1)
+    set_rgb_room_1_012(PINK)
+    utime.sleep(1)    
+    set_rgb_room_1_012(PURPLE)
+    utime.sleep(1)
+    set_rgb_room_1_012(ORANGE)
+    utime.sleep(1)
+    set_rgb_room_1_012(YELLOW)
+    utime.sleep(1)
+    
+
+    set_rgb_room_1_015(RED)
+    utime.sleep(1)
+    set_rgb_room_1_015(BLUE)
+    utime.sleep(1)
+    set_rgb_room_1_015(GREEN)
+    utime.sleep(1)
+    set_rgb_room_1_015(PINK)
+    utime.sleep(1)    
+    set_rgb_room_1_015(PURPLE)
+    utime.sleep(1)
+    set_rgb_room_1_015(ORANGE)
+    utime.sleep(1)
+    set_rgb_room_1_015(YELLOW)
+    utime.sleep(1)
+    
+    set_rgb_room_1_016(RED)
+    utime.sleep(1)
+    set_rgb_room_1_016(BLUE)
+    utime.sleep(1)
+    set_rgb_room_1_016(GREEN)
+    utime.sleep(1)
+    set_rgb_room_1_016(PINK)
+    utime.sleep(1)    
+    set_rgb_room_1_016(PURPLE)
+    utime.sleep(1)
+    set_rgb_room_1_016(ORANGE)
+    utime.sleep(1)
+    set_rgb_room_1_016(YELLOW)
+    utime.sleep(1)    
+
     set_rgb_room_1_035(RED)
-    utime.sleep(5)
-    set_rgb_room_1_035(GREEN)
-    utime.sleep(5)
+    utime.sleep(1)
     set_rgb_room_1_035(BLUE)
-    utime.sleep(5)
-    set_rgb_room_1_035(WHITE)
-    utime.sleep(5)
+    utime.sleep(1)
+    set_rgb_room_1_035(GREEN)
+    utime.sleep(1)
+    set_rgb_room_1_035(PINK)
+    utime.sleep(1)    
+    set_rgb_room_1_035(PURPLE)
+    utime.sleep(1)
+    set_rgb_room_1_035(ORANGE)
+    utime.sleep(1)
+    set_rgb_room_1_035(YELLOW)
+    utime.sleep(5) 
+
+    set_rgb_room_1_036(RED)
+    utime.sleep(1)
+    set_rgb_room_1_036(BLUE)
+    utime.sleep(1)
+    set_rgb_room_1_036(GREEN)
+    utime.sleep(1)
+    set_rgb_room_1_036(PINK)
+    utime.sleep(1)    
+    set_rgb_room_1_036(PURPLE)
+    utime.sleep(1)
+    set_rgb_room_1_036(ORANGE)
+    utime.sleep(1)
+    set_rgb_room_1_036(YELLOW)
+    utime.sleep(5) 
+
+
+
+
+
+
 
 # LCD FUNCTIONS LCD FUNCTIONS
 name = "Dumitrache, Alex Timothy"
@@ -426,4 +558,6 @@ for i in range(1):
 
                 if len(rooms) == 1:
                     display_teachers(list_of_teachers, rooms[0])
+
+
 
