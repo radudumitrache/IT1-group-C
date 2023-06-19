@@ -357,6 +357,7 @@ row3_name = "Vlad Radu"
 row4_name = "Nefeli Nefeli"
 availableSpace = 20
 
+
 def displayText(text: str, screenLength: int):
     if len(text) > screenLength:
         index = 0
@@ -378,6 +379,7 @@ def displayText(text: str, screenLength: int):
     else:
         lcd1.clear()
         lcd1.putstr(text)
+
 
 def displayText2(text: str, screenLength: int):
     if len(text) > screenLength:
@@ -401,6 +403,7 @@ def displayText2(text: str, screenLength: int):
         lcd2.clear()
         lcd2.putstr(text)
 
+
 def get_lecture_type(lecture_name: str):
     lecture_name = lecture_name.lower()
     for lecture_type in lecture_types:
@@ -408,6 +411,7 @@ def get_lecture_type(lecture_name: str):
             return lecture_type
 
     return "none"
+
 
 def get_room_number(location: str):
     if len(location) > 1:
@@ -418,6 +422,7 @@ def get_room_number(location: str):
         return rooms
     else:
         return
+
 
 def change_led(lecture_type: str, room: str):
     print(room)
@@ -458,6 +463,7 @@ def change_led(lecture_type: str, room: str):
     else:
         room_led(*GREEN)
 
+
 def display_teachers(teachers: list, room: str):
     lcd1.move_to(3, 0)
     lcd1.putstr("ROOM " + room)
@@ -473,6 +479,7 @@ def display_teachers(teachers: list, room: str):
         lcd1.putstr(teachers[1])
         lcd1.move_to(0, 3)
         lcd1.putstr(teachers[2])
+
 
 def overlap_check(schedule: str):
     previous_event = None
@@ -525,18 +532,25 @@ lecture_types = {"werkcollege", "workshop", "atelier", "hoorcollege", "tutorial"
                  "process" "groepswerk", "professional skills", "assessments", "theorie", "proces", "studiemiddag",
                  "ontwikkeloverleg", "dutch", "reservation"}
 
+# replace with API GET request
 f = open("jsonText.txt", "r")
 dictionary = json.loads(f.read())
 
-for i in range(1):
+nextMinute = 0
+while True:
     now = utime.localtime()
 
-    year, month, day, hour, minute, sec, weekday, yearday = (now)
+    year, month, day, hour, minute, sec, weekday, yearday = now
     current_time = "{:02d}:{:02d}:{:02d}".format(hour, minute, sec)
     current_date = "{}-{:02d}-{:02d}".format(year, month, day)
 
     print("Date: " + current_date)
     print("Time: " + current_time)
+
+    nextMinute = minute + 1
+    # replace with API GET request
+    f = open("jsonText.txt", "r")
+    dictionary = json.loads(f.read())
 
     for event in dictionary:
         if current_date == dictionary[event]["date"]:
@@ -556,8 +570,14 @@ for i in range(1):
                     if room is not None:
                         change_led(get_lecture_type(lecture_type), room)
 
-                if len(rooms) == 1:
-                    display_teachers(list_of_teachers, rooms[0])
+    # loop through every room, store room in a list, store list of teachers in a parallel list
+    # below loop through both while
+    while nextMinute >= minute:
+        
+        now = utime.localtime()
+        year, month, day, hour, minute, sec, weekday, yearday = now
 
+        for room in rooms:
+            display_teachers(list_of_teachers, room)
 
-
+        utime.sleep(1)
