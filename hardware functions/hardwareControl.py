@@ -170,21 +170,7 @@ def set_rgb_room_K_5_01(color):
     RED_PIN_8.value(color[0] * 257)  # Scale from 0-255 to 0-65535
     GREEN_PIN_8.value(color[1] * 257)  # Scale from 0-255 to 0-65535
     BLUE_PIN_8.value(color[2] * 257)  # Scale from 0-255 to 0-65535
-    
-#def set_rgb_room_1_015(red, green, blue):
-#    RED_PIN_6.value(red)
-#    GREEN_PIN_6.value(green)
-#    BLUE_PIN_6.value(blue)
 
-#def set_rgb_room_1_016(red, green, blue):
-#    RED_PIN_7.value(red)
-#    GREEN_PIN_7.value(green)
- #   BLUE_PIN_7.value(blue)
-
-#def set_rgb_room_K_5_01(red, green, blue):
-#    RED_PIN_8.value(red)
-#    GREEN_PIN_8.value(green)
-#    BLUE_PIN_8.value(blue)
 
 # Color Declaration
 RED = (0, 255, 255)
@@ -369,39 +355,16 @@ def displayText(text: str, screenLength: int):
                 stringBuild = stringBuild + text[charIndex]
                 charIndex += 1
 
-            lcd1.clear()  # Clear the LCD screen
-            lcd1.putstr(stringBuild)  # Display the text on LCD
+            lcd.clear()  # Clear the LCD screen
+            lcd.putstr(stringBuild)  # Display the text on LCD
             index += 1
             utime.sleep(0.5)
 
         utime.sleep(1)  # Delay, modify as necessary
 
     else:
-        lcd1.clear()
-        lcd1.putstr(text)
-
-
-def displayText2(text: str, screenLength: int):
-    if len(text) > screenLength:
-        index = 0
-        while index + screenLength <= len(text):
-            charIndex = 0 + index
-            stringBuild = ""
-
-            while (charIndex < screenLength + index) & (charIndex < len(text)):
-                stringBuild = stringBuild + text[charIndex]
-                charIndex += 1
-
-            lcd2.clear()  # Clear the LCD screen
-            lcd2.putstr(stringBuild)  # Display the text on LCD
-            index += 1
-            utime.sleep(0.5)
-
-        utime.sleep(1)  # Delay, modify as necessary
-
-    else:
-        lcd2.clear()
-        lcd2.putstr(text)
+        lcd.clear()
+        lcd.putstr(text)
 
 
 def get_lecture_type(lecture_name: str):
@@ -441,10 +404,6 @@ def change_led(lecture_type: str, room: str):
         room_led = set_rgb_room_1_016
     elif room == "1.035":
         room_led = set_rgb_room_1_035
-    elif room == "1.040":
-        room_led = set_rgb_room_1_040
-    elif room == "1.028":
-        room_led = set_rgb_room_1_028
     else:
         return
 
@@ -465,20 +424,20 @@ def change_led(lecture_type: str, room: str):
 
 
 def display_teachers(teachers: list, room: str):
-    lcd1.move_to(3, 0)
-    lcd1.putstr("ROOM " + room)
+    lcd.move_to(3, 0)
+    lcd.putstr("ROOM " + room)
 
     if (len(teachers) < 3):
         for i in range(len(teachers)):
-            lcd1.move_to(0, i + 1)
-            lcd1.putstr(teachers[i])
+            lcd.move_to(0, i + 1)
+            lcd.putstr(teachers[i])
     else:
-        lcd1.move_to(0, 1)
-        lcd1.putstr(teachers[0])
-        lcd1.move_to(0, 2)
-        lcd1.putstr(teachers[1])
-        lcd1.move_to(0, 3)
-        lcd1.putstr(teachers[2])
+        lcd.move_to(0, 1)
+        lcd.putstr(teachers[0])
+        lcd.move_to(0, 2)
+        lcd.putstr(teachers[1])
+        lcd.move_to(0, 3)
+        lcd.putstr(teachers[2])
 
 
 def overlap_check(schedule: str):
