@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="choose_time_button">Choose time</div>
-            <form id="day-form" action="{% url 'bookRoom' room current_week_day %}" method="POST">
+            <form id="day-form" action="{% url 'bookRoom' room day %}" method="POST">
                 {% csrf_token %}
                 <div id="day-buttons">
                     <button class="day_button" data-day="Monday">
