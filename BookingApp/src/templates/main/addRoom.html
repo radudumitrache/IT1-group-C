@@ -24,18 +24,15 @@
           {% endblock %}
               <img src="{% static 'img/nhl_stenden_logo.png' %}" alt="Nhl_logo" title="Nhl logo">
       </header>
-    {% block main_content %}
-        <div id = 'form_container'>
-            <form action = "addRoom.html" method="POST" enctype="multipart/form-data">
-                <div id="form">
-                    <p><label for="roomName"></label></p>
-                    <p><input type="text" id="roomName" name="roomName" placeholder="Room Name"></p>
-                    <p><label for="myFile" class="upload">Schedule file</label></p>
-                    <p><input type="file" id="myFile" name="myFile" style="color:transparent;"></p>
-                    <p><input type="submit" id="submit"value="Add"></p>
-                </div>
-            </form>
+
+{% block main_content %}
+    <form action = "addRoom.html" method="POST" enctype="multipart/form-data">
+        <div id="form">
+           {% csrf_token %}
+            {{ form }}
+            <p><input type="submit" id="submit"value="Add"></p>
         </div>
+    </form>
     {% endblock %}
 
         {% include 'footer_buttons.html' %}
