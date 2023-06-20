@@ -8,10 +8,38 @@
     <h1>Classrooms overview</h1>
 {% endblock %}
 {% block main_content %}
-      <div id="allbtn">
+    {% for lecture in lectures %}
+        <div class = 'table-row'>
+            <div class  = 'table-data-time'>{{ lecture.time}} - {{ lecture.end_time }}</div>
+            <div class ='table-data'>
+                {{ lecture.lecture_id.lecture_type }}
+            </div>
+        </div>
 
+    {% endfor %}
+    {% if bookings_teachers %}
+        {% for booking in bookings_teachers %}
+            <div class = 'table-row'>
+                <div class ='table-data-time'>{{ booking.time }} - {{ booking.end_time }}</div>
+                <div class ='table-data'> Booked by: a teacher
+                </div>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+    {% if bookings_students %}
+        {% for booking in bookings_students %}
+            <div class = 'table-row'>
+                <div class ='table-data-time'>{{ booking.time }} - {{ booking.end_time }}</div>
+                <div class ='table-data'> Booked by: a student
+                </div>
+            </div>
+
+        {% endfor %}
+    {% endif %}
+      <div id="allbtn">
         <div class="linkbtn">
-          <a href="#">
+          <a href="{% url 'booking' 1015 3 %}">
             <h2>Book room</h2>
           </a>
         </div>
@@ -21,15 +49,12 @@
             <h2>Your bookings</h2>
           </a>
         </div>
-
-
         <div class="dropdown">
          <button class="dropbtn">Choose room</button>
           <div class="dropdown-content">
-            <a href="#">EMM 1.36</a>
-            <a href="#">EMM 1.012</a>
-            <a href="#">EMM 1.016</a>
-            <a href="#">EMM 1.040</a>
+            {% for room in all_rooms %}
+              <a href="{% url 'index' room  %}">Room {{ room }} </a>
+            {% endfor %}
           </div>
         </div>
 
@@ -38,10 +63,11 @@
        <div id="scheduleOverview">
             <p>{{ current_date }}</p>
             <table>
-                {% for lecture in lectures %}
+                {% for booking in all_bookings %}
                 <tr>
-                    <td>{{ lecture.time }}</td>
-                    <td>{{ lecture.lecture_type.lecture_type }} {{ lecture.name }}</td>
+
+                    <td>{{ booking.time }}</td>
+                    <td>{{ booking.lecture_type.lecture_type }} {{ booking.name }}</td>
                 </tr>
                 {% endfor %}
             </table>

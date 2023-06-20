@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/booking_style.css' %}">
+</head>
+<body>
+<div id="maincontainer">
+{#    {% for book in all_bookings %}#}
+{#        <p>book</p>#}
+{#        <ul>#}
+{#        {% for key,value in book.items %}#}
+{##}
+{#            <li>{{ key }} {{ value }}</li>#}
+{##}
+{#        {% endfor %}#}
+{#        </ul>#}
+{##}
+{#    {% endfor %}#}
+    <div id="top">
+        <div id="button" onclick="history.back()">
+            <h2>< Go back </h2>
+        </div>
+        <div id="logo">
+            <img src="{% static 'img/nhl_stenden_logo.png' %}" alt="Logo">
+        </div>
+    </div>
+    <div id="middle">
+        <div id="left-side">
+
+            <div class="dropdown">
+                <button class="dropbtn">Choose room</button>
+                <div class="dropdown-content">
+                    {% for room in all_rooms %}
+                        <a href="{% url 'booking' room current_week_day %}">Room {{ room }} </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="choose_time_button">Choose time</div>
+            <form id="day-form" action="{% url 'bookRoom' room day %}" method="POST">
+                {% csrf_token %}
+                <div id="day-buttons">
+                    <button class="day_button" data-day="Monday">
+                        <a href="{% url 'booking' room 0 %}">Mo</a>
+                    </button>
+                    <button class="day_button" data-day="Tuesday">
+                        <a href="{% url 'booking' room 1 %}">Tu</a>
+                    </button>
+                    <button class="day_button" data-day="Wednesday">
+                        <a href="{% url 'booking' room 2 %}">We</a>
+                    </button>
+                    <button class="day_button" data-day="Thursday">
+                        <a href="{% url  'booking' room 3%}">Th</a>
+                    </button>
+                    <button class="day_button" data-day="Friday">
+                        <a href="{% url 'booking'  room 4%}">Fr</a>
+                    </button>
+
+                </div>
+                <div id="choose-time">
+                    <div id="from">
+                        <div class="cool_from_until">From</div>
+                        <input type="time" name="startTime" id="startTime">
+                    </div>
+                    <div id="until">
+                        <div class="cool_from_until">Until</div>
+                        <input type="time" name = "endTime" id="endTime">
+                    </div>
+                </div>
+                <input type="submit" class="confirm_button" value="Confirm Booking">
+            </form>
+        </div>
+        <div id="right-side">
+            <div class="container">
+                <div class="table">
+                    <div class="table-content">
+                        {% for lecture in lectures %}
+                        <div class = 'table-row'>
+                            <div class  = 'table-data-time'>{{ lecture.time}} - {{ lecture.end_time }}</div>
+                            <div class ='table-data'>
+                                {{ lecture.lecture_id.lecture_type }}
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                        {% if bookings_teachers %}
+                            {% for booking in bookings_teachers %}
+                            <div class = 'table-row'>
+                                    <div class ='table-data-time'>{{ booking.time }} - {{ booking.end_time }}</div>
+                                    <div class ='table-data'> Booked by: a teacher
+                                    </div>
+                            </div>
+
+                        {% endfor %}
+                        {% endif %}
+                        {% if bookings_students %}
+                            {% for booking in bookings_students %}
+                            <div class = 'table-row'>
+                                    <div class ='table-data-time'>{{ booking.time }} - {{ booking.end_time }}</div>
+                                    <div class ='table-data'> Booked by: a student
+                                    </div>
+                            </div>
+
+                        {% endfor %}
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const select = document.getElementById('room-select');
+    const chooseTimeButton = document.querySelector('.choose_time_button');
+
+    function adjustChooseTimeButtonMargin() {
+      const selectHeight = select.clientHeight;
+      const numOptions = select.length + 5; // Exclude the disabled option
+      const marginTop = selectHeight + (numOptions * 10);
+      chooseTimeButton.style.marginTop = `${marginTop}px`;
+    }
+
+    let isSelectActive = false;
+
+    // Call the function when the select menu is clicked
+    select.addEventListener('click', () => {
+      isSelectActive = true;
+      adjustChooseTimeButtonMargin();
+    });
+
+    // Call the function when the select menu is blurred (loses focus)
+    select.addEventListener('blur', () => {
+      isSelectActive = false;
+      chooseTimeButton.style.marginTop = ''; // Reset margin-top to its default value
+    });
+
+    // Call the function when the window is clicked
+    window.addEventListener('click', (event) => {
+      if (!event.target.matches('#room-select') && !isSelectActive) {
+        chooseTimeButton.style.marginTop = ''; // Reset margin-top to its default value
+      }
+    });
+  });
+</script>
+
+
+
+</body>
+</html>

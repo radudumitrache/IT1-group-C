@@ -7,7 +7,7 @@ class TeacherAdmin(admin.ModelAdmin):
 
 @admin.register(models.TeacherBookingRoom)
 class TeacherBookingRoomAdmin(admin.ModelAdmin):
-    list_display = ('booking_id','room_id','time','date')
+    list_display = ('booking_id','room_id','time','date','end_time')
 
 @admin.register(models.Student)
 class StudentAdmin(admin.ModelAdmin):
@@ -15,17 +15,17 @@ class StudentAdmin(admin.ModelAdmin):
 
 @admin.register(models.StudentBookingRoom)
 class StudentBookingRoomAdmin(admin.ModelAdmin):
-    list_display = ('booking_id','room_number','time','date')
+    list_display = ('booking_id','room_number','time','date','end_time')
 
 @admin.register(models.StudentLectureTeacher)
 class StudentLectureTeacherAdmin (admin.ModelAdmin):
-    list_display = ('lecture_id','teacher_number','room_number','student_number')
+    list_display = ('lecture_id','teacher_number','room_number','student_number','date','time','end_time')
 @admin.register(models.Room)
 class RoomAdmin (admin.ModelAdmin):
     list_display = ('room_number',)
 @admin.register(models.Lecture)
 class LectureAdmin (admin.ModelAdmin):
-    list_display = ('lecture_id','lecture_type','lecture_name','date','time')
+    list_display = ('lecture_id','lecture_type','lecture_name')
 @admin.register(models.ClassType)
 class ClassTypeAdmin (admin.ModelAdmin):
     list_display = ('lecture_type','colour')

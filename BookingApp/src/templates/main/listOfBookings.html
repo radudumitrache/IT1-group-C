@@ -14,6 +14,13 @@
 
 {% block main_content %}
     <div class="main">
+{#        {% if error_message %}#}
+{#            <p class="errorMessage">{{ error_message }}</p>#}
+{#        {% endif %}#}
+{#        {% if successMessage %}#}
+{#            <p class="successMessage">{{ successMessage }}</p>#}
+{#        {% endif %}#}
+
         {% for book in bookings %}
             <table>
                 <tr class="listTable">
