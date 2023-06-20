@@ -11,57 +11,59 @@ from machine import Pin, I2C
 from lcd_api import LcdApi
 from pico_i2c_lcd import I2cLcd
 
-I2C_ADDR = 0x27
+I2C_ADDR_1 = 0x27
+I2C_ADDR_2 = 0x23
 I2C_NUM_ROWS = 4
 I2C_NUM_COLS = 20
 
 # Initialize I2C
 i2c = I2C(0, sda=machine.Pin(0), scl=machine.Pin(1), freq=400000)
 # Initialize LCD
-lcd = I2cLcd(i2c, I2C_ADDR, I2C_NUM_ROWS, I2C_NUM_COLS)
+lcd1 = I2cLcd(i2c, I2C_ADDR_1, I2C_NUM_ROWS, I2C_NUM_COLS)
+lcd2 = I2cLcd(i2c, I2C_ADDR_2, I2C_NUM_ROWS, I2C_NUM_COLS)
 
+# Init onboard LED
+led_onboard = machine.Pin("LED", machine.Pin.OUT)
 
-
-#Slice 0 - RGB LED ROOM 1.036:
+# Slice 0 - RGB LED ROOM 1.036:
 RED_PIN_1 = 16
 GREEN_PIN_1 = 2
 BLUE_PIN_1 = 4
 
-#Slice 1 - RGB LED ROOM 1.035:
+# Slice 1 - RGB LED ROOM 1.035:
 RED_PIN_2 = 6
 GREEN_PIN_2 = 8
 BLUE_PIN_2 = 10
 
-#Slice 2 - RGB LED ROOM 1.012:
+# Slice 2 - RGB LED ROOM 1.012:
 RED_PIN_3 = 12
 GREEN_PIN_3 = 14
 BLUE_PIN_3 = 17
 
-#Slice 3 - RGB LED ROOM 1.007:
+# Slice 3 - RGB LED ROOM 1.007:
 RED_PIN_4 = 3
 GREEN_PIN_4 = 5
 BLUE_PIN_4 = 7
 
-#Slice 4 - RGB LED ROOM 1.008:
+# Slice 4 - RGB LED ROOM 1.008:
 RED_PIN_5 = 9
 GREEN_PIN_5 = 11
 BLUE_PIN_5 = 13
 
-#Slice 5 - RGB LED ROOM 1.015:
+# Slice 5 - RGB LED ROOM 1.015:
 RED_PIN_6 = 21
 GREEN_PIN_6 = 22
 BLUE_PIN_6 = 26
 
-#Slice 6 - RGB LED ROOM 1.016:
+# Slice 6 - RGB LED ROOM 1.016:
 RED_PIN_7 = 18
 GREEN_PIN_7 = 19
 BLUE_PIN_7 = 20
 
-#Slice 7 - RGB LED K 5.01:
+# Slice 7 - RGB LED K 5.01:
 RED_PIN_8 = 15
 GREEN_PIN_8 = 27
 BLUE_PIN_8 = 28
-
 
 RED_PIN_1 = PWM(Pin(RED_PIN_1))
 GREEN_PIN_1 = PWM(Pin(GREEN_PIN_1))
@@ -113,7 +115,6 @@ RED_PIN_5.duty_u16(0)
 GREEN_PIN_5.duty_u16(0)
 BLUE_PIN_5.duty_u16(0)
 
-
 # Define pin numbers for RGB LED 1.015
 RED_PIN_6 = machine.Pin(21, machine.Pin.OUT)
 GREEN_PIN_6 = machine.Pin(22, machine.Pin.OUT)
@@ -128,8 +129,6 @@ BLUE_PIN_7 = machine.Pin(20, machine.Pin.OUT)
 RED_PIN_8 = machine.Pin(15, machine.Pin.OUT)
 GREEN_PIN_8 = machine.Pin(27, machine.Pin.OUT)
 BLUE_PIN_8 = machine.Pin(28, machine.Pin.OUT)
-
-
 
 def set_rgb_room_1_036(color):
     RED_PIN_1.duty_u16(color[0] * 257)  # Scale from 0-255 to 0-65535
@@ -171,7 +170,6 @@ def set_rgb_room_K_5_01(color):
     GREEN_PIN_8.value(color[1] * 257)  # Scale from 0-255 to 0-65535
     BLUE_PIN_8.value(color[2] * 257)  # Scale from 0-255 to 0-65535
 
-
 # Color Declaration
 RED = (0, 255, 255)
 GREEN = (255, 0, 255)
@@ -199,142 +197,6 @@ set_rgb_room_1_016(OFF)
 
 set_rgb_room_K_5_01(OFF)
 
-while True:
-
-    set_rgb_room_1_008(RED)
-    utime.sleep(1)
-    set_rgb_room_1_008(BLUE)
-    utime.sleep(1)
-    set_rgb_room_1_008(GREEN)
-    utime.sleep(1)
-    set_rgb_room_1_008(PINK)
-    utime.sleep(1)    
-    set_rgb_room_1_008(PURPLE)
-    utime.sleep(1)
-    set_rgb_room_1_008(ORANGE)
-    utime.sleep(1)
-    set_rgb_room_1_008(YELLOW)
-    utime.sleep(1)
-    set_rgb_room_1_008(WHITE)
-    utime.sleep(1)
-
-    set_rgb_room_K_5_01(RED)
-    utime.sleep(1)
-    set_rgb_room_K_5_01(BLUE)
-    utime.sleep(1)
-    set_rgb_room_K_5_01(GREEN)
-    utime.sleep(1)
-    set_rgb_room_K_5_01(PINK)
-    utime.sleep(1)    
-    set_rgb_room_K_5_01(PURPLE)
-    utime.sleep(1)
-    set_rgb_room_K_5_01(ORANGE)
-    utime.sleep(1)
-    set_rgb_room_K_5_01(YELLOW)
-    utime.sleep(1)
-    set_rgb_room_K_5_01(WHITE)
-    utime.sleep(1)
-
-
-
-    set_rgb_room_1_007(RED)
-    utime.sleep(1)
-    set_rgb_room_1_007(BLUE)
-    utime.sleep(1)
-    set_rgb_room_1_007(GREEN)
-    utime.sleep(1)
-    set_rgb_room_1_007(PINK)
-    utime.sleep(1)    
-    set_rgb_room_1_007(PURPLE)
-    utime.sleep(1)
-    set_rgb_room_1_007(ORANGE)
-    utime.sleep(1)
-    set_rgb_room_1_007(YELLOW)
-    utime.sleep(1)
-
-
-    set_rgb_room_1_012(RED)
-    utime.sleep(1)
-    set_rgb_room_1_012(BLUE)
-    utime.sleep(1)
-    set_rgb_room_1_012(GREEN)
-    utime.sleep(1)
-    set_rgb_room_1_012(PINK)
-    utime.sleep(1)    
-    set_rgb_room_1_012(PURPLE)
-    utime.sleep(1)
-    set_rgb_room_1_012(ORANGE)
-    utime.sleep(1)
-    set_rgb_room_1_012(YELLOW)
-    utime.sleep(1)
-    
-
-    set_rgb_room_1_015(RED)
-    utime.sleep(1)
-    set_rgb_room_1_015(BLUE)
-    utime.sleep(1)
-    set_rgb_room_1_015(GREEN)
-    utime.sleep(1)
-    set_rgb_room_1_015(PINK)
-    utime.sleep(1)    
-    set_rgb_room_1_015(PURPLE)
-    utime.sleep(1)
-    set_rgb_room_1_015(ORANGE)
-    utime.sleep(1)
-    set_rgb_room_1_015(YELLOW)
-    utime.sleep(1)
-    
-    set_rgb_room_1_016(RED)
-    utime.sleep(1)
-    set_rgb_room_1_016(BLUE)
-    utime.sleep(1)
-    set_rgb_room_1_016(GREEN)
-    utime.sleep(1)
-    set_rgb_room_1_016(PINK)
-    utime.sleep(1)    
-    set_rgb_room_1_016(PURPLE)
-    utime.sleep(1)
-    set_rgb_room_1_016(ORANGE)
-    utime.sleep(1)
-    set_rgb_room_1_016(YELLOW)
-    utime.sleep(1)    
-
-    set_rgb_room_1_035(RED)
-    utime.sleep(1)
-    set_rgb_room_1_035(BLUE)
-    utime.sleep(1)
-    set_rgb_room_1_035(GREEN)
-    utime.sleep(1)
-    set_rgb_room_1_035(PINK)
-    utime.sleep(1)    
-    set_rgb_room_1_035(PURPLE)
-    utime.sleep(1)
-    set_rgb_room_1_035(ORANGE)
-    utime.sleep(1)
-    set_rgb_room_1_035(YELLOW)
-    utime.sleep(5) 
-
-    set_rgb_room_1_036(RED)
-    utime.sleep(1)
-    set_rgb_room_1_036(BLUE)
-    utime.sleep(1)
-    set_rgb_room_1_036(GREEN)
-    utime.sleep(1)
-    set_rgb_room_1_036(PINK)
-    utime.sleep(1)    
-    set_rgb_room_1_036(PURPLE)
-    utime.sleep(1)
-    set_rgb_room_1_036(ORANGE)
-    utime.sleep(1)
-    set_rgb_room_1_036(YELLOW)
-    utime.sleep(5) 
-
-
-
-
-
-
-
 # LCD FUNCTIONS LCD FUNCTIONS
 name = "Dumitrache, Alex Timothy"
 # Names for each row
@@ -342,7 +204,6 @@ row2_name = "Maksym Maksym"
 row3_name = "Vlad Radu"
 row4_name = "Nefeli Nefeli"
 availableSpace = 20
-
 
 def displayText(text: str, screenLength: int):
     if len(text) > screenLength:
@@ -366,7 +227,6 @@ def displayText(text: str, screenLength: int):
         lcd.clear()
         lcd.putstr(text)
 
-
 def get_lecture_type(lecture_name: str):
     lecture_name = lecture_name.lower()
     for lecture_type in lecture_types:
@@ -374,7 +234,6 @@ def get_lecture_type(lecture_name: str):
             return lecture_type
 
     return "none"
-
 
 def get_room_number(location: str):
     if len(location) > 1:
@@ -386,12 +245,7 @@ def get_room_number(location: str):
     else:
         return
 
-
-def change_led(lecture_type: str, room: str):
-    print(room)
-    print(lecture_type)
-    print("")
-
+def change_led(room: str, availability: bool):
     if room == "1.007":
         room_led = set_rgb_room_1_007
     elif room == "1.008":
@@ -404,9 +258,17 @@ def change_led(lecture_type: str, room: str):
         room_led = set_rgb_room_1_016
     elif room == "1.035":
         room_led = set_rgb_room_1_035
+    elif room == "1.036":
+        room_led = set_rgb_room_1_036
     else:
         return
 
+    if availability:
+        room_led(GREEN)
+    else:
+        room_led(RED)
+
+"""
     if lecture_type == "atelier":
         room_led(*RED)
     elif (lecture_type == "workshop") | (lecture_type == "werkcollege"):
@@ -421,7 +283,7 @@ def change_led(lecture_type: str, room: str):
         room_led(*PINK)
     else:
         room_led(*GREEN)
-
+"""
 
 def display_teachers(teachers: list, room: str):
     lcd.move_to(3, 0)
@@ -438,7 +300,6 @@ def display_teachers(teachers: list, room: str):
         lcd.putstr(teachers[1])
         lcd.move_to(0, 3)
         lcd.putstr(teachers[2])
-
 
 def overlap_check(schedule: str):
     previous_event = None
@@ -465,35 +326,46 @@ def overlap_check(schedule: str):
 
     return
 
-
-ssid = "samba1"
+# Wifi connection
+ssid = "Getoffmyproperty"
+password = "randomPass9000"
 
 # Set up the Wi-Fi connection
 wifi = network.WLAN(network.STA_IF)
 wifi.active(True)
-wifi.connect(ssid)
+wifi.connect(ssid, password)
 
+led_onboard.value(0)
 while wifi.isconnected() == False:
     print('Waiting for connection...')
+    led_onboard.toggle()
     sleep(1)
 
 ip = wifi.ifconfig()
 print(f'Connected on {ip}')
 
 print('Connected. IP address:', wifi.ifconfig()[0])
+led_onboard.value(1)
+sleep(1)
+
+# List of endpoints
+# http://34.91.50.27/teachers/
+# http://34.91.50.27/teacher-bookings/
+# http://34.91.50.27/students/
+# http://34.91.50.27/student-bookings/
+# http://34.91.50.27/rooms/
+# http://34.91.50.27/student-lectures/
+# http://34.91.50.27/lectures/
+# http://34.91.50.27/lecture-types/
+
 
 # wait for API to update
 # when API updates, get the latest data
-# first key of the JSON might be room number
 
 
 lecture_types = {"werkcollege", "workshop", "atelier", "hoorcollege", "tutorial", "lecture", "plenary", "plenair",
                  "process" "groepswerk", "professional skills", "assessments", "theorie", "proces", "studiemiddag",
                  "ontwikkeloverleg", "dutch", "reservation"}
-
-# replace with API GET request
-f = open("jsonText.txt", "r")
-dictionary = json.loads(f.read())
 
 nextMinute = 0
 while True:
@@ -507,36 +379,42 @@ while True:
     print("Time: " + current_time)
 
     nextMinute = minute + 1
-    # replace with API GET request
-    f = open("jsonText.txt", "r")
-    dictionary = json.loads(f.read())
 
-    for event in dictionary:
-        if current_date == dictionary[event]["date"]:
-            description = dictionary[event]['description']
-            if (dictionary[event]['start'] <= current_time) & (current_time < dictionary[event]['end']):
-
-                lecture_type = description["lecture type"]
-                list_of_teachers = description["list of teachers"]
-                rooms = get_room_number(dictionary[event]["location"])
-
-                print("Current lesson: " + lecture_type)
-                print("Teachers: ")
-                print(list_of_teachers)
-                print("Rooms: ")
-                print(rooms)
-                for room in rooms:
-                    if room is not None:
-                        change_led(get_lecture_type(lecture_type), room)
-
-    # loop through every room, store room in a list, store list of teachers in a parallel list
-    # below loop through both while
-    while nextMinute >= minute:
-        
-        now = utime.localtime()
-        year, month, day, hour, minute, sec, weekday, yearday = now
-
+    try:
+        rooms = urequests.get("http://34.91.50.27/rooms/")
+        rooms = rooms.json()
+    except:
+        print("GET failed")
+    else:
         for room in rooms:
-            display_teachers(list_of_teachers, room)
+            room_number = str(room["room_number"])
+            availability = room["availability"]
 
-        utime.sleep(1)
+            room_number = room_number[0] + "." + room_number[1:]
+            change_led(room_number, availability)
+
+        counter = 0
+        for room in rooms:
+            room_number = str(room["room_number"])
+            room_number = room_number[0] + "." + room_number[1:]
+            availability = room["availability"]
+
+            lcd1.clear()
+            lcd1.move_to(3, 0)
+            lcd1.putstr("ROOM " + room_number)
+            lcd1.move_to(3, 1)
+
+            lcd2.clear()
+            lcd2.move_to(3, 0)
+            lcd2.putstr("ROOM " + room_number)
+            lcd2.move_to(3, 1)
+
+            if availability:
+                lcd1.putstr("Available")
+                lcd2.putstr("Available")
+            else:
+                lcd1.putstr("In use")
+                lcd2.putstr("In use")
+
+            sleep(5)
+
