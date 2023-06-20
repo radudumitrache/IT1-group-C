@@ -9,8 +9,8 @@ from django.views import generic
 from .models import *
 from django.http import HttpResponseRedirect
 from .forms import addRoomForm
-from helperfunctions import handle_uploaded_file
-
+# from helperfunctions import handle_uploaded_file
+from parser import calendar_parse
 
 # Create your views here.
 from django.contrib.auth.views import LoginView as BaseLoginView
@@ -85,12 +85,12 @@ def get_room(request):
             if form.cleaned_data["roomName"] == "K 5.01 - IOT Lab" or form.cleaned_data["roomName"] == "K 5.01":
                 roomName = form.cleaned_data["roomName"]
                 file = request.FILES['file']
-                handle_uploaded_file(file)
+                calendar_parse(file)
                 return HttpResponseRedirect("/addRoom")
             elif (form.cleaned_data["roomName"].find('.') == 1) and (form.cleaned_data["roomName"].count(".") == 1):
                 roomName = form.cleaned_data["roomName"]
                 file = request.FILES['file']
-                handle_uploaded_file(file)
+                calendar_parse(file)
                 return HttpResponseRedirect("/addRoom")
             else:
                 raise ValidationError(

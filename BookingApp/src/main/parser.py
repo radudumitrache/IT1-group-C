@@ -6,7 +6,7 @@ from parcedModel import insert_json_data_LectureNamedata
 from parcedModel import insert_json_data_Datedata
 from parcedModel import insert_json_data_Timedata
 from parcedModel import insert_json_data_LectureTypedata
-
+from parcedModel import *
 
 calendar_file = open('bad teacher name.ics', 'rb')
 calendar = Calendar.from_ical(calendar_file.read())

@@ -1,10 +1,16 @@
-import json
-from .models import StudentLectureTeacher, Lecture
+import django
+def load_django_settings():
+    django.setup()
+load_django_settings()
+from django.conf import settings
+settings.configure()
 
+import json
+from models import StudentLectureTeacher,Lecture
+# from .models import StudentLectureTeacher, Lecture
 
 def insert_json_data_Teacherdata():
     parsed_data = json.load()
-
     for item in parsed_data:
          studentModel = StudentLectureTeacher(json_data=item)
          studentModel.save()
