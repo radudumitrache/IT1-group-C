@@ -306,3 +306,15 @@ body {
     border-radius: 1rem 1rem 0rem 0rem;
     background-color: #f1f1f1;
 }
+
+.errorMessage{
+    color: red;
+    font-family: "Nexa Bold", Helvetica, sans-serif;
+    font-size: 40px;
+}
+
+.successMessage{
+    color: greenyellow;
+    font-family: "Nexa Bold", Helvetica, sans-serif;
+    font-size: 40px;
+}

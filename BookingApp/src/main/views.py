@@ -11,7 +11,7 @@ from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from .forms import LoginForm
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 def index (request,room):
     date_to_filter = date.today()
     all_rooms = Room.objects.all()
@@ -65,20 +65,26 @@ def BookingListView(request,room,day):
     }
     return render(request=request , template_name= 'main/booking.html',context = context)
 
-
 def bookRoom(request, room, day):
     if request.method == 'POST':
         start_time = datetime.strptime(request.POST.get('startTime'), '%H:%M').time()
         end_time = datetime.strptime(request.POST.get('endTime'), '%H:%M').time()
         current_week_day = date.today().weekday()
         date_to_filter = date.today()
+        if (current_week_day < day):
+            date_to_filter = date.today() + timedelta(days=day - current_week_day)
+
         roomObject = Room.objects.get(room_number=room)
 
         # Check duration limit - 10 hours
         duration_limit = timedelta(hours=10)
         booking_duration = datetime.combine(datetime.min.date(), end_time) - datetime.combine(datetime.min.date(),start_time)
         if booking_duration > duration_limit:
-            return HttpResponse("Duration issue")
+
+            # error_message = "Booking can not be more than 10 hours."
+            # return render(request, 'main/listOfBookings.html')
+            # return HttpResponse("Duration issue")
+            return redirect('listOfBookings')
 
 
         user_id = request.user.id
@@ -96,8 +102,9 @@ def bookRoom(request, room, day):
             for booking in bookingsT:
                 if start_time < booking.end_time and end_time > booking.time:
                     # error_message = "This room is already booked for this time."
-                    # return render(request, 'main/booking.html', {'error_message': error_message})
-                    return HttpResponse("time issue")
+                    # return render(request, 'main/listOfBookings.html')
+                    # return HttpResponse("time issue")
+                    return redirect('listOfBookings')
             # Save booking to database
             bookingT = TeacherBookingRoom(booking_id=bookingIDT, teacher_id=teacher[0], room_id=roomObject, time=start_time, end_time=end_time,date=date_to_filter)
             bookingT.save()
@@ -112,8 +119,9 @@ def bookRoom(request, room, day):
             for booking in bookingsS:
                 if start_time < booking.end_time and end_time > booking.time:
                     # error_message = "This room is already booked for this time."
-                    # return render(request, 'main/booking.html', {'error_message': error_message})
-                    return HttpResponse("time issue")
+                    # return render(request, 'main/listOfBookings.html')
+                    return redirect('listOfBookings')
+                    # return HttpResponse("time issue")
 
             # Save booking to database
             bookingS = StudentBookingRoom(booking_id=bookingIDS, student_number=student[0], room_number=roomObject, time=start_time, date=date_to_filter, end_time=end_time)
@@ -123,19 +131,22 @@ def bookRoom(request, room, day):
             return HttpResponse("System error")
 
 
-
-    return HttpResponse("works")
-
-
-
+    # successMessage = "Your booking has been successful!"
+    # return render(request, 'main/listOfBookings.html')
+    return redirect('listOfBookings')
+    # return redirect('listOfBookings', {'success_message':success_message})
+    # return HttpResponse("works")
 
 def listOfBookings(request):
     user = request.user.id
+
     bookings = None
     if (Student.objects.filter(user__exact=user).exists()):
-        bookings = Student.objects.filter(user__exact=user)
+        student_number = Student.objects.get(user=user).student_number
+        bookings = StudentBookingRoom.objects.filter(student_number=student_number)
     elif (Teacher.objects.filter(user__exact=user).exists()):
-        bookings = Teacher.objects.filter(user__exact=user)
+        teacher_id = Teacher.objects.get(user=user).teacher_number
+        bookings = TeacherBookingRoom.objects.filter(teacher_id=teacher_id)
     return render(request, 'main/listOfBookings.html', {'bookings' : bookings})
 
 def deleteBooking(request, booking_id):
