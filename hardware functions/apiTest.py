@@ -1,22 +1,49 @@
-import network
-import urequests
+import requests
+from pprint import pprint
 
-username = ''
-password = ''
+# List of endpoints
+# http://34.91.50.27/teachers/
+# http://34.91.50.27/teacher-bookings/
+# http://34.91.50.27/students/
+# http://34.91.50.27/student-bookings/
+# http://34.91.50.27/rooms/
+# http://34.91.50.27/student-lectures/
+# http://34.91.50.27/lectures/
+# http://34.91.50.27/lecture-types/
 
-# Set up the Wi-Fi connection
-wifi = network.WLAN(network.STA_IF)
-wifi.active(True)
-wifi.connect('eduroam', (username, password))
-
-
-while not wifi.isconnected():
-    pass
-
-# Print the IP address assigned to the Pico
-print('Connected. IP address:', wifi.ifconfig()[0])
-
+lecture_types = {"werkcollege", "workshop", "atelier", "hoorcollege", "tutorial", "lecture", "plenary", "plenair",
+                 "process" "groepswerk", "professional skills", "assessments", "theorie", "proces", "studiemiddag",
+                 "ontwikkeloverleg", "dutch", "reservation"}
 
 
-r = urequests.get("http://date.jsontest.com")
-print(r.json())
+def get_lecture_type(lecture_name: str):
+    lecture_name = lecture_name.lower()
+    for lecture_type in lecture_types:
+        if lecture_type in lecture_name:
+            return lecture_type
+
+    return "none"
+
+schedule = requests.get("http://34.91.50.27/student-lectures/").json()
+teachers = requests.get("http://34.91.50.27/teachers/").json()
+rooms = requests.get("http://34.91.50.27/rooms/").json()
+lectures = requests.get("http://34.91.50.27/lectures/").json()
+
+print(schedule)
+print(teachers)
+print(rooms)
+print(lectures)
+print()
+
+for event in schedule:
+    print(event)
+
+    for teacher in teachers:
+        if teacher["teacher_number"] == event["teacher_number"]:
+            print(teacher["first_name"] + " " + teacher["last_name"])
+
+    for lecture in lectures:
+        if lecture["lecture_id"] == event["lecture_id"]:
+            print(lecture["lecture_name"])
+            print(get_lecture_type(lecture["lecture_name"]))
+
