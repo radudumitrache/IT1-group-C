@@ -13,18 +13,18 @@ from django.utils import timezone
 from .forms import LoginForm
 from django.http import HttpResponse, JsonResponse
 def index (request,room):
-
+    date_to_filter = date.today()
     all_rooms = Room.objects.all()
-    lectures = StudentLectureTeacher.objects.all()
-    bookings_teachers = TeacherBookingRoom.objects.all()
-    bookings_students = StudentBookingRoom.objects.all()
-    all_bookings = lectures.union(bookings_students, bookings_teachers)
-
-
+    lectures = StudentLectureTeacher.objects.filter(room_number__exact=room).filter(date__exact=date_to_filter)
+    bookings_teachers = TeacherBookingRoom.objects.filter(room_id__exact=room).filter(date__exact=date_to_filter)
+    bookings_students = StudentBookingRoom.objects.filter(room_number__exact=room).filter(date__exact=date_to_filter)
+    all_rooms = Room.objects.all()
     context = {
-        'all_rooms' : all_rooms,
-        "current_date" : date.today(),
-        'all_booking' : all_bookings
+        'bookings_teachers': bookings_teachers,
+        'bookings_students': bookings_students,
+        'room': room,
+        'lectures': lectures,
+        'all_rooms': all_rooms,
     }
     return render(request = request , template_name = 'main/user_index.html',context = context)
 
