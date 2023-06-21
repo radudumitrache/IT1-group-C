@@ -15,17 +15,22 @@ from django.http import HttpResponse
 def index (request,room):
     date_to_filter = date.today()
     all_rooms = Room.objects.all()
-    lectures = StudentLectureTeacher.objects.filter(room_number__exact=room).filter(date__exact=date_to_filter)
-    bookings_teachers = TeacherBookingRoom.objects.filter(room_id__exact=room).filter(date__exact=date_to_filter)
-    bookings_students = StudentBookingRoom.objects.filter(room_number__exact=room).filter(date__exact=date_to_filter)
+    day = date.today().weekday()
+    roomToGet = Room.objects.all()[0]
+    lectures = StudentLectureTeacher.objects.filter(room_number=room).filter(date__exact=date_to_filter)
+    bookings_teachers = TeacherBookingRoom.objects.filter(room_id=room).filter(date__exact=date_to_filter)
+    bookings_students = StudentBookingRoom.objects.filter(room_number=room).filter(date__exact=date_to_filter)
     all_rooms = Room.objects.all()
     context = {
+        'day': day,
         'bookings_teachers': bookings_teachers,
         'bookings_students': bookings_students,
         'room': room,
+        'roomToGet':roomToGet,
         'lectures': lectures,
         'all_rooms': all_rooms,
     }
+    print(room)
     return render(request = request , template_name = 'main/user_index.html',context = context)
 
 def map(request):
