@@ -1,4 +1,4 @@
-from icalendar import *
+# from icalendar import *
 import json
 
 def description_separation(summary: str):

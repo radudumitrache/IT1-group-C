@@ -15,7 +15,7 @@
     <div id="container">
       <header>
           {% block header %}
-              <a href="{% url 'index' %}">
+              <a href="{% url 'index' 1 %}">
             <div id="buttonNegative">
                 <h2>< Go Back</h2>
             </div>
@@ -26,11 +26,11 @@
       </header>
 
 {% block main_content %}
-    <form action = "addRoom.html" method="POST" enctype="multipart/form-data">
+    <form action = "" method="POST" enctype="multipart/form-data">
         <div id="form">
            {% csrf_token %}
             {{ form }}
-            <p><input type="submit" id="submit"value="Add"></p>
+            <p><input type="submit" id="submit" value="Add"></p>
         </div>
     </form>
     {% endblock %}

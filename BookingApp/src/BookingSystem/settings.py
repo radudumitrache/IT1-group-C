@@ -1,5 +1,3 @@
-import django
-django.setup()
 """
 Django settings for BookingSystem project.
 
