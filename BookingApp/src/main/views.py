@@ -21,14 +21,16 @@ def index (request,room):
     bookings_teachers = TeacherBookingRoom.objects.filter(room_id=room).filter(date__exact=date_to_filter)
     bookings_students = StudentBookingRoom.objects.filter(room_number=room).filter(date__exact=date_to_filter)
     all_rooms = Room.objects.all()
+    selected_room = Room.objects.get(room_number=room)
     context = {
         'day': day,
         'bookings_teachers': bookings_teachers,
         'bookings_students': bookings_students,
         'room': room,
-        'roomToGet':roomToGet,
+        'roomToGet': roomToGet,
         'lectures': lectures,
         'all_rooms': all_rooms,
+        'selected_room': selected_room,
     }
     print(room)
     return render(request = request , template_name = 'main/user_index.html',context = context)

@@ -34,7 +34,7 @@ a, a:link, a:visited, a:hover, a:active{
 #container{
 
     display: grid;
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     grid-template-columns: repeat(6, 1fr);
 
     align-items: center;
@@ -103,6 +103,9 @@ header > img{
     flex-direction: row;
     
 }
+.linkbtn:hover{
+    background: #f1f1f1;
+}
 
 .linkbtn a {
     color: #1C5C71;
@@ -148,7 +151,7 @@ header > img{
     font-family: "Nexa Bold", Helvetica, sans-serif;
     font-size: 48px;
     height: fit-content;
-    width: 100%;
+    width: 130%;
 
     padding: 0rem 1.5rem 0rem 1.5rem;
     border-radius: 1rem;
@@ -167,7 +170,7 @@ header > img{
     display: none;
     position: absolute;
     background-color: #FFFFFF;
-    width: 100%;
+    width: 130%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 
@@ -251,7 +254,7 @@ table{
 #footerButtons{
 
     grid-column: 1/4;
-    grid-row: 6/7;
+    grid-row: 5/6;
     display: flex;
     /*height: 50%;*/
     width: 100%;
@@ -284,11 +287,12 @@ table{
 }
 #map_container
 {
-    grid-column: 2/6;
+    grid-column: 2/5;
     /*display: flex;*/
     /*width: 100%;*/
     /*justify-content: center;*/
     /*height: 400px;*/
+    margin-bottom: 20%;
 }
 #map_image
 {
@@ -323,4 +327,105 @@ table{
     bottom: 0;
 }
 
+.table {
+  width: 95%;
+  border: 1px solid #EEEEEE;
+  border-radius: 20px;
+  overflow: hidden; /* Added overflow property to hide overflowing content */
+}
+
+.table-header {
+  display: flex;
+  width: 100%;
+  background: #000;
+  padding: 12px 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  padding: 12px 0;
+
+  &:nth-of-type(odd) {
+    background: #EEEEEE;
+  }
+
+  &:nth-of-type(even) {
+    background: #F5F5F5; /* Change the background color for even rows */
+  }
+}
+
+.table-data,
+.header__item {
+  flex: 1 1 20%;
+  text-align: center;
+  padding: 6px 0; /* Added padding to adjust cell content */
+  overflow: hidden; /* Added overflow property to hide overflowing content */
+  white-space: nowrap; /* Prevent text wrapping within cells */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflowing text */
+}
+.table-data-time{
+    font-family: Nexa;
+    font-weight: bold;
+    color: #256478;
+    margin-left: 60px;
+    text-align: center;
+    font-size: 20px;
+}
+.table-data{
+    font-family: Nexa;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.header__item {
+  text-transform: uppercase;
+  color: #FFFFFF; /* Added text color for header items */
+}
+
+.filter__link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.filter__link::after {
+  content: '';
+  position: absolute;
+  right: -12px;
+  color: white;
+  font-size: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.filter__link.desc::after {
+  content: '(desc)';
+}
+
+.filter__link.asc::after {
+  content: '(asc)';
+}
+
+.go-back-button {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 288px;
+    height: 47px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: rgba(217, 217, 217, 1);
+    color: black;
+  }
+.go-back-button:hover{
+    background: #FFFFFF;
+}
 
