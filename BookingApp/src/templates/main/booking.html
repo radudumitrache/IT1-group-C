@@ -97,6 +97,7 @@
                                     <div class ='table-data-time'>{{ booking.time }} - {{ booking.end_time }}</div>
                                     <div class ='table-data'> Booked by: a teacher
                                     </div>
+                                    <div class ='table-data'> {{ booking.date }}</div>
                             </div>
 
                         {% endfor %}
@@ -111,10 +112,6 @@
 
                         {% endfor %}
                         {% endif %}
-
-                    {% if error_message %}
-                        <p>{{ error_message }}</p>
-                    {% endif %}
 
                     </div>
                 </div>
