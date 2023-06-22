@@ -37,8 +37,30 @@ body {
 
 #button {
     display: flex;
-    justify-content: flex-start; /* Align the button to the left */
 }
+.go-back-button {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 288px;
+    height: 47px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: rgba(217, 217, 217, 1);
+  }
+.go-back-button h2 {
+    font-size: 48px;
+    font-family: Nexa;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(217, 217, 217, 1);
+}
+.go-back-button:hover,
+  .go-back-button:hover h2 {
+    background: #ffffff;
+  }
 
 #button > h2 {
     width: 328px;
@@ -88,6 +110,18 @@ body {
     border-width: 0px;
     font-weight: bold;
     margin-right: 13px;
+    text-decoration: none;
+    outline: none;
+}
+
+.day_button.active {
+    background-color: #ffffff; /* Change to your desired active background color */
+    color: #000000; /* Change to your desired active text color */
+}
+.day_button > a{
+    color: rgba(37, 100, 120, 1);;
+    text-decoration: none;
+    outline: none;
 }
 .cool_from_until{
     background-color: #FFFFFF;
@@ -153,7 +187,11 @@ body {
   color: #FFFFFF;
   border: none;
   border-radius: 20px;
+  cursor: pointer;
 }
+.confirm_button:hover {
+    background-color: #1c4e63;
+  }
 #right-side{
     display: flex;
 }
@@ -201,7 +239,6 @@ body {
 .header__item {
   flex: 1 1 20%;
   text-align: center;
-  border-bottom: 1px solid #EEEEEE;
   padding: 6px 0; /* Added padding to adjust cell content */
   overflow: hidden; /* Added overflow property to hide overflowing content */
   white-space: nowrap; /* Prevent text wrapping within cells */
