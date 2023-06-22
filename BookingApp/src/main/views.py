@@ -1,24 +1,24 @@
-
 import datetime
 from itertools import chain
 from django.shortcuts import render, redirect,reverse
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from django.shortcuts import render
-from django.http import HttpResponse
 from datetime import date, datetime, timedelta
 from django.views import generic
 from .models import *
 from django.http import HttpResponseRedirect
-from .forms import addRoomForm
-# from helperfunctions import handle_uploaded_file
-from parser import calendar_parse
+from .parser import calendar_parse
+import django
+import json
+from .models import StudentLectureTeacher, Lecture
+
+
 
 # Create your views here.
 from django.contrib.auth.views import LoginView as BaseLoginView
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 from .forms import LoginForm
+from .forms import addRoomForm
 
 
 from django.http import HttpResponse
@@ -179,7 +179,17 @@ def login(request):
 
 
 def addRoom(request):
-    return render(request=request, template_name='main/addRoom.html')
+    if request.method == 'POST':
+        calendar_parse()
+        insert_json_data_Teacherdata()
+        insert_json_data_RoomNumberdata()
+        insert_json_data_LectureNamedata()
+        insert_json_data_Datedata()
+        insert_json_data_Timedata()
+        insert_json_data_LectureTypedata()
+        return render(request=request, template_name='main/addRoom.html')
+    else:
+        return render(request=request, template_name='main/addRoom.html')
 
 
 def get_room(request):
@@ -206,3 +216,62 @@ def get_room(request):
             form = addRoomForm()
             return render(request, "addRoom.html", {"form": form})
 
+
+def load_django_settings():
+    django.setup()
+    load_django_settings()
+    from django.conf import settings
+    settings.configure()
+
+
+def insert_json_data_Teacherdata():
+    parsed_data = json.load()
+    for item in parsed_data:
+
+        studentModel = StudentLectureTeacher(json_data=item)
+        studentModel.save()
+
+
+def insert_json_data_RoomNumberdata():
+    parsed_data = json.load()
+
+    for item in parsed_data:
+        studentModel = StudentLectureTeacher(json_data=item)
+        studentModel.save()
+
+
+
+def insert_json_data_LectureNamedata():
+    parsed_data = json.load()
+
+    for item in parsed_data:
+        lectureModel = Lecture(json_data=item)
+        lectureModel.save()
+
+
+
+def insert_json_data_Datedata():
+    parsed_data = json.load()
+
+    for item in parsed_data:
+        lectureModel = Lecture(json_data=item)
+        lectureModel.save()
+
+
+
+def insert_json_data_Timedata():
+    parsed_data = json.load()
+
+    for item in parsed_data:
+
+        lectureModel = Lecture(json_data=item)
+        lectureModel.save()
+
+
+
+def insert_json_data_LectureTypedata():
+    parsed_data = json.load()
+
+    for item in parsed_data:
+        lectureModel = Lecture(json_data=item)
+        lectureModel.save()

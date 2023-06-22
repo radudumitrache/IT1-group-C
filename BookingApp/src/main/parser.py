@@ -1,17 +1,5 @@
 from icalendar import *
 import json
-from parcedModel import insert_json_data_Teacherdata
-from parcedModel import insert_json_data_RoomNumberdata
-from parcedModel import insert_json_data_LectureNamedata
-from parcedModel import insert_json_data_Datedata
-from parcedModel import insert_json_data_Timedata
-from parcedModel import insert_json_data_LectureTypedata
-from parcedModel import *
-
-calendar_file = open('bad teacher name.ics', 'rb')
-calendar = Calendar.from_ical(calendar_file.read())
-dictionary = {}
-
 
 def description_separation(summary: str):
     list_of_teachers = list()
@@ -36,6 +24,7 @@ def description_separation(summary: str):
 
 
 def calendar_parse(calendar):
+    dictionary = {}
     id = 0
     for component in calendar.walk():
         if component.name == 'VEVENT':
@@ -68,17 +57,5 @@ def calendar_parse(calendar):
     json_Teacherdata = json.dumps(TeacherData)
     json_LectureTypedata = json.dumps(LectureTypeData)
     json_LectureNamedata = json.dumps(LectureNameData)
-    json_Datedata = json.dumps(DateData)
-    json_Timedata = json.dumps(TimeData)
-    json_RoomNumberdata = json.dumps(RoomNumberData)
 
-    insert_json_data_Teacherdata(json_Teacherdata)
-    insert_json_data_RoomNumberdata(json_RoomNumberdata)
-    insert_json_data_LectureNamedata(json_LectureNamedata)
-    insert_json_data_Datedata(json_Datedata)
-    insert_json_data_Timedata(json_Timedata)
-    insert_json_data_LectureTypedata(json_LectureTypedata)
-
-
-calendar_parse(calendar)
 # description_separation(',Doornbos, Jan (IC), IC-INF-IT1A, IC-INF-IT1B, IC-INF-IT1C, IC-INF-IT1D, IC-INF-IT1E, IC-INF-IT1F, IC-INF-IT1G, Oenen van, Gerjan (IC), Siersema, Elise (IC)')
