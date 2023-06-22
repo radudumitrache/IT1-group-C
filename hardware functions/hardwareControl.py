@@ -16,7 +16,9 @@ I2C_ADDR_2 = 0x23
 I2C_NUM_ROWS = 4
 I2C_NUM_COLS = 20
 
-i2c = I2C(0, sda=Pin(0), scl=Pin(1), freq=400000)
+# Initialize I2C
+i2c = I2C(0, sda=machine.Pin(0), scl=machine.Pin(1), freq=400000)
+# Initialize LCD
 lcd1 = I2cLcd(i2c, I2C_ADDR_1, I2C_NUM_ROWS, I2C_NUM_COLS)
 lcd2 = I2cLcd(i2c, I2C_ADDR_2, I2C_NUM_ROWS, I2C_NUM_COLS)
 
@@ -243,7 +245,7 @@ def get_room_number(location: str):
     else:
         return
 
-def change_led(room: str, availability: bool):
+def change_led(room: str, lecture_type: str):
     if room == "1.007":
         room_led = set_rgb_room_1_007
     elif room == "1.008":
@@ -261,27 +263,20 @@ def change_led(room: str, availability: bool):
     else:
         return
 
-    if availability:
-        room_led(GREEN)
-    else:
-        room_led(RED)
-
-"""
     if lecture_type == "atelier":
-        room_led(*RED)
+        room_led(RED)
     elif (lecture_type == "workshop") | (lecture_type == "werkcollege"):
-        room_led(*PURPLE)
+        room_led(PURPLE)
     elif (lecture_type == "tutorial") | (lecture_type == "hoorcollege"):
-        room_led(*YELLOW)
+        room_led(YELLOW)
     elif (lecture_type == "plenary") | (lecture_type == "plenair"):
-        room_led(*BLUE)
+        room_led(BLUE)
     elif (lecture_type == "process") | (lecture_type == "proces"):
-        room_led(*ORANGE)
+        room_led(ORANGE)
     elif lecture_type == "reservation":
-        room_led(*PINK)
+        room_led(PINK)
     else:
-        room_led(*GREEN)
-"""
+        room_led(GREEN)
 
 def display_teachers(teachers: list, room: str):
     lcd.move_to(3, 0)
@@ -379,40 +374,55 @@ while True:
     nextMinute = minute + 1
 
     try:
-        rooms = urequests.get("http://34.91.50.27/rooms/")
-        rooms = rooms.json()
+        schedule = urequests.get("http://34.91.50.27/student-lectures/").json()
+        teachers = urequests.get("http://34.91.50.27/teachers/").json()
+        rooms = urequests.get("http://34.91.50.27/rooms/").json()
+        lectures = urequests.get("http://34.91.50.27/lectures/").json()
     except:
         print("GET failed")
+        sleep(1)
     else:
         for room in rooms:
             room_number = str(room["room_number"])
-            availability = room["availability"]
+            status = "available"
+
+            for event in schedule:
+                if event["room_number"] == room["room_number"]:
+                    for lecture in lectures:
+                        if lecture["lecture_id"] == event["lecture_id"]:
+                            status = get_lecture_type(lecture["lecture_type"])
 
             room_number = room_number[0] + "." + room_number[1:]
-            change_led(room_number, availability)
+            change_led(room_number, status)
 
         counter = 0
         for room in rooms:
             room_number = str(room["room_number"])
             room_number = room_number[0] + "." + room_number[1:]
-            availability = room["availability"]
+            availability = True
 
             lcd1.clear()
             lcd1.move_to(3, 0)
             lcd1.putstr("ROOM " + room_number)
-            lcd1.move_to(3, 1)
+            lcd1.move_to(0, 1)
 
             lcd2.clear()
             lcd2.move_to(3, 0)
             lcd2.putstr("ROOM " + room_number)
-            lcd2.move_to(3, 1)
+            lcd2.move_to(0, 1)
+
+            for event in schedule:
+                if event["room_number"] == room["room_number"]:
+                    for lecture in lectures:
+                        if lecture["lecture_id"] == event["lecture_id"]:
+                            availability = False
+                            lcd1.putstr(lecture["lecture_name"])
+                            lcd2.putstr(lecture["lecture_name"])
 
             if availability:
+                lcd1.move_to(3, 1)
+                lcd2.move_to(3, 1)
                 lcd1.putstr("Available")
                 lcd2.putstr("Available")
-            else:
-                lcd1.putstr("In use")
-                lcd2.putstr("In use")
 
             sleep(5)
-
