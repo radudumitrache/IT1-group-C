@@ -165,7 +165,7 @@ def deleteBooking(request, booking_id):
     bookingS = StudentBookingRoom.objects.filter(booking_id=booking_id)
     if bookingT and not bookingS:
         bookingT.delete()
-        return  redirect('listOfBookings')
+        return redirect('listOfBookings')
     elif bookingS and not bookingT:
         bookingS.delete()
         return redirect('listOfBookings')
@@ -191,13 +191,27 @@ def addRoom(request):
     else:
         return render(request=request, template_name='main/addRoom.html')
 
-def add_lecture (dict):
-    for key,lecture in dict:
+def add_lecture(dict):
+    for lecture in dict.values():
+        lecture_type = lecture['description']['lecture_type']
         biggest_id = Lecture.objects.latest('id').id + 1
         class_type = None
-        if ('Dutch' in lecture['description']['lecture type']):
+        if 'atelier' in lecture_type:
+            class_type = ClassType.objects.filter(lecture__exact='Atelier')
+        if 'werkcollege' in lecture_type or 'tutorial' in lecture_type or 'dutch' in lecture_type:
             class_type = ClassType.objects.filter(lecture__exact='Tutorial')
-        Lecture_object = Lecture (biggest_id,)
+        if 'hoorcollege' in lecture_type or 'lecture' in lecture_type:
+            class_type = ClassType.objects.filter(lecture__exact='Lecture')
+        if 'workshop' in lecture_type or 'groepswerk' in lecture_type:
+            class_type = ClassType.objects.filter(lecture__exact='Workshop')
+        if 'plenary' in lecture_type or 'plenair' in lecture_type:
+            class_type = ClassType.objects.filter(lecture__exact='Plenary')
+        if 'process' in lecture_type or 'professional skills' in lecture_type or 'theorie' in lecture_type or 'proces' in lecture_type:
+            class_type = ClassType.objects.filter(lecture__exact='Process')
+        if 'assessments' in lecture_type or 'studiemiddag' in lecture_type or 'ontwikkeloverleg' in lecture_type or 'reservation' in lecture_type:
+            class_type = ClassType.objects.filter(lecture__exact='Reservation')
+        Lecture_object = Lecture(lecture_id=biggest_id, lecture_type=class_type, lecture_name=lecture_type)
+        Lecture_object.save()
 
 def get_room(request):
     form = None
@@ -214,6 +228,7 @@ def get_room(request):
                         destination.write(line)
                 calendar_file = open(file_path,'rb')
                 result_dictionary = calendar_parse(calendar_file)
+                add_lecture(result_dictionary)
                 return HttpResponseRedirect("/addRoom")
             elif (form.cleaned_data["roomName"].find('.') == 1) and (form.cleaned_data["roomName"].count(".") == 1):
                 roomName = form.cleaned_data["roomName"]
@@ -225,6 +240,7 @@ def get_room(request):
                         destination.write(line)
                 calendar_file = open(file_path,'rb')
                 result_dictionary = calendar_parse(calendar_file)
+                add_lecture(result_dictionary)
                 return HttpResponseRedirect("/addRoom")
             else:
                 raise ValidationError(
