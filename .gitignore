@@ -9,6 +9,7 @@
 *.pyc
 __pycache__/
 local_settings.py
+prod_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
@@ -352,8 +353,12 @@ poetry.toml
 pyrightconfig.json
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### macOS (damnit vlad) ###
 =======
+=======
+
+>>>>>>> 4de613c28da06ccc25237aa83365d7e9a7d877b2
 ### PhpStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
@@ -468,7 +473,12 @@ fabric.properties
 .idea/**/azureSettings.xml
 
 ### macOS ###
+<<<<<<< HEAD
 >>>>>>> dev
+=======
+=======
+
+>>>>>>> 4de613c28da06ccc25237aa83365d7e9a7d877b2
 # General
 .DS_Store
 .AppleDouble
@@ -502,9 +512,17 @@ Temporary Items
 *.icloud
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # End of https://www.toptal.com/developers/gitignore/api/macos
 =======
 # End of https://www.toptal.com/developers/gitignore/api/phpstorm
 
 >>>>>>> dev
+=======
+
+
+
+# End of https://www.toptal.com/developers/gitignore/api/macos
+
+>>>>>>> 4de613c28da06ccc25237aa83365d7e9a7d877b2
 # End of https://www.toptal.com/developers/gitignore/api/django,python,flask
