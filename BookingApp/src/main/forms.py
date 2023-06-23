@@ -5,8 +5,8 @@ User = get_user_model()
 from django import forms
 from . import models
 class LoginForm (AuthenticationForm):
-    email=forms.EmailInput()
-    password = forms.PasswordInput()
+    email=forms.EmailInput(attrs={'placeholder': 'Enter your email'})
+    password = forms.PasswordInput(attrs={'placeholder': 'Enter your email'})
 
 class MakeBookingForm (forms.ModelForm):
     chosenModel = None

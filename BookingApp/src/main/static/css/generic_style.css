@@ -428,4 +428,25 @@ table{
 .go-back-button:hover{
     background: #FFFFFF;
 }
+.messages {
+    list-style: none;
+    padding: 10px;
+}
+
+.messages li {
+    margin-bottom: 10px;
+    background-color: #f1f1f1; /* Add desired background color */
+    padding: 10px; /* Add padding for spacing */
+}
+
+.messages li.error {
+    color: red;
+}
+
+.messages li.success {
+    color: green;
+}
+
+
+
 

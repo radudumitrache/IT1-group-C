@@ -12,6 +12,9 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from .forms import LoginForm
 from django.http import HttpResponse
+from django.contrib import messages
+
+
 def index (request,room):
     date_to_filter = date.today()
     all_rooms = Room.objects.all()
@@ -93,6 +96,7 @@ def bookRoom(request, room, day):
 
             # error_message = "Booking can not be more than 10 hours."
             # return render(request, 'main/listOfBookings.html', {'error_message':error_message})
+            messages.error(request, "Booking cannot be more than 10 hours.")
             return redirect('listOfBookings')
 
 
@@ -112,10 +116,12 @@ def bookRoom(request, room, day):
                 if start_time < booking.end_time and end_time > booking.time:
                     # error_message = "This room is already booked for this time."
                     # return render(request, 'main/listOfBookings.html')
+                    messages.error(request, "This room is already booked for this time.")
                     return redirect('listOfBookings')
             # Save booking to database
             bookingT = TeacherBookingRoom(booking_id=bookingIDT, teacher_id=teacher[0], room_id=roomObject, time=start_time, end_time=end_time,date=date_to_filter)
             bookingT.save()
+            messages.success(request, "Your booking has been successful!")
 
         elif student and not teacher:
 
@@ -128,11 +134,13 @@ def bookRoom(request, room, day):
                 if start_time < booking.end_time and end_time > booking.time:
                     # error_message = "This room is already booked for this time."
                     # return render(request, 'main/listOfBookings.html')
+                    messages.error(request, "This room is already booked for this time.")
                     return redirect('listOfBookings')
 
             # Save booking to database
             bookingS = StudentBookingRoom(booking_id=bookingIDS, student_number=student[0], room_number=roomObject, time=start_time, date=date_to_filter, end_time=end_time)
             bookingS.save()
+            messages.success(request, "Your booking has been successful!")
 
         else:
             return HttpResponse("System error")
