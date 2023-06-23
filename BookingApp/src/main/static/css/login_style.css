@@ -48,7 +48,15 @@ body {
    border-width: 0px;
    padding-left: 20px;
    padding-right: 20px;
+    margin-bottom: 10px;
+    outline: none;
+    cursor: pointer;
+    font-family: Nexa;
 }
+#middle > form  input:hover{
+    background: #FFFFFF;
+}
+
 input::placeholder {
     font-family: Nexa;
     font-weight: bold;
