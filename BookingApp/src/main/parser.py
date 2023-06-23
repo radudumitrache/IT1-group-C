@@ -46,7 +46,6 @@ def calendar_parse(calendar):
                                    'end': end_time}
             id += 1
     return dictionary
-# description_separation(',Doornbos, Jan (IC), IC-INF-IT1A, IC-INF-IT1B, IC-INF-IT1C, IC-INF-IT1D, IC-INF-IT1E, IC-INF-IT1F, IC-INF-IT1G, Oenen van, Gerjan (IC), Siersema, Elise (IC)')
 # filepath = '../icsFiles/schedule.ics'
 # calendar = open(filepath,'rb')
 # print (calendar_parse(calendar))

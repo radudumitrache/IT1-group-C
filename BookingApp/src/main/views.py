@@ -11,6 +11,7 @@ from .parser import calendar_parse
 import django
 import json
 from .models import StudentLectureTeacher, Lecture
+from django.db.models import  Max
 import os
 
 
@@ -193,26 +194,44 @@ def addRoom(request):
 
 def add_lecture(dict):
     for lecture in dict.values():
-        lecture_type = lecture['description']['lecture_type']
-        biggest_id = Lecture.objects.latest('id').id + 1
+        lecture_type = lecture['description']['lecture type'].lower()
+        biggest_id = 0
+        biggest_id = len(Lecture.objects.all()) + 1
         class_type = None
-        if 'atelier' in lecture_type:
-            class_type = ClassType.objects.filter(lecture__exact='Atelier')
-        if 'werkcollege' in lecture_type or 'tutorial' in lecture_type or 'dutch' in lecture_type:
-            class_type = ClassType.objects.filter(lecture__exact='Tutorial')
-        if 'hoorcollege' in lecture_type or 'lecture' in lecture_type:
-            class_type = ClassType.objects.filter(lecture__exact='Lecture')
-        if 'workshop' in lecture_type or 'groepswerk' in lecture_type:
-            class_type = ClassType.objects.filter(lecture__exact='Workshop')
-        if 'plenary' in lecture_type or 'plenair' in lecture_type:
-            class_type = ClassType.objects.filter(lecture__exact='Plenary')
-        if 'process' in lecture_type or 'professional skills' in lecture_type or 'theorie' in lecture_type or 'proces' in lecture_type:
-            class_type = ClassType.objects.filter(lecture__exact='Process')
-        if 'assessments' in lecture_type or 'studiemiddag' in lecture_type or 'ontwikkeloverleg' in lecture_type or 'reservation' in lecture_type:
-            class_type = ClassType.objects.filter(lecture__exact='Reservation')
-        Lecture_object = Lecture(lecture_id=biggest_id, lecture_type=class_type, lecture_name=lecture_type)
-        Lecture_object.save()
+        created = None
+        try :
+            if 'atelier' in lecture_type:
+                class_type , created = ClassType.objects.get (lecture_type= 'Atelier')
+            if 'werkcollege' in lecture_type or 'tutorial' in lecture_type :
+                class_type,created = ClassType.objects.get_or_create(lecture_type = 'Tutorial',defaults={'description' : 'tutorial', 'color': 'red'})
+            if 'hoorcollege' in lecture_type or 'lecture' in lecture_type or 'dutch' in lecture_type:
+                class_type,created = ClassType.objects.get_or_create(lecture_type='Tutorial',defaults={'description' : 'lecture','color':'purple'})
+            if 'workshop' in lecture_type or 'groepswork' in lecture_type:
+                class_type,created = ClassType.objects.get_or_create(lecture_type='Workshop',defaults={'description' : 'Workshop','color': 'yellow'})
+            if 'plenary' in lecture_type or 'PLENAIR' in lecture_type:
+                class_type,created = ClassType.objects.get_or_create(lecture_type='Plenary',defaults={'description':'pleanry','color' : 'brown'})
+            if 'process' in lecture_type or 'professional skills' in lecture_type or 'theorie' in lecture_type or 'proces' in lecture_type:
+                class_type,created = ClassType.objects.get_or_create(lecture_type='Process',defaults={'description' : 'process' , 'color' : 'blue'})
+            if 'assessments' in lecture_type or 'studiemiddag' in lecture_type or 'ontwikkeloverleg' in lecture_type or 'reservation' in lecture_type:
+                class_type,created = ClassType.objects.get_or_create(lecture_type='Reservation',defaults={'description' : 'Reservation','color' : 'orange'})
+        except ClassType.MultipleObjectsReturned :
+            return
+        except ClassType.DoesNotExist:
+            return
 
+        if (created):
+            new_lecture = Lecture()
+            new_lecture.lecture_id = biggest_id
+            new_lecture.lecture_name = lecture_type
+            new_lecture.lecture_type = class_type
+
+        else :
+            new_lecture = Lecture()
+            new_lecture.lecture_id = biggest_id
+            new_lecture.lecture_name = lecture_type
+            new_lecture.lecture_type = class_type
+
+        new_lecture.save()
 def get_room(request):
     form = None
     if request.method == "POST":
