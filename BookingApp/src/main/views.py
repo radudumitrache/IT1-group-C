@@ -11,7 +11,7 @@ from .parser import calendar_parse
 import django
 import json
 from .models import StudentLectureTeacher, Lecture
-
+import os
 
 
 # Create your views here.
@@ -193,17 +193,28 @@ def addRoom(request):
 
 
 def get_room(request):
+    form = None
     if request.method == "POST":
-        form = addRoomForm(request.POST, request.FILES["file"])
+        form = addRoomForm(request.POST, request.FILES)
         if form.is_valid():
             if form.cleaned_data["roomName"] == "K 5.01 - IOT Lab" or form.cleaned_data["roomName"] == "K 5.01":
                 roomName = form.cleaned_data["roomName"]
-                file = request.FILES['file']
+                file = form.cleaned_data['file']
+                file_path = 'icsFiles/schedule.ics'
+                os.makedirs(os.path.dirname(file_path), exist_ok=True)
+                with open(file_path,'wb') as destination :
+                    for line in file.chunks():
+                        destination.write(line)
                 calendar_parse(file)
                 return HttpResponseRedirect("/addRoom")
             elif (form.cleaned_data["roomName"].find('.') == 1) and (form.cleaned_data["roomName"].count(".") == 1):
                 roomName = form.cleaned_data["roomName"]
-                file = request.FILES['file']
+                file = form.cleaned_data['file']
+                file_path = 'icsFiles/schedule.ics'
+                os.makedirs(os.path.dirname(file_path), exist_ok=True)
+                with open(file_path, 'wb') as destination:
+                    for line in file.chunks():
+                        destination.write(line)
                 calendar_parse(file)
                 return HttpResponseRedirect("/addRoom")
             else:
@@ -214,7 +225,7 @@ def get_room(request):
                 )
         else:
             form = addRoomForm()
-            return render(request, "addRoom.html", {"form": form})
+    return render(request, "main/addRoom.html", {"form": form})
 
 
 def load_django_settings():

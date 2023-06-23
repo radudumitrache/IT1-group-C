@@ -2,6 +2,7 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from django.contrib.auth import get_user_model
+from django.forms import forms
 User = get_user_model()
 from django import forms
 from . import models
@@ -14,7 +15,11 @@ from django import forms
 class addRoomForm(forms.Form):
     roomName = forms.CharField(label="roomName", max_length=16, required=True)
     file = forms.FileField()
-
+    def clean_file(self):
+        file =self.cleaned_data['file']
+        if not file.name.endswith('ics'):
+            raise forms.ValidationError('Only Ics files Allowed')
+        return file
 
 class MakeBookingForm (forms.ModelForm):
     chosenModel = None

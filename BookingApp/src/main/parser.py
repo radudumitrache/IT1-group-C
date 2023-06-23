@@ -1,4 +1,4 @@
-# from icalendar import *
+from icalendar import *
 import json
 
 def description_separation(summary: str):
@@ -26,7 +26,8 @@ def description_separation(summary: str):
 def calendar_parse(calendar):
     dictionary = {}
     id = 0
-    for component in calendar.walk():
+    cal = Calendar.from_ical(calendar)
+    for component in cal.walk():
         if component.name == 'VEVENT':
             start_time = str(component.decoded('dtstart')).split('+')[0]
             date = start_time.split()[0]
