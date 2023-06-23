@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/generic_style.css' %}">
+    {% block head_info %}
+    {% endblock %}
+</head>
+  <body>
+    <div id="container">
+      <header>
+          {% block header %}
+          {% endblock %}
+              <img src="{% static 'img/nhl_stenden_logo.png' %}" alt="Nhl_logo" title="Nhl logo">
+
+
+      </header>
+    {% block main_content %}
+    {% endblock %}
+
+        {% include 'footer_buttons.html' %}
+
+
+    </div>
+  </body>
+</html>

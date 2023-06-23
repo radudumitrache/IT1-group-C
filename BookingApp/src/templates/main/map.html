@@ -1,0 +1,18 @@
+{% extends 'generic.html' %}
+{% block head_info %}
+    <title>Map of NHL Stenden</title>
+{% endblock %}
+
+{% block header %}
+ <title>Map overview</title>
+<div class="go-back-button" onclick="window.location.href = '{% url 'index' room=1036 %}'">
+            <h2>< Go back </h2>
+        </div>
+{% endblock %}
+{% load static %}
+{% block main_content %}
+
+        <div id = 'map_container'>
+            <img src="{% static 'img/map.png'%}" id = 'map_image'>
+        </div>
+{% endblock %}

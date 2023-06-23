@@ -1,0 +1,46 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/add_room_style.css' %}">
+    {% block head_info %}
+    {% endblock %}
+</head>
+  <body>
+    <div id="container">
+      <header>
+          {% block header %}
+              <a href="{% url 'index' %}">
+            <div id="buttonNegative" onclick="window.location.href = '{% url 'index' room=selected_room %}'">
+                <h2>< Go Back</h2>
+            </div>
+            </a>
+    <title>Add Room</title>
+          {% endblock %}
+              <img src="{% static 'img/nhl_stenden_logo.png' %}" alt="Nhl_logo" title="Nhl logo">
+      </header>
+    {% block main_content %}
+        <div id = 'form_container'>
+            <form action = "addRoom.html" method="POST" enctype="multipart/form-data">
+                <div id="form">
+                    <p><label for="roomName"></label></p>
+                    <p><input type="text" id="roomName" name="roomName" placeholder="Room Name"></p>
+                    <p><label for="myFile" class="upload">Schedule file</label></p>
+                    <p><input type="file" id="myFile" name="myFile" style="color:transparent;"></p>
+                    <p><input type="submit" id="submit"value="Add"></p>
+                </div>
+            </form>
+        </div>
+    {% endblock %}
+
+        {% include 'footer_buttons.html' %}
+
+
+    </div>
+  </body>
+</html>
