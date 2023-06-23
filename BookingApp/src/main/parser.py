@@ -26,7 +26,7 @@ def description_separation(summary: str):
 def calendar_parse(calendar):
     dictionary = {}
     id = 0
-    cal = Calendar.from_ical(calendar)
+    cal = Calendar.from_ical(calendar.read())
     for component in cal.walk():
         if component.name == 'VEVENT':
             start_time = str(component.decoded('dtstart')).split('+')[0]

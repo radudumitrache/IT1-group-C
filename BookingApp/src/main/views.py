@@ -203,9 +203,10 @@ def get_room(request):
                 file_path = 'icsFiles/schedule.ics'
                 os.makedirs(os.path.dirname(file_path), exist_ok=True)
                 with open(file_path,'wb') as destination :
-                    for line in file.chunks():
+                    for line in file.readlines():
                         destination.write(line)
-                calendar_parse(file)
+                calendar_file = open(file_path,'rb')
+                calendar_parse(calendar_file)
                 return HttpResponseRedirect("/addRoom")
             elif (form.cleaned_data["roomName"].find('.') == 1) and (form.cleaned_data["roomName"].count(".") == 1):
                 roomName = form.cleaned_data["roomName"]
@@ -213,9 +214,10 @@ def get_room(request):
                 file_path = 'icsFiles/schedule.ics'
                 os.makedirs(os.path.dirname(file_path), exist_ok=True)
                 with open(file_path, 'wb') as destination:
-                    for line in file.chunks():
+                    for line in file.readlines():
                         destination.write(line)
-                calendar_parse(file)
+                calendar_file = open(file_path,'rb')
+                calendar_parse(calendar_file)
                 return HttpResponseRedirect("/addRoom")
             else:
                 raise ValidationError(
