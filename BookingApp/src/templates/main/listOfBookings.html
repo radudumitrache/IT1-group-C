@@ -1,0 +1,43 @@
+{% extends 'generic.html' %}
+{% load static %}
+
+{% block head_info %}
+    <title>List of Bookings</title>
+{% endblock %}
+
+{% block header %}
+    <div class="buttonNegative" onclick="window.location.href = '{% url 'index' room=1036 %}'">
+        <h2>< Go Back</h2>
+    </div>
+    <h1>List of Bookings</h1>
+{% endblock %}
+
+{% block main_content %}
+    <div class="main">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% for book in bookings %}
+            <table>
+                <tr class="listTable">
+                    <td>{{ book.date }}</td>
+                    <td>{{ book.time }}</td>
+                    <td>{{ book.room_id }}</td>
+                    <td>
+                    <form method="POST" action="{% url 'cancelBooking' book.booking_id %}">
+                        {% csrf_token %}
+                        <input class="buttonForm" type="submit" value="Cancel">
+                    </form>
+                </td>
+                </tr>
+            </table>
+        {% endfor %}
+    </div>
+{% endblock %}

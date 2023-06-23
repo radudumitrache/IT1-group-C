@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+</head>
+<body>
+    <div id="maincontainer">
+        <div id="top">
+            <h1>NHL Booking</h1>
+        </div>
+        <div id = "middle">
+            <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <input class="login" type="submit" value="Login">
+
+            </form>
+        </div>
+
+            <div id="bottom">
+                <img src="{% static 'img/nhl_stenden_logo.png' %}">
+            </div>
+
+
+    </div>
+</body>
+</html>

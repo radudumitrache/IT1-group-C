@@ -1,0 +1,98 @@
+@font-face{
+    font-family: Nexa;
+    src: url("../fonts/Nexa Bold.otf");
+}
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url("../img/nhl_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: soft-light;
+    background-color: rgba(255, 255, 255, 0.36);
+    min-height: 100vh;
+}
+#maincontainer{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+#top{
+    display: flex;
+    grid-column: 2/5;
+    justify-content: center;
+}
+#top > h1{
+    font-family: Nexa;
+    font-size: 128px;
+    color: rgba(28, 92, 113, 1);
+}
+#middle{
+    display: flex;
+    grid-column: 2/5;
+    justify-content: center;
+    align-content: center;
+}
+#middle > h1{
+    color: aqua;
+}
+#middle > form  input{
+   width: 304px;
+   height: 86px;
+   background: #D9D9D9;
+   border-radius: 30px;
+   /*border-color: none;*/
+   color: rgba(37, 100, 120, 0.5);
+   align-content: center;
+   font-size: 40px;
+   border-width: 0px;
+   padding-left: 20px;
+   padding-right: 20px;
+    margin-bottom: 10px;
+    outline: none;
+    cursor: pointer;
+    font-family: Nexa;
+}
+#middle > form  input:hover{
+    background: #FFFFFF;
+}
+
+input::placeholder {
+    font-family: Nexa;
+    font-weight: bold;
+    color: #999999;
+    font-size: 40px;
+    text-align: center;
+    color: rgba(37, 100, 120, 0.5);
+}
+#middle > form > button{
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(28, 92, 113, 1);
+    border-width: 0px;
+    width: 192px;
+    height: 45px;
+    font-family: Nexa;
+    font-weight: bold;
+    font-size: 32px;
+    border-radius: 20px;
+    margin-top: 2.5vw;
+    margin-left: 5vw;
+    cursor: pointer;
+    text-decoration: none;
+}
+#middle > form > button:hover{
+    background-color:rgba(255, 255, 255,1.0);
+}
+#middle > form > input:focus {
+    outline: none;
+}
+#bottom{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 30px;
+}
+#bottom > img{
+    width: 259px;
+    height: 226px;
+}

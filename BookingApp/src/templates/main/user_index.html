@@ -1,0 +1,71 @@
+{% extends 'generic.html' %}
+
+{% block head_info %}
+
+    <title>Student/Teacher</title>
+{% endblock %}
+{% block header %}
+    <h1>Classrooms overview</h1>
+{% endblock %}
+{% block main_content %}
+      <div id="allbtn">
+        <div class="linkbtn" >
+          <a href="{% url 'booking' roomToGet day %}">
+            <h2>Book room</h2>
+          </a>
+        </div>
+
+        <div class="linkbtn">
+           <a href="{% url 'listOfBookings' %}">
+            <h2>Your bookings</h2>
+          </a>
+        </div>
+        <div class="dropdown">
+        <button class="dropbtn">
+            {% if selected_room %}
+                Room {{ selected_room.room_number }}
+            {% else %}
+                Choose room
+            {% endif %}
+        </button>
+        <div class="dropdown-content">
+            {% for room in all_rooms %}
+                <a href="{% url 'index' room.room_number %}">Room {{ room.room_number }}</a>
+            {% endfor %}
+        </div>
+        </div>
+
+      </div>
+
+       <div id="scheduleOverview">
+        <p>{{ current_date }}</p>
+        <div class="table">
+            <div class="table-content">
+                {% for lecture in lectures %}
+                    <div class='table-row'>
+                        <div class='table-data-time'>{{ lecture.time }} - {{ lecture.end_time }}</div>
+                        <div class='table-data'>
+                            {{ lecture.lecture_id.lecture_type }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if bookings_teachers %}
+                    {% for booking in bookings_teachers %}
+                        <div class='table-row'>
+                            <div class='table-data-time'>{{ booking.time }} - {{ booking.end_time }}</div>
+                            <div class='table-data'> Booked by: a teacher</div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if bookings_students %}
+                    {% for booking in bookings_students %}
+                        <div class='table-row'>
+                            <div class='table-data-time'>{{ booking.time }} - {{ booking.end_time }}</div>
+                            <div class='table-data'> Booked by: a student</div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,357 @@
+@font-face {
+    font-family: Nexa;
+    src: url("../fonts/Nexa Bold.otf");
+}
+
+body {
+    padding: 2vw;
+    margin: 0;
+    margin-left: 3vw;
+    background-image: url("../img/nhl_background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: soft-light;
+    background-color: rgba(255, 255, 255, 0.6);
+    min-height: 90vh;
+}
+
+#maincontainer {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto 1fr; /* Added grid-template-rows to define the top and middle sections */
+}
+
+#top {
+    display: flex;
+    justify-content: space-between;
+    grid-column: 1/7; /* Updated the grid-column span to 1/7 to cover the entire top section */
+}
+
+#logo {
+    display: flex;
+    justify-content: flex-end; /* Align the logo to the right */
+    width: 157px;
+    height: 136px;
+}
+
+#button {
+    display: flex;
+}
+.go-back-button {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 288px;
+    height: 47px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: rgba(217, 217, 217, 1);
+  }
+.go-back-button h2 {
+    font-size: 48px;
+    font-family: Nexa;
+    font-weight: bold;
+    cursor: pointer;
+    background: rgba(217, 217, 217, 1);
+}
+.go-back-button:hover,
+  .go-back-button:hover h2 {
+    background: #ffffff;
+  }
+
+#button > h2 {
+    width: 328px;
+    height: 70px;
+    font-size: 48px;
+    font-family: Nexa;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: rgba(217, 217, 217, 1);
+}
+#middle {
+    grid-column: 1/7;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#left-side{
+    grid-column: 1/4;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#left-side .choose_time_button {
+    width: 448px;
+    height: 66px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    margin-top: 20px;
+    font-family: Nexa;
+    font-weight: bold;
+    font-size: 48px;
+    color: rgba(37, 100, 120, 1);
+    border-width: 0px;
+    border-color: none;
+    text-align: center;
+}
+.day_button{
+    width: 76px;
+    height: 64px;
+    background: rgba(217, 217, 217, 1.0);
+    border-radius: 15px;
+    font-size: 40px;
+    color: rgba(37, 100, 120, 1);
+    border-width: 0px;
+    font-weight: bold;
+    margin-right: 13px;
+    text-decoration: none;
+    outline: none;
+}
+
+.day_button.active {
+    background-color: #ffffff; /* Change to your desired active background color */
+    color: #000000; /* Change to your desired active text color */
+}
+.day_button > a{
+    color: rgba(37, 100, 120, 1);;
+    text-decoration: none;
+    outline: none;
+}
+.cool_from_until{
+    background-color: #FFFFFF;
+    color: rgba(37, 100, 120, 1);
+    font-size: 16px;
+    border-radius: 5px;
+    width: 170px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Nexa;
+    font-weight: bold;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 20px;
+}
+#choose-time{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#from{
+    display: flex;
+    flex-direction: row;
+    gap: 5vw    ;
+}
+#until{
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+}
+#from > input{
+    font-size: 30px;
+    max-height: 40px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    padding: 15px 20px;
+    text-align: center;
+    border-width: 0;
+    outline: none;
+}
+#until > input{
+    font-size: 30px;
+    max-height: 40px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    padding: 15px 20px;
+    text-align: center;
+    border-width: 0;
+    outline: none;
+}
+.confirm_button {
+  width: 448px;
+  height: 63px;
+  margin-top: 20px;
+  font-family: Nexa;
+  font-weight: bold;
+  font-size: 48px;
+  text-decoration: none;
+  background-color: #256478;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.confirm_button:hover {
+    background-color: #1c4e63;
+  }
+#right-side{
+    display: flex;
+}
+
+.container {
+  max-width: 1000px;
+  margin-right: 0;
+  margin-left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table {
+  width: 768px;
+  border: 1px solid #EEEEEE;
+  border-radius: 20px;
+  overflow: hidden; /* Added overflow property to hide overflowing content */
+}
+
+.table-header {
+  display: flex;
+  width: 100%;
+  background: #000;
+  padding: 12px 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  padding: 12px 0;
+
+  &:nth-of-type(odd) {
+    background: #EEEEEE;
+  }
+
+  &:nth-of-type(even) {
+    background: #F5F5F5; /* Change the background color for even rows */
+  }
+}
+
+.table-data,
+.header__item {
+  flex: 1 1 20%;
+  text-align: center;
+  padding: 6px 0; /* Added padding to adjust cell content */
+  overflow: hidden; /* Added overflow property to hide overflowing content */
+  white-space: nowrap; /* Prevent text wrapping within cells */
+  text-overflow: ellipsis; /* Show ellipsis (...) for overflowing text */
+}
+.table-data-time{
+    font-family: Nexa;
+    font-weight: bold;
+    color: #256478;
+    margin-left: 60px;
+    text-align: center;
+    font-size: 20px;
+}
+.table-data{
+    font-family: Nexa;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.header__item {
+  text-transform: uppercase;
+  color: #FFFFFF; /* Added text color for header items */
+}
+
+.filter__link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.filter__link::after {
+  content: '';
+  position: absolute;
+  right: -12px;
+  color: white;
+  font-size: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.filter__link.desc::after {
+  content: '(desc)';
+}
+
+.filter__link.asc::after {
+  content: '(asc)';
+}
+.dropbtn {
+
+    background-color: #FFFFFF;
+    color: #256478;
+    font-family: "Nexa Bold", Helvetica, sans-serif;
+    font-size: 48px;
+    height: fit-content;
+    width: 100%;
+
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+    border-radius: 0rem 0rem 1rem 1rem;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    border-radius: 1rem 1rem 0rem 0rem;
+    background-color: #f1f1f1;
+}
+
+.errorMessage{
+    color: red;
+    font-family: "Nexa Bold", Helvetica, sans-serif;
+    font-size: 40px;
+}
+
+.successMessage{
+    color: greenyellow;
+    font-family: "Nexa Bold", Helvetica, sans-serif;
+    font-size: 40px;
+}
