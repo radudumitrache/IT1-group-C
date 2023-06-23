@@ -193,7 +193,11 @@ def addRoom(request):
 
 def add_lecture (dict):
     for key,lecture in dict:
-        pass
+        biggest_id = Lecture.objects.latest('id').id + 1
+        class_type = None
+        if ('Dutch' in lecture['description']['lecture type']):
+            class_type = ClassType.objects.filter(lecture__exact='Tutorial')
+        Lecture_object = Lecture (biggest_id,)
 
 def get_room(request):
     form = None

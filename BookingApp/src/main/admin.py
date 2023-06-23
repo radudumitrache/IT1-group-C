@@ -28,7 +28,7 @@ class LectureAdmin (admin.ModelAdmin):
     list_display = ('lecture_id','lecture_type','lecture_name')
 @admin.register(models.ClassType)
 class ClassTypeAdmin (admin.ModelAdmin):
-    list_display = ('lecture_type','colour')
+    list_display = ('lecture_type','description','colour')
 
 from django import forms
 from django.core.exceptions import ValidationError
