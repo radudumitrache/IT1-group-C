@@ -94,8 +94,6 @@ def bookRoom(request, room, day):
         booking_duration = datetime.combine(datetime.min.date(), end_time) - datetime.combine(datetime.min.date(),start_time)
         if booking_duration > duration_limit:
 
-            # error_message = "Booking can not be more than 10 hours."
-            # return render(request, 'main/listOfBookings.html', {'error_message':error_message})
             messages.error(request, "Booking cannot be more than 10 hours.")
             return redirect('listOfBookings')
 
@@ -114,8 +112,7 @@ def bookRoom(request, room, day):
             bookingsT = TeacherBookingRoom.objects.filter(date=date_to_filter, room_id=room)
             for booking in bookingsT:
                 if start_time < booking.end_time and end_time > booking.time:
-                    # error_message = "This room is already booked for this time."
-                    # return render(request, 'main/listOfBookings.html')
+
                     messages.error(request, "This room is already booked for this time.")
                     return redirect('listOfBookings')
             # Save booking to database
@@ -132,8 +129,7 @@ def bookRoom(request, room, day):
             bookingsS = StudentBookingRoom.objects.filter(date=date_to_filter, room_number=room)
             for booking in bookingsS:
                 if start_time < booking.end_time and end_time > booking.time:
-                    # error_message = "This room is already booked for this time."
-                    # return render(request, 'main/listOfBookings.html')
+
                     messages.error(request, "This room is already booked for this time.")
                     return redirect('listOfBookings')
 
@@ -146,8 +142,6 @@ def bookRoom(request, room, day):
             return HttpResponse("System error")
 
 
-    # successMessage = "Your booking has been successful!"
-    # return render(request, 'main/listOfBookings.html')
     return redirect('listOfBookings')
 
 
