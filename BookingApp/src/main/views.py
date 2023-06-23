@@ -191,6 +191,9 @@ def addRoom(request):
     else:
         return render(request=request, template_name='main/addRoom.html')
 
+def add_lecture (dict):
+    for key,lecture in dict:
+        pass
 
 def get_room(request):
     form = None
@@ -206,7 +209,7 @@ def get_room(request):
                     for line in file.readlines():
                         destination.write(line)
                 calendar_file = open(file_path,'rb')
-                calendar_parse(calendar_file)
+                result_dictionary = calendar_parse(calendar_file)
                 return HttpResponseRedirect("/addRoom")
             elif (form.cleaned_data["roomName"].find('.') == 1) and (form.cleaned_data["roomName"].count(".") == 1):
                 roomName = form.cleaned_data["roomName"]
@@ -217,7 +220,7 @@ def get_room(request):
                     for line in file.readlines():
                         destination.write(line)
                 calendar_file = open(file_path,'rb')
-                calendar_parse(calendar_file)
+                result_dictionary = calendar_parse(calendar_file)
                 return HttpResponseRedirect("/addRoom")
             else:
                 raise ValidationError(
@@ -230,61 +233,38 @@ def get_room(request):
     return render(request, "main/addRoom.html", {"form": form})
 
 
-def load_django_settings():
-    django.setup()
-    load_django_settings()
-    from django.conf import settings
-    settings.configure()
-
-
 def insert_json_data_Teacherdata():
     parsed_data = json.load()
     for item in parsed_data:
-
         studentModel = StudentLectureTeacher(json_data=item)
         studentModel.save()
-
-
 def insert_json_data_RoomNumberdata():
     parsed_data = json.load()
-
     for item in parsed_data:
         studentModel = StudentLectureTeacher(json_data=item)
         studentModel.save()
-
 
 
 def insert_json_data_LectureNamedata():
     parsed_data = json.load()
-
     for item in parsed_data:
         lectureModel = Lecture(json_data=item)
         lectureModel.save()
-
-
 
 def insert_json_data_Datedata():
     parsed_data = json.load()
-
     for item in parsed_data:
         lectureModel = Lecture(json_data=item)
         lectureModel.save()
-
-
 
 def insert_json_data_Timedata():
     parsed_data = json.load()
-
     for item in parsed_data:
-
         lectureModel = Lecture(json_data=item)
         lectureModel.save()
 
-
-
 def insert_json_data_LectureTypedata():
     parsed_data = json.load()
-
     for item in parsed_data:
         lectureModel = Lecture(json_data=item)
         lectureModel.save()
