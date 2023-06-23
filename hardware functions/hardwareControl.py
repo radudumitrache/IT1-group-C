@@ -385,7 +385,9 @@ while True:
                 if event["room_number"] == room["room_number"]:
                     for lecture in lectures:
                         if lecture["lecture_id"] == event["lecture_id"]:
-                            status = get_lecture_type(lecture["lecture_type"])
+                            if lecture["date"] == current_date:
+                                if lecture["time"] <= current_time:
+                                    status = get_lecture_type(lecture["lecture_type"])
 
             room_number = room_number[0] + "." + room_number[1:]
             change_led(room_number, status)
@@ -406,23 +408,27 @@ while True:
             lcd2.move_to(0, 1)
 
             for event in schedule:
-                if event["room_number"] == room["room_number"]:
-                    availability = False
-                    counter = 1
-                    for teacher in teachers:
-                        if event["teacher_number"] == teacher["teacher_number"]:
-                            if counter <= 3:
-                                lcd1.move_to(0, counter)
-                                lcd2.move_to(0, counter)
+                for lecture in lectures:
+                    if event["lecture_id"] == lecture["lecture_id"]:
+                        if lecture["date"] == current_date:
+                            if lecture["time"] <= current_time:
+                                if event["room_number"] == room["room_number"]:
+                                    availability = False
+                                    counter = 1
+                                    for teacher in teachers:
+                                        if event["teacher_number"] == teacher["teacher_number"]:
+                                            if counter <= 3:
+                                                lcd1.move_to(0, counter)
+                                                lcd2.move_to(0, counter)
 
-                                spaces = ""
-                                for i in range(
-                                        availableSpace - len(teacher["first_name"] + " " + teacher["last_name"])):
-                                    spaces += " "
+                                                spaces = ""
+                                                for i in range(
+                                                        availableSpace - len(teacher["first_name"] + " " + teacher["last_name"])):
+                                                    spaces += " "
 
-                                lcd1.putstr(teacher["first_name"] + " " + teacher["last_name"] + spaces)
-                                lcd2.putstr(teacher["first_name"] + " " + teacher["last_name"] + spaces)
-                            counter = counter + 1
+                                                lcd1.putstr(teacher["first_name"] + " " + teacher["last_name"] + spaces)
+                                                lcd2.putstr(teacher["first_name"] + " " + teacher["last_name"] + spaces)
+                                            counter = counter + 1
 
             if availability:
                 lcd1.putstr("Available")
