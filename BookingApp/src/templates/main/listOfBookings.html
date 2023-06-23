@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block header %}
-    <div class="buttonNegative" onclick="history.back()">
+    <div class="buttonNegative" onclick="window.location.href = '{% url 'index' room=1036 %}'">
         <h2>< Go Back</h2>
     </div>
     <h1>List of Bookings</h1>

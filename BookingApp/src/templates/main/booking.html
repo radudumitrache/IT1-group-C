@@ -21,7 +21,7 @@
 {##}
 {#    {% endfor %}#}
     <div id="top">
-        <div class="go-back-button" onclick="history.back()">
+        <div class="go-back-button" onclick="window.location.href = '{% url 'index' room=selected_room %}'">
             <h2>< Go back </h2>
         </div>
         <div id="logo">

@@ -5,7 +5,7 @@
 
 {% block header %}
  <title>Map overview</title>
-<div class="go-back-button" onclick="history.back()">
+<div class="go-back-button" onclick="window.location.href = '{% url 'index' room=1036 %}'">
             <h2>< Go back </h2>
         </div>
 {% endblock %}

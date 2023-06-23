@@ -16,7 +16,7 @@
       <header>
           {% block header %}
               <a href="{% url 'index' %}">
-            <div id="buttonNegative">
+            <div id="buttonNegative" onclick="window.location.href = '{% url 'index' room=selected_room %}'">
                 <h2>< Go Back</h2>
             </div>
             </a>
