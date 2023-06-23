@@ -198,11 +198,6 @@ set_rgb_room_1_016(OFF)
 set_rgb_room_K_5_01(OFF)
 
 # LCD FUNCTIONS LCD FUNCTIONS
-name = "Dumitrache, Alex Timothy"
-# Names for each row
-row2_name = "Maksym Maksym"
-row3_name = "Vlad Radu"
-row4_name = "Nefeli Nefeli"
 availableSpace = 20
 
 def displayText(text: str, screenLength: int):
@@ -430,9 +425,7 @@ while True:
                             counter = counter + 1
 
             if availability:
-                lcd1.move_to(3, 1)
-                lcd2.move_to(3, 1)
                 lcd1.putstr("Available")
                 lcd2.putstr("Available")
 
-            sleep(2)
+            sleep(1.5)
