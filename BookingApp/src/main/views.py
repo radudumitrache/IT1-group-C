@@ -21,7 +21,7 @@ def index (request,room):
     bookings_teachers = TeacherBookingRoom.objects.filter(room_id=room).filter(date__exact=date_to_filter)
     bookings_students = StudentBookingRoom.objects.filter(room_number=room).filter(date__exact=date_to_filter)
     all_rooms = Room.objects.all()
-    selected_room = Room.objects.get(room_number=room)
+    selected_room = Room.objects.filter(room_number=room)
     context = {
         'day': day,
         'bookings_teachers': bookings_teachers,
@@ -30,7 +30,7 @@ def index (request,room):
         'roomToGet': roomToGet,
         'lectures': lectures,
         'all_rooms': all_rooms,
-        'selected_room': selected_room,
+        'selected_room': selected_room[0],
     }
     print(room)
     return render(request = request , template_name = 'main/user_index.html',context = context)
@@ -46,9 +46,10 @@ class LoginView(BaseLoginView):
     def get_context_data(self, **kwargs):
         return super().get_context_data(**kwargs)
     def get_success_url(self):
+        room = Room.objects.all()
         user =self.request.user
         if (user.is_authenticated):
-            return reverse('index',args=[str(1)])
+            return reverse('index',args=[str(room[0])])
         else:
             return reverse('login')
 def BookingListView(request,room,day):
@@ -61,7 +62,7 @@ def BookingListView(request,room,day):
     bookings_teachers = TeacherBookingRoom.objects.filter(room_id__exact=room).filter(date__exact=date_to_filter)
     bookings_students = StudentBookingRoom.objects.filter(room_number__exact=room).filter(date__exact=date_to_filter)
     all_rooms = Room.objects.all()
-    selected_room = Room.objects.get(room_number=room)
+    selected_room = Room.objects.filter(room_number=room)
     context = {
         'day': day,
         'bookings_teachers': bookings_teachers,
@@ -70,7 +71,7 @@ def BookingListView(request,room,day):
         'room': room,
         'lectures': lectures,
         'all_rooms': all_rooms,
-        'selected_room': selected_room,
+        'selected_room': selected_room[0],
     }
     return render(request=request , template_name= 'main/booking.html',context = context)
 
@@ -91,8 +92,7 @@ def bookRoom(request, room, day):
         if booking_duration > duration_limit:
 
             # error_message = "Booking can not be more than 10 hours."
-            # return render(request, 'main/listOfBookings.html')
-            # return HttpResponse("Duration issue")
+            # return render(request, 'main/listOfBookings.html', {'error_message':error_message})
             return redirect('listOfBookings')
 
 
@@ -112,7 +112,6 @@ def bookRoom(request, room, day):
                 if start_time < booking.end_time and end_time > booking.time:
                     # error_message = "This room is already booked for this time."
                     # return render(request, 'main/listOfBookings.html')
-                    # return HttpResponse("time issue")
                     return redirect('listOfBookings')
             # Save booking to database
             bookingT = TeacherBookingRoom(booking_id=bookingIDT, teacher_id=teacher[0], room_id=roomObject, time=start_time, end_time=end_time,date=date_to_filter)
@@ -130,7 +129,6 @@ def bookRoom(request, room, day):
                     # error_message = "This room is already booked for this time."
                     # return render(request, 'main/listOfBookings.html')
                     return redirect('listOfBookings')
-                    # return HttpResponse("time issue")
 
             # Save booking to database
             bookingS = StudentBookingRoom(booking_id=bookingIDS, student_number=student[0], room_number=roomObject, time=start_time, date=date_to_filter, end_time=end_time)
@@ -143,8 +141,7 @@ def bookRoom(request, room, day):
     # successMessage = "Your booking has been successful!"
     # return render(request, 'main/listOfBookings.html')
     return redirect('listOfBookings')
-    # return redirect('listOfBookings', {'success_message':success_message})
-    # return HttpResponse("works")
+
 
 def listOfBookings(request):
     user = request.user.id
